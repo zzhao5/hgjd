@@ -1,0 +1,38 @@
+.wrap {
+  background-color: #fff;
+  .main {
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .logo {
+    padding:10px 20px;
+    img {
+      height: 40px;
+    }
+  }
+  .nav {
+    display: block;
+    font-size: 14px;
+    .item {
+      display: inline-block;
+      line-height: 20px;
+      padding: 20px 0;
+      margin: 0 20px;
+      &.active {
+        color: #00b;
+      }
+      .sub{
+        display: none;
+      }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .wrap {
+    .nav {
+      display: none;
+    }
+  }
+}
