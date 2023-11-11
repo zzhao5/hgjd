@@ -16,6 +16,7 @@
     display: block;
     font-size: 14px;
     .item {
+      position: relative;
       display: inline-block;
       line-height: 20px;
       padding: 20px 0;
@@ -24,7 +25,12 @@
         color: #00b;
       }
       .sub{
-        display: none;
+        position: absolute;
+        width: 80px;
+        border: 1px solid #000;
+        a {
+          display: block;
+        }
       }
     }
   }

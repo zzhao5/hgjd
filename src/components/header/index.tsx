@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import _s from './index.module.scss';
 import c from 'classnames';
@@ -42,6 +43,7 @@ const NAV_LIST = [
 ];
 
 const Header = () => {
+
   return (
     <header className={_s.wrap}>
       <div className={_s.main}>
@@ -52,10 +54,20 @@ const Header = () => {
           {
             NAV_LIST.map((item, index) => 
               <NavLink key={index} className={({isActive}) => c(_s.item, isActive ? _s.active : '')} to={item.path} end={item.path === '/'} >
-                  <span>
+                  <span onMouseEnter={(event) => {
+                    if (item.sub) {
+                      const sub = event.currentTarget.getElementsByClassName(_s.sub)[0] as HTMLElement;
+                      sub.style.display = 'block';
+                    }
+                  }} onMouseLeave={(event) => {
+                    if (item.sub) {
+                      const sub = event.currentTarget.getElementsByClassName(_s.sub)[0] as HTMLElement;
+                      sub.style.display = 'none';
+                    }
+                  }}>
                     {item.name}
                     {
-                      item.sub && <div className={_s.sub}>
+                      item.sub && <div className={_s.sub} style={{display: 'none',}}>
                         {
                           item.sub.map((subItem, subIndex) => 
                             <NavLink key={index + '-' + subIndex} to={subItem.path}>{subItem.name}</NavLink>
