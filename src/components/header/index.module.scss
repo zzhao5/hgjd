@@ -1,3 +1,5 @@
+@import '../../styles/media-queries';
+
 .wrap {
   position: relative;
   background-color: #fff;
@@ -36,7 +38,7 @@
     }
   }
 }
-@media screen and (max-width: 768px) {
+@include xs {
   .wrap {
     &::after {
       content: '';

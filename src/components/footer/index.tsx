@@ -1,7 +1,7 @@
-import _s from './index.module.scss';
-import c from 'classnames';
-import logo from './images/logo.png'
 import { Link } from 'react-router-dom';
+import c from 'classnames';
+import _s from './index.module.scss';
+import logo from './images/logo.png'
 
 
 const Footer = () => {
@@ -22,9 +22,9 @@ const Footer = () => {
           </div>
           <div className={_s.contact}>
             联系方式
-            <p><i className={_s.icon_mail}></i>xxx@qq.com</p>
-            <p><i className={_s.icon_address}></i>上海市徐汇区xxxxx</p>
-            <p><i className={_s.icon_phone}></i>+86 123456789</p>
+            <p><i className={c(_s.icon, _s.icon_mail)}></i>xxx@qq.com</p>
+            <p><i className={c(_s.icon, _s.icon_address)}></i>上海市徐汇区xxxxx</p>
+            <p><i className={c(_s.icon, _s.icon_phone)}></i>+86 123456789</p>
           </div>
           <div className={_s.code}>
             <p>官方微信公众号</p>
