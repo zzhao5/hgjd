@@ -53,6 +53,7 @@ const Header = () => {
         <div className={_s.nav}>
           {
             NAV_LIST.map((item, index) => 
+              // TODO: 这里的 end 没有起到理想的作用，导致 /service/list 时不能高亮 /service
               <NavLink key={index} className={({isActive}) => c(_s.item, isActive ? _s.active : '')} to={item.path} end={item.path === '/'} >
                   <span onMouseEnter={(event) => {
                     if (item.sub) {
