@@ -4,10 +4,10 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 10px;
+  padding: 10px 0;
   .name {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
   }
   .more {
     color: #00b;
@@ -17,6 +17,9 @@
     &::after {
       content: '了解更多';
     }
+  }
+  &.border {
+    border-bottom: 2px solid #000;
   }
 }
 @include xs {
