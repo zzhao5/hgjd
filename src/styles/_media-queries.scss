@@ -34,3 +34,38 @@
     @content;
   }
 }
+
+
+/** 全局样式 **/
+.flex_3, .flex_2, .flex_4 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  & > * {
+    margin-bottom: 15px;
+  }
+}
+.flex_2 {
+  & > * {
+    width: 48%;
+  }
+}
+.flex_3 {
+  & > * {
+    width: 32%;
+  }
+}
+.flex_4 {
+  & > * {
+    width: 24%;
+  }
+}
+
+@include xs {
+  .flex_2, .flex_3, .flex_4 {
+    & > * {
+      width: 100%;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 @import '../../styles/media-queries';
+@import '../../styles/variables';
 
 .main {
   max-width: 900px;
@@ -26,9 +27,6 @@
   }
 }
 
-$backColor: rgb(194, 234, 233);
-$leftColor: #034881;
-$rightColor: #97a7b5;
 
 .best {
   position: relative;
@@ -40,7 +38,7 @@ $rightColor: #97a7b5;
     height: 70%;
     bottom: 0;
     left: 0;
-    background-color: $backColor;
+    background-color: $greyColor;
   }
   .main {
     position: relative;
@@ -54,14 +52,14 @@ $rightColor: #97a7b5;
       left: 0;
       width: 45%;
       height: 20%;
-      background-color: $leftColor;
+      background-color: $darkBlueColor;
     }
     &::after {
       content: '';
       position: absolute;
       width: 45%;
       height: 100%;
-      background-color: $rightColor;
+      background-color: $lightBlueColor;
       left: 50%;
     }
   }
@@ -89,7 +87,7 @@ $rightColor: #97a7b5;
         display: block;
         width: 20px;
         height: 2px;
-        background-color: #034881;
+        background-color: $darkBlueColor;
         margin: 10px 0 0 0;
       }
     }
@@ -100,18 +98,10 @@ $rightColor: #97a7b5;
 }
 .news {
   margin-bottom: 40px;
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: stretch;
-  }
   li {
-    width: 32%;
-    margin-bottom: 20px;
-    background-color: #eee;
+    background-color: $lightBlueColor;
     &:nth-child(2n) {
-      background-color: #aaa;
+      background-color: $darkBlueColor;
     }
     a {
       padding: 20px;
@@ -128,15 +118,8 @@ $rightColor: #97a7b5;
 }
 .img_list {
   margin-bottom: 40px;
-  ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-  }
   li {
-    width: 32%;
-    padding-bottom: 15px;
-    background-color: #eee;
+    background-color: $greyColor;
     img {
       width: 100%;
       margin-bottom: 10px;
@@ -200,7 +183,7 @@ $rightColor: #97a7b5;
       width: 100%;
       padding: 10px 20px;
       box-sizing: border-box;
-      background-color: $rightColor;
+      background-color: $lightBlueColor;
     }
   }
   .news {

@@ -1,14 +1,12 @@
 @import '../../styles/media-queries';
 @import '../../styles/icon';
+@import '../../styles/variables';
 
 .wrap {
   position: relative;
-  background-color: #333;
-  color: #bbb;
+  background-color: $blackColor;
+  color: $whiteTextColor;
   padding: 50px 0;
-  a, a:link, a:hover, a:active, a::after {
-    color: #bbb;
-  }
   .main {
     margin: 0 auto;
     max-width: 1000px;

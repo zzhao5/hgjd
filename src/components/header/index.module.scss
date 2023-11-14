@@ -2,6 +2,7 @@
 
 .wrap {
   position: relative;
+  z-index: 9;
   background-color: #fff;
   .main {
     margin: 0 auto;
@@ -63,7 +64,6 @@
       background-color: #fff;
       right: 0;
       top: 0;
-      z-index: 9;
       transition: all 0.3s ease-in-out;
       transform: translateX(100%);
       &.active {

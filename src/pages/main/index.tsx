@@ -1,8 +1,19 @@
 import c from 'classnames';
+import axios from 'axios';
 import _s from './index.module.scss';
 import Title from '../../components/title';
+import { useEffect, useState } from 'react';
 
 const Main = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // axios.get('/api/test').then(res => {
+    //   console.log(res);
+    //   setData(res.data);
+    // });
+  }, []);
+
   return (
     <>
       <section className={_s.banner}>
@@ -29,7 +40,7 @@ const Main = () => {
       </section>
       <section className={c(_s.news, _s.main)}>
         <Title name="新闻动态" more="/news/" />
-        <ul>
+        <ul className={_s.flex_3}>
           {
             [1, 2, 3, 4, 5, 6].map((item, index) => {
               return (
@@ -51,7 +62,7 @@ const Main = () => {
       </section>
       <section className={c(_s.img_list, _s.main)}>
         <Title name="汉光资质" more='/about/' />
-        <ul>
+        <ul className={_s.flex_3}>
           {
             [1, 2, 3].map((item, index) => {
               return (
