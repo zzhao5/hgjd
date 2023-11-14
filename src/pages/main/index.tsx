@@ -1,5 +1,6 @@
 import c from 'classnames';
 import axios from 'axios';
+import Pagination from 'rc-pagination';
 import _s from './index.module.scss';
 import Title from '../../components/title';
 import { useEffect, useState } from 'react';
