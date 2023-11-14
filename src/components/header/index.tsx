@@ -42,10 +42,15 @@ const NAV_LIST = [
 
 ];
 
+const NAV_SUB_STATE = {} as {[key: string]: boolean};
+NAV_LIST.forEach((item, index) => {
+  if (item.sub) NAV_SUB_STATE[index] = false;
+});
+
 const Header = () => {
 
   const [showNav, setShowNav] = useState(false);
-  const [showSubNav, setShowSubNav] = useState(false);
+  const [showSubNav, setShowSubNav] = useState(NAV_SUB_STATE);
 
   useEffect(() => {
     const handleClick = () => {
@@ -68,10 +73,12 @@ const Header = () => {
             NAV_LIST.map((item, index) => 
               // TODO: 这里的 end 没有起到理想的作用，导致 /service/list 时不能高亮 /service
               <NavLink key={index} className={({isActive}) => c(_s.item, isActive ? _s.active : '')} to={item.path} end={item.path === '/'} >
-                  <span onMouseEnter={() => setShowSubNav(true)} onMouseLeave={() => setShowSubNav(false)}>
+                  <span
+                    onMouseEnter={() => setShowSubNav((old) => { const t = {...old}; t[index] = true; return t;})}
+                    onMouseLeave={() => setShowSubNav(NAV_SUB_STATE)}>
                     {item.name}
                     {
-                      item.sub && <div className={c(_s.sub, showSubNav ? _s.active : '')}>
+                      item.sub && <div className={c(_s.sub, showSubNav[index] ? _s.active : '')}>
                         {
                           item.sub.map((subItem, subIndex) => 
                             <NavLink key={index + '-' + subIndex} to={subItem.path}>{subItem.name}</NavLink>
