@@ -1,0 +1,45 @@
+@import '../../styles/media-queries';
+
+.news {
+  a {
+    padding: 20px;
+    display: block;
+  }
+  .type {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+}
+.img_text {
+  img {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  p {
+    padding: 0 10px;
+  }
+  .name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+}
+.text {
+  border-bottom: 1px solid #aaa;
+  padding: 20px 10px;
+  .title {
+    display: flex;
+    justify-content: space-between;
+    .name {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  }
+}
+@include xs {
+  
+}

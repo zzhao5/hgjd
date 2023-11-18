@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import c from 'classnames';
 import _s from './index.module.scss';
-import logo from './images/logo.png'
+import logo from './images/logo_white.png'
 
 
-const Footer = () => {
+const Footer = ({ data, menu }: { data: {}, menu: {}[]}) => {
 
   return (
     <footer className={_s.wrap}>
@@ -25,10 +25,6 @@ const Footer = () => {
             <p><i className={c(_s.icon, _s.icon_mail)}></i>xxx@qq.com</p>
             <p><i className={c(_s.icon, _s.icon_address)}></i>上海市徐汇区xxxxx</p>
             <p><i className={c(_s.icon, _s.icon_phone)}></i>+86 123456789</p>
-          </div>
-          <div className={_s.code}>
-            <p>官方微信公众号</p>
-            <img src={logo} alt="" />
           </div>
         </div>
         <div className={_s.other}>
