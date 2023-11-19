@@ -38,7 +38,7 @@
     height: 70%;
     bottom: 0;
     left: 0;
-    background-color: $greyColor;
+    background-color: $middleBlueColor;
   }
   .main {
     position: relative;
@@ -66,8 +66,8 @@
   .img {
     position: relative;
     z-index: 2;
-    padding: 30px 0 30px 30px;
-    width: 50%;
+    padding: 75px 0 75px 60px;
+    width: 52.7%;
     img {
       width: 100%;
       display: block;
@@ -76,23 +76,24 @@
   .text {
     position: relative;
     z-index: 2;
-    width: 40%;
-    padding: 30px 50px 0 30px;
+    width: 30%;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.7;
+    padding: 30px calc(5% + 45px) 0 0;
     h6 {
       font-weight: bold;
-      font-size: 30px;
-      margin-bottom: 20px;
+      font-size: 36px;
+      margin-bottom: 60px;
+      font-weight: 500;
+      line-height: 3;
       &::after {
         content: '';
         display: block;
-        width: 20px;
-        height: 2px;
+        width: 50px;
+        height: 3px;
         background-color: $darkBlueColor;
-        margin: 10px 0 0 0;
       }
-    }
-    h3 {
-      font-size: 16px;
     }
   }
 }
@@ -140,13 +141,19 @@
     }
     .img {
       width: 100%;
-      padding: 30px 0 0;
+      padding: po(70) 0 0;
     }
     .text {
       width: 100%;
-      padding: 10px 20px;
+      font-size: 16px;
+      line-height: 24px;
+      padding: 0 25px 30px;
       box-sizing: border-box;
       background-color: $lightBlueColor;
+      h6 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
     }
   }
   .news {

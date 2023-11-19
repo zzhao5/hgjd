@@ -34,7 +34,7 @@
       font-weight: 500;
       color: $normalColor;
       &.active {
-        color: $activeColor;
+        color: $darkBlueColor;
       }
     }
     .sub{
@@ -66,8 +66,8 @@
       top: 50%;
       right: po(36);
       transform: translateY(-50%);
-      border-top: 2px solid $activeColor;
-      border-bottom: 2px solid $activeColor;
+      border-top: 2px solid $darkBlueColor;
+      border-bottom: 2px solid $darkBlueColor;
       &::after {
         content: '';
         position: absolute;
@@ -75,7 +75,7 @@
         height: 0;
         top: 50%;
         transform: translateY(-1px);
-        border-bottom: 2px solid $activeColor;
+        border-bottom: 2px solid $darkBlueColor;
       }
     }
     .logo {

@@ -30,7 +30,7 @@ const Main = ({ data }: { data: {key: string}[] }) => {
         </div>
       </section>
       <section className={c(_s.news, _s.main)}>
-        <Title name="新闻动态" more="/news/" />
+        <Title name="最新消息" more="/news/" />
         <div className={_s.flex_3}>
           {
             [1, 2, 3, 4, 5, 6].map((item, index) => {
