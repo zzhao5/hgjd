@@ -1,56 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { NavLink } from "react-router-dom";
 import _s from './index.module.scss';
 import c from 'classnames';
 import logo from './images/logo.png'
 
-const NAV_LIST = [
-  {
-    name: '首页',
-    path: '/',
-  },
-  {
-    name: '关于我们',
-    path: '/about/',
-  },
-  {
-    name: '服务内容',
-    path: '/service/',
-    sub: [
-      {
-        name: '服务列表',
-        path: '/service/list',
-      },
-      {
-        name: '服务类型',
-        path: '/service/type',
-      },
-    ]
-  },
-  {
-    name: '观点和经验',
-    path: '/view/',
-  },
-  {
-    name: '专家和合作机构',
-    path: '/pics/',
-  },
-  {
-    name: '联系我们',
-    path: '/contact',
-  },
-
-];
-
-const NAV_SUB_STATE = {} as {[key: string]: boolean};
-NAV_LIST.forEach((item, index) => {
-  if (item.sub) NAV_SUB_STATE[index] = false;
-});
-
-const Header = () => {
+const Header = ({ menu }: { menu: TAPI.TMenuList } ) => {
 
   const [showNav, setShowNav] = useState(false);
-  const [showSubNav, setShowSubNav] = useState(NAV_SUB_STATE);
+  const [showSubNav, setShowSubNav] = useState([] as boolean[]);
+
+  useMemo(() => {
+    menu.forEach((item, index) => {
+      if (item.mlist.length > 0) {
+        setShowSubNav((old) => {
+          const t = [...old];
+          t[index] = false;
+          return t;
+        });
+      }
+    });
+  }, [menu]);
 
   useEffect(() => {
     const handleClick = () => {
@@ -70,18 +39,17 @@ const Header = () => {
         </div>
         <div className={c(_s.nav, showNav ? _s.active : '')} onClick={(event) => event.stopPropagation()}>
           {
-            NAV_LIST.map((item, index) => 
-              // TODO: 这里的 end 没有起到理想的作用，导致 /service/list 时不能高亮 /service
-              <NavLink key={index} className={({isActive}) => c(_s.item, isActive ? _s.active : '')} to={item.path} end={item.path === '/'} >
-                  <span
-                    onMouseEnter={() => setShowSubNav((old) => { const t = {...old}; t[index] = true; return t;})}
-                    onMouseLeave={() => setShowSubNav(NAV_SUB_STATE)}>
-                    {item.name}
+            menu.map(({ titles, mlist, urls, id }, index) => 
+              <NavLink key={id} className={({isActive}) => c(_s.item, isActive ? _s.active : '')} to={urls} end={urls === '/'} 
+              onMouseEnter={() => setShowSubNav((old) => { const t = {...old}; t[index] = true; return t;})}
+              onMouseLeave={() => setShowSubNav((old) => { const t = {...old}; t[index] = false; return t;})}>
+                  <span>
+                    {titles}
                     {
-                      item.sub && <div className={c(_s.sub, showSubNav[index] ? _s.active : '')}>
+                      mlist.length > 0 && <div className={c(_s.sub, showSubNav[index] ? _s.active : '')}>
                         {
-                          item.sub.map((subItem, subIndex) => 
-                            <NavLink key={index + '-' + subIndex} to={subItem.path}>{subItem.name}</NavLink>
+                          mlist.map((subItem) => 
+                            <NavLink key={subItem.id} to={subItem.urls}>{subItem.titles}</NavLink>
                           )
                         }
                       </div>

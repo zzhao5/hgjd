@@ -1,40 +1,40 @@
 @import '../../styles/media-queries';
+@import '../../styles/variables';
 
 .wrap {
   position: relative;
   z-index: 9;
+  height: 100px;
   background-color: #fff;
   .main {
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 1700px;
     display: flex;
     justify-content: space-between;
   }
   .logo {
-    padding:10px 20px;
+    padding:20px 0;
     img {
-      height: 40px;
+      width: 178px;
+      height: 60px;
     }
   }
   .nav_button {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    top: 10px;
-    right: 10px;
-    background-color: #000;
     display: none;
   }
   .nav {
-    font-size: 14px;
+    padding-top: 45px;
+    font-size: 20px;
     .item {
       position: relative;
       display: inline-block;
-      line-height: 20px;
-      padding: 20px 0;
+      line-height: 28px;
+      height: 28px;
       margin: 0 20px;
+      font-weight: 500;
+      color: $normalColor;
       &.active {
-        color: #00b;
+        color: $activeColor;
       }
     }
     .sub{
@@ -55,8 +55,43 @@
 }
 @include xs {
   .wrap {
+    height: 0;
+    padding-top: po(120);
     .nav_button {
       display: block;
+      position: absolute;
+      width: po(68);
+      height: 0;
+      padding-top: po(48);
+      top: 50%;
+      right: po(36);
+      transform: translateY(-50%);
+      border-top: 2px solid $activeColor;
+      border-bottom: 2px solid $activeColor;
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 0;
+        top: 50%;
+        transform: translateY(-1px);
+        border-bottom: 2px solid $activeColor;
+      }
+    }
+    .logo {
+      position: absolute;
+      left: po(35);
+      top: 16.7%;
+      width: po(215);
+      height: 0;
+      padding: po(72) 0 0;
+      img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
     }
     .nav {
       position: absolute;
@@ -75,6 +110,21 @@
         border: none;
         padding-left: 20px;
       }
+    }
+  }
+}
+@include md {
+  .wrap {
+    height: 80px;
+    .main {
+      max-width: 1450px;
+    }
+    .logo {
+      padding: 10px 0;
+    }
+    .nav {
+      padding-top: 30px;
+      font-size: 16px;
     }
   }
 }

@@ -1,6 +1,12 @@
-$greyColor: rgb(194, 234, 233);
 $darkBlueColor: #034881;
 $lightBlueColor: #97a7b5;
-$blackColor: #333;
-
+$greyColor: #5F5F5F;
+$blackColor: #363636;
 $whiteColor: #ffffff;
+
+$activeColor: #306286;
+$normalColor: #000;
+
+@function po($width) {
+  @return calc($width / 750) * 100%;
+}

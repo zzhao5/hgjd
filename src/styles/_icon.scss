@@ -5,18 +5,15 @@ i.icon {
   height: 20px;
   margin-right: 10px;
   background-repeat: no-repeat;
-  background-size: 20px 20px;
-  background-image: url();
-  &.icon-home {
-    background-position: 0 0;
-  }
+  background-size: 20px;
+  background-image: url(./images/icon_copy.png);
   &.icon_mail {
     background-position: 0 0;
   }
   &.icon_address {
-    background-position: 0 0;
+    background-position: 0 -20px;
   }
   &.icon_phone {
-    background-position: 0 0;
+    background-position: 0 -40px;
   }
 }

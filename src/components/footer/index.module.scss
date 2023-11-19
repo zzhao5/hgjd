@@ -4,89 +4,66 @@
 
 .wrap {
   position: relative;
+  padding: 90px 0 70px;
   background-color: $blackColor;
   color: $whiteColor;
-  padding: 50px 0;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 32px;
   .main {
     margin: 0 auto;
     max-width: 1280px;
-  }
-  .content {
-    margin-bottom: 40px;
     display: flex;
-    justify-content: space-between;
     align-items: stretch;
+    flex-wrap: wrap;
   }
-  .other {
-    border-top: 1px solid #bbb;
+  .list {
+    width: 230px;
+  }
+  .copy {
+    width: 100%;
+    border-top: 1px solid $greyColor;
     padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-  .links {
-    &::before {
-      content: '友情链接：';
-    }
-    a {
-      padding-right: 10px;
-      margin-right: 10px;
-      border-right: 1px solid #bbb;
-      &:last-child {
-        padding-right: 0;
-        margin-right: 0;
-        border-right: none;
-      }
-    }
+    margin-top: 40px;
   }
   .logo {
+    padding-top: 10px;
+    width: 305px;
     img {
-      height: 40px;
-    }
-  }
-  .code {
-    img {
-      width: 100px;
+      width: 155px;
+      height: 82px;
     }
   }
   .list, .contact {
-    font-size: 12px;
-    line-height: 2;
-    padding-left: 40px;
-    border-left: 1px solid #bbb;
+    padding-left: 60px;
+    border-left: 1px solid $greyColor;
   }
 }
 
 @include xs {
   .wrap {
     text-align: center;
+    padding: po(70) po(35);
+    font-size: 12px;
+    line-height: 2;
     .logo, .list{
       display: none;
     }
-    .content {
-      flex-direction: column;
-    }
     .contact {
-      margin: 0 20px;
-      padding: 20px;
+      padding: 0 10px;
+      width: 100%;
+      box-sizing: border-box;
       text-align: left;
       border-left: none;
-      border-top: 1px solid #bbb;
-    }
-    .other {
-      margin: 0 20px;
-    }
-    .links {
-      position: absolute;
-      width: 100%;
-      left: 0;
-      top: 10px;
-      line-height: 30px;
-      &::before {
-        content: '';
-      }
     }
     .copy {
       width: 100%;
+      line-height: 20px;
+      margin-top: 10px;
+      padding-top: 10px;
+      span {
+        display: block;
+      }
     }
   }
 }

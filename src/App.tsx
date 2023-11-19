@@ -7,8 +7,8 @@ import Main from './pages/main';
 
 
 function App() {
-  const [menu, setMenu] = useState([]);
-  const [siteInfo, setSiteInfo] = useState({});
+  const [menu, setMenu] = useState([] as TAPI.TMenuList);
+  const [siteInfo, setSiteInfo] = useState({} as TAPI.TWebInfo);
   const [imgs, setImgs] = useState([]);
 
   useEffect(() => {

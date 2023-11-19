@@ -29,12 +29,17 @@
   }
 }
 
-@mixin lg() {
-  @include mq($min-width: 769px) {
+@mixin md() {
+  @include mq($min-width: 768px, $max-width: 1775px) {
     @content;
   }
 }
 
+@mixin lg() {
+  @include mq($min-width: 1776px) {
+    @content;
+  }
+}
 
 /** 全局样式 **/
 .flex_3, .flex_2, .flex_4 {

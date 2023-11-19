@@ -2,12 +2,29 @@
 /* eslint-disable */
 
 declare namespace TAPI {
-  type TpMenuList = {
+  /**
+   * 导航菜单列表
+   */
+  type TMenuList = {
     titles: string;
     urls: string;
     id: number | string;
-    mlist: TpMenuList;
+    mlist: TMenuList;
   }[];
+  /**
+   * 
+   */
+  type TWebInfo = {
+    id: number | string;
+    email: string;
+    tels: string;
+    address: string;
+    copyrightInformation: string;
+    icp: string;
+    seoTitles: string;
+    seoKey: string;
+    seoDescription: string;
+  }
   /**
    * 获取新闻列表
    */
