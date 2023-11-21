@@ -35,7 +35,7 @@ const NewsList = () => {
               return (
                 <News
                   key={index}
-                  link={'/news/3333'}
+                  link={'/news/16'}
                   className={index % 2 === 0 ? _s.even : _s.odd}
                   type={'新闻分类'} 
                   time={'2023-11-10'}

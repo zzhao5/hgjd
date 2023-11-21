@@ -9,11 +9,11 @@ const Text = ({
   text,
   className,
 }: {
-  link: string,
-  time: string,
-  title: string,
-  text: string,
-  className?: string,
+  link: string;
+  time: string;
+  title: string;
+  text: string;
+  className?: string;
 }) => {
 
   return (

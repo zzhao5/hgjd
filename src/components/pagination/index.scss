@@ -255,14 +255,18 @@
 .rc-pagination.rc-pagination-disabled .rc-pagination-item-ellipsis {
   opacity: 1;
 }
-@media only screen and (max-width: 992px) {
-  .rc-pagination-item-after-jump-prev,
-  .rc-pagination-item-before-jump-next {
-    display: none;
+
+@include xs {
+  .rc-pagination {
+    padding-top: 30px;
   }
-}
-@media only screen and (max-width: 576px) {
-  .rc-pagination-options {
-    display: none;
+  .rc-pagination-prev,
+  .rc-pagination-next,
+  .rc-pagination-jump-prev,
+  .rc-pagination-jump-next,
+  .rc-pagination-item {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
   }
 }

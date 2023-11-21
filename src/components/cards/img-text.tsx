@@ -9,11 +9,11 @@ const ImgText = ({
   text,
   className,
 }: {
-  link: string,
-  img: string,
-  title: string,
-  text: string,
-  className?: string,
+  link: string;
+  img: string;
+  title: string;
+  text: string;
+  className?: string;
 }) => {
 
   return (

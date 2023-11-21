@@ -7,166 +7,84 @@
   margin: 0 auto 80px;
   box-sizing: border-box;
 }
-
-.banner {
-  position: relative;
-  height: 750px;
-  color: $whiteColor;
+.news {
+  font-size: 20px;
+  font-weight: 300;
   line-height: 1.5;
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-position: center 0;
-  background-repeat: repeat-x;
-  background-size: cover;
-  margin-bottom: 80px;
-  h1 {
-    font-size: 76px;
-    font-weight: 700;
-  }
-  h3 {
-    font-size: 40px;
-    font-weight: 400;
-  }
-}
-
-
-.best {
-  position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 70%;
-    bottom: 0;
-    left: 0;
-    background-color: $middleBlueColor;
-  }
-  .main {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      width: 45%;
-      height: 20%;
-      background-color: $darkBlueColor;
+  .title {
+    line-height: 2;
+    padding-bottom: 20px;
+    margin-bottom: 45px;
+    border-bottom: 5px solid $darkBlueColor;
+    h5 {
+      font-size: 30px;
+      font-weight: 500;
     }
-    &::after {
-      content: '';
-      position: absolute;
-      width: 45%;
-      height: 100%;
-      background-color: $lightBlueColor;
-      left: 50%;
+    .type {
+      font-weight: 500;
     }
   }
-  .img {
-    position: relative;
-    z-index: 2;
-    padding: 75px 0 75px 60px;
-    width: 52.7%;
+  .content {
     img {
       width: 100%;
-      display: block;
+      margin-bottom: 20px;
+    }
+    p {
+      text-indent: 40px;
+      margin-bottom: 15px;
     }
   }
-  .text {
-    position: relative;
-    z-index: 2;
-    width: 30%;
-    font-size: 20px;
-    font-weight: 300;
-    line-height: 1.7;
-    padding: 30px calc(5% + 45px) 0 0;
-    h6 {
-      font-weight: bold;
-      font-size: 36px;
-      margin-bottom: 60px;
-      font-weight: 500;
-      line-height: 3;
-      &::after {
-        content: '';
-        display: block;
-        width: 50px;
-        height: 3px;
-        background-color: $darkBlueColor;
-      }
+  .more {
+    margin-top: 40px;
+    border-top: 1px solid $lightGreyColor;
+    padding-top: 40px;
+    .prev, .next {
+      padding: 0 40px;
+    }
+    .next {
+      text-align: right;
+    }
+    .newsCard {
+      background-color: $lightBlueColor;
     }
   }
 }
-.news {
-  .even {
-    background-color: $darkBlueColor;
-    color: $whiteColor;
-  }
-  .odd {
-    background-color: $lightBlueColor;
-    color: $blackColor;
-  }
-}
-.img_list {
-}
+
 
 @include xs {
   .main {
     margin-bottom: 40px;
     padding: 0 20px;
   }
-  .banner {
-    height: 0;
-    padding-top: po(300);
-    text-align: center;
-    margin-bottom: po(60);
-    .main {
-      position: absolute;
-      width: 100%;
-      bottom: 10%;
-      margin-bottom: 0;
-    }
-    h1 {
-      font-size: 25px;
-    }
-    h3 {
-      font-size: 12px;
-    }
-  }
-  .best {
-    .main {
-      flex-direction: column;
-      padding-bottom: 30px;
-      &::before {
-        width: 90%;
+  .news {
+    .title {
+      font-size: 16px;
+      border-width: 3px;
+      margin-bottom: 30px;
+      h5 {
+        padding: 10px 0;
+        line-height: 1.2;
+        font-size: 20px;
       }
-      &::after {
+    }
+    .more {
+      margin-top: 20px;
+      padding-top: 20px;
+      border: none;
+      .prev, .next {
         display: none;
       }
-    }
-    .img {
-      width: 100%;
-      padding: po(70) 0 0;
-    }
-    .text {
-      width: 100%;
-      font-size: 16px;
-      line-height: 24px;
-      padding: 0 25px 30px;
-      box-sizing: border-box;
-      background-color: $lightBlueColor;
-      h6 {
-        font-size: 24px;
-        margin-bottom: 20px;
+      .ss {
+        padding: 0 40px 0 20px;
+        height: 50px;
+        a{
+          text-wrap: nowrap;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          line-height: 50px;
+        }
       }
-    }
-  }
-  .img_list {
-    .flex_2 {
-      display: block;
     }
   }
 }

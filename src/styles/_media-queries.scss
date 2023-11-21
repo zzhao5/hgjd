@@ -50,6 +50,7 @@
   align-content: space-between;
   & > * {
     margin-bottom: 15px;
+    box-sizing: border-box;
   }
 }
 .flex_1 {

@@ -7,9 +7,9 @@ const Title = ({
   more,
   border,
 }: {
-  name: string,
-  more?: string,
-  border?: boolean,
+  name: string;
+  more?: string;
+  border?: boolean;
 }) => {
 
   return (

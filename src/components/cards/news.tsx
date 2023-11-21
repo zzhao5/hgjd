@@ -8,16 +8,20 @@ const News = ({
   text,
   time,
   className,
+  mini,
+  tips,
 }: {
-  link: string,
-  type: string,
-  text: string,
-  time: string,
-  className?: string,
+  link: string;
+  type: string;
+  text: string;
+  time: string;
+  className?: string;
+  mini?: boolean;
+  tips?: string;
 }) => {
 
   return (
-    <div className={c(_s.news, className)}>
+    <div className={c(_s.news, className, (mini ? _s.mini : ''))} data-tips={tips}>
       <p className={_s.type}>{type}</p>
       <a href={link}>
           {text}

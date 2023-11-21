@@ -30,6 +30,9 @@
 }
 @include xs {
   .title {
+    &.border {
+      border-width: 3px;
+    }
     .name {
       font-size: 24px;
     }
