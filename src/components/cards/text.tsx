@@ -18,13 +18,8 @@ const Text = ({
 
   return (
     <div className={c(_s.text, className)}>
-      <p className={c(_s.title)}>
-        <span className={_s.name}>{title}</span>
-        <span>{time}</span>
-      </p>
-      <p className={_s.content}>
-        <a href={link}>{text}</a>
-      </p>
+      <p className={_s.title}><a href={link}>{title}</a><span>{time}</span></p>
+      <p><a href={link}>{text}</a></p>
     </div>
   )
 }

@@ -18,15 +18,13 @@ const News = ({
 
   return (
     <div className={c(_s.news, className)}>
+      <p className={_s.type}>{type}</p>
       <a href={link}>
-        <p className={_s.type}>{type}</p>
-        <p className={_s.content}>
           {text}
-        </p>
-        <p className={_s.time}>
-          {time}
-        </p>
       </a>
+      <p className={_s.time}>
+        <span>{time}</span> <i className={c(_s.icon, _s.icon_right)}></i>
+      </p>
     </div>
   )
 }

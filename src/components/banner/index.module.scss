@@ -1,0 +1,34 @@
+@import '../../styles/media-queries';
+@import '../../styles/variables';
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 80px;
+  background-position: center 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-weight: 700;
+  font-size: 50px;
+  color: $whiteColor;
+  div {
+    width: 100%;
+  }
+}
+@include xs {
+  .banner {
+    height: 0;
+    padding-top: po(305);
+    font-size: 25px;
+    margin-bottom: 40px;
+    div {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}

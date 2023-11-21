@@ -42,13 +42,19 @@
 }
 
 /** 全局样式 **/
-.flex_3, .flex_2, .flex_4 {
+.flex_1, .flex_2, .flex_3, .flex_4 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: stretch;
+  align-content: space-between;
   & > * {
     margin-bottom: 15px;
+  }
+}
+.flex_1 {
+  & > * {
+    width: 100%;
   }
 }
 .flex_2 {

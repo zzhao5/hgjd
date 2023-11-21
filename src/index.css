@@ -114,16 +114,6 @@ abbr[title] {
 }
 
 /**
- * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
- */
-
-b,
-strong {
-  font-weight: bold;
-}
-
-
-/**
  * Address styling not present in IE 8/9.
  */
 
@@ -428,9 +418,6 @@ ul, ol, li, dl, dd {
 }
 ul, ol {
   list-style: none outside none;
-}
-h1, h2, h3 {
-  line-height: 2; font-weight: normal;
 }
 
 input::-webkit-input-placeholder, 

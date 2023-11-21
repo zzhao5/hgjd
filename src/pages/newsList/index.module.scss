@@ -1,0 +1,27 @@
+@import '../../styles/media-queries';
+@import '../../styles/variables';
+
+.main {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto 80px;
+  box-sizing: border-box;
+}
+
+.news {
+  .even {
+    background-color: $darkBlueColor;
+    color: $whiteColor;
+  }
+  .odd {
+    background-color: $lightBlueColor;
+    color: $blackColor;
+  }
+}
+
+@include xs {
+  .main {
+    margin-bottom: 40px;
+    padding: 0 20px;
+  }
+}

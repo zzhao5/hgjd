@@ -7,7 +7,7 @@ import logo from './images/logo.png'
 const Header = ({ menu }: { menu: TAPI.TMenuList } ) => {
 
   const [showNav, setShowNav] = useState(false);
-  const [showSubNav, setShowSubNav] = useState([] as boolean[]);
+  const [showSubNav, setShowSubNav] = useState<boolean[]>([]);
 
   useMemo(() => {
     menu.forEach((item, index) => {

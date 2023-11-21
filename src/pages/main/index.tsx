@@ -1,27 +1,22 @@
 import c from 'classnames';
-import Pagination from 'rc-pagination';
 import _s from './index.module.scss';
 import Title from '../../components/title';
-import API from '../../apis';
 import { News, ImgText, Text } from '../../components/cards';
-import { useEffect, useState } from 'react';
 
-const Main = ({ data }: { data: {key: string}[] }) => {
-  useEffect(() => {
-    
-  }, []);
-
+const Main = ({ data: { pctureUrl } }: { data: TAPI.TBannerInfo }) => {
 
   return (
     <>
-      <section className={_s.banner}>
-        <h1 className={_s.main}>专业、公正、科学</h1>
-        <h3 className={_s.main}>知识产权证据服务</h3>
+      <section className={_s.banner} style={{ backgroundImage: `url(${pctureUrl})`, }}>
+        <div className={_s.main}>
+          <h1>专业、公正、科学</h1>
+          <h3>知识产权证据服务</h3>
+        </div>
       </section>
       <section className={_s.best}>
         <div className={_s.main}>
           <div className={_s.img}>
-            <img src="https://t7.baidu.com/it/u=27018761,936335273&fm=193&f=GIF" alt="" />
+            <img src={'http://127.0.0.1:5500/pic_best.jpeg'} alt="" />
           </div>
           <div className={_s.text}>
             <h6>为什么选择我们？</h6>
@@ -31,13 +26,13 @@ const Main = ({ data }: { data: {key: string}[] }) => {
       </section>
       <section className={c(_s.news, _s.main)}>
         <Title name="最新消息" more="/news/" />
-        <div className={_s.flex_3}>
+        <div className={_s.flex_2}>
           {
-            [1, 2, 3, 4, 5, 6].map((item, index) => {
+            [1, 2].map((item, index) => {
               return (
                 <News
-                  link={''}
                   key={index}
+                  link={''}
                   className={index % 2 === 0 ? _s.even : _s.odd}
                   type={'新闻分类'} 
                   time={'2023-11-10'}
@@ -49,17 +44,17 @@ const Main = ({ data }: { data: {key: string}[] }) => {
         </div>
       </section>
       <section className={c(_s.img_list, _s.main)}>
-        <Title name="汉光资质" more='/about/' />
-        <div className={c(_s.flex_3, _s.img_content)}>
+        <Title name="资质证明" more='/about/' />
+        <div className={_s.flex_2}>
           {
-            [1, 2, 3].map((item, index) => {
+            [1, 2, 3, 4].map((item, index) => {
               return (
                 <ImgText
                   key={index}
                   link={''}
                   img={'https://t7.baidu.com/it/u=27018761,936335273&fm=193&f=GIF'}
                   title={'汉光资质'}
-                  text={'专业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务专业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务'}
+                  text={'专业的知识产权鉴定团队，为您提供专业业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务'}
                  />
               )
             })
@@ -68,7 +63,7 @@ const Main = ({ data }: { data: {key: string}[] }) => {
       </section>
       <section className={c(_s.text_list, _s.main)}>
         <Title name="汉光研究" more='/about/' border />
-        <div>
+        <div className={_s.flex_1}>
           {
             [1, 2, 3].map((item, index) => {
               return (

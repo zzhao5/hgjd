@@ -1,32 +1,42 @@
 @import '../../styles/media-queries';
+@import '../../styles/variables';
 
 .title {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 10px 0;
+  margin-bottom: 20px;
   .name {
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: 500;
+    font-size: 28px;
   }
   .more {
-    color: #00b;
+    color: $darkBlueColor;
+    font-size: 16px;
     &::before {
       content: '...';
+      font-size: 40px;
+      line-height: 20px;
     }
     &::after {
       content: '了解更多';
+      vertical-align: middle;
     }
   }
   &.border {
-    border-bottom: 2px solid #000;
+    padding-bottom: 15px;
+    border-bottom: 5px solid $blackColor;
   }
 }
 @include xs {
   .title {
+    .name {
+      font-size: 24px;
+    }
     .more {
-      &::after {
-        content: 'More';
+      font-size: 14px;
+      &::before {
+        font-size: 30px;
       }
     }
   }

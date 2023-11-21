@@ -19,7 +19,7 @@ const ImgText = ({
   return (
     <div className={c(_s.img_text, className)}>
       <a href={link}><img src={img} alt={title} /></a>
-      <p className={_s.name}><a href={link}>{title}</a></p>
+      <p className={_s.title}><a href={link}>{title}</a></p>
       <p><a href={link}>{text}</a></p>
     </div>
   )

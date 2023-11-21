@@ -6,6 +6,7 @@
   z-index: 9;
   height: 100px;
   background-color: #fff;
+  box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.05);
   .main {
     margin: 0 auto;
     max-width: 1700px;
@@ -32,7 +33,7 @@
       height: 28px;
       margin: 0 20px;
       font-weight: 500;
-      color: $normalColor;
+      color: $blackColor;
       &.active {
         color: $darkBlueColor;
       }
