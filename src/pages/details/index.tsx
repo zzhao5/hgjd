@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Banner from '../../components/banner';
 
-const NewsInfo = () => {
+const Details = () => {
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<TAPI.TNewsListItem>();
 
@@ -21,7 +21,7 @@ const NewsInfo = () => {
 
   return (
     <>
-      <Banner name='最新消息' pic={'http://127.0.0.1:5500/banner1.jpeg'} />
+      <Banner name='最新消息' />
       <section className={c(_s.news, _s.main)}>
         <div className={_s.title}>
           <p className={_s.type}>爱的方式</p>
@@ -58,4 +58,4 @@ const NewsInfo = () => {
   )
 }
 
-export default NewsInfo;
+export default Details;
