@@ -26,7 +26,7 @@ const NewsList = () => {
 
   return (
     <>
-      <Banner name='最新消息' pic={'http://127.0.0.1:5500/banner1.jpeg'} />
+      <Banner name='最新消息' />
       <section className={c(_s.news, _s.main)}>
         <Title name='最新消息' />
         <div className={_s.flex_3}>

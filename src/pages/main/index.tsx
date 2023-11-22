@@ -2,6 +2,7 @@ import c from 'classnames';
 import _s from './index.module.scss';
 import Title from '../../components/title';
 import { News, ImgText, Text } from '../../components/cards';
+import pic from './images/pic_best.jpeg';
 
 const Main = ({ data: { pctureUrl } }: { data: TAPI.TBannerInfo }) => {
 
@@ -16,7 +17,7 @@ const Main = ({ data: { pctureUrl } }: { data: TAPI.TBannerInfo }) => {
       <section className={_s.best}>
         <div className={_s.main}>
           <div className={_s.img}>
-            <img src={'http://127.0.0.1:5500/pic_best.jpeg'} alt="" />
+            <img src={pic} alt="" />
           </div>
           <div className={_s.text}>
             <h6>为什么选择我们？</h6>

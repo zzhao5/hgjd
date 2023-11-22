@@ -6,7 +6,8 @@ import Header from './components/header';
 import Footer from './components/footer';
 import Main from './pages/main';
 import NewsList from './pages/newsList';
-import NewsInfo from './pages/newsInfo';
+import Details from './pages/details';
+import About from './pages/about';
 
 
 function App() {
@@ -54,9 +55,10 @@ function App() {
     <BrowserRouter>
       <Header menu={menu} />
       <Routes>
-        <Route path="/" element={<Main data={imgs} />}></Route>
+        <Route path="/" index element={<Main data={imgs} />}></Route>
         <Route path="/news/" element={<NewsList />} />
-        <Route path="/news/:id/" element={<NewsInfo />} />
+        <Route path="/news/:id/" element={<Details />} />
+        <Route path="/about" element={<About />} />
       </Routes>
       <Footer menu={menu} data={siteInfo} />
     </BrowserRouter>
