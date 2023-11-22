@@ -15,7 +15,9 @@
   font-weight: 700;
   font-size: 50px;
   color: $whiteColor;
-  div {
+  text-shadow: 0 0 10px $darkBlueColor;
+  &::after {
+    content: attr(data-name);
     width: 100%;
   }
 }
@@ -25,7 +27,7 @@
     padding-top: po(305);
     font-size: 25px;
     margin-bottom: 40px;
-    div {
+    &::after {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
