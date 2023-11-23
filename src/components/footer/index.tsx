@@ -16,7 +16,7 @@ const Footer = ({ data: { email, address, tels, copyrightInformation, icp }, men
           {
             menu.map((item) => {
               return (
-                item.urls === '/' ? '' :
+                item.urls === '/' ? null :
                 <p key={item.urls}>
                   <Link to={item.urls} className={_s.item}>{item.titles}</Link>
                 </p>

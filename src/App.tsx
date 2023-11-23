@@ -8,6 +8,7 @@ import Main from './pages/main';
 import NewsList from './pages/newsList';
 import Details from './pages/details';
 import About from './pages/about';
+import Service from './pages/service';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         picList.forEach((item: { pctureUrl: string }) => {
           item.pctureUrl = 'http://127.0.0.1:5500/banner1.jpeg'
         });
+        // TODO: 处理链接，后续接口直接修改
         const newMenu = menuList.map((item: { urls: string; mlist: { urls: string; }[] }) => {
           const url = item.urls.split('.')[0];
           const newSub = item.mlist.map((sub: { urls: string; }) => {
@@ -58,7 +60,8 @@ function App() {
         <Route path="/" index element={<Main data={imgs} />}></Route>
         <Route path="/news/" element={<NewsList />} />
         <Route path="/news/:id/" element={<Details />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about/" element={<About />} />
+        <Route path="/service/:type?/" element={<Service menu={menu} />} />
       </Routes>
       <Footer menu={menu} data={siteInfo} />
     </BrowserRouter>

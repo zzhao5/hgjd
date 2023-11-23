@@ -24,15 +24,33 @@ declare namespace TAPI {
     seoTitles: string;
     seoKey: string;
     seoDescription: string;
-  }
+  };
+  /**
+   * 首页大图
+   */
   type TBannerInfo = {
     id: number | string;
     pctureUrl: string;
     pctureName: string;
     openUrl: string;
-  }
+  };
+
   /**
-   * 获取新闻列表
+   * 服务内容
+   */
+  type TServiceData = {
+    type: string;
+    title: string;
+    data: {
+      id: number | string;
+      title: string;
+      content: string;
+    }[];
+  };
+
+
+  /**
+   * 消息组件
    */
   type TGetNewsList = {
     newsId: number;
@@ -43,7 +61,7 @@ declare namespace TAPI {
 
   type TGetNewsInfo = {
     id?: number | string;
-  }
+  };
 
   type TNewsList = {
     total: number;
@@ -52,18 +70,21 @@ declare namespace TAPI {
     pages: number;
     records: TNewsListItem[];
     orders: any[];
-  }
+  };
 
   type TNewsListItem = {
     id: number | string;
     title: string;
     link: string;
-  }
+  };
 
+  /**
+   * 翻页组件
+   */
   type TPagination = {
     onChange: (page: number, pageSize: number) => void;
     current?: number;
     total: number;
     pageSize: number;
-  }
+  };
 }

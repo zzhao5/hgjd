@@ -20,7 +20,29 @@ i.icon {
     background: none;
     position: relative;
     margin-right: 0;
-    font-size: 6px;
+    transform-origin: center center;
+    transition: all .3s ease-in-out;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1em;
+      height: 1em;
+      top: 50%;
+      border-right: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+      transform: rotate(-45deg) translateY(-50%);
+    }
+    &::before {
+      left: 0;
+    }
+    &.turn_down {
+      transform: rotateZ(90deg);
+    }
+  }
+  &.icon_right_double {
+    background: none;
+    position: relative;
+    margin-right: 0;
     &::before, &::after {
       content: '';
       position: absolute;
@@ -38,4 +60,5 @@ i.icon {
       left: .8em;
     }
   }
+
 }

@@ -7,16 +7,17 @@ const Title = ({
   more,
   border,
 }: {
-  name: string;
+  name?: string;
   more?: string;
   border?: boolean;
 }) => {
 
   return (
-    <div className={c(_s.title, border ? _s.border : '')}>
+    name ?
+    <div className={c(_s.title, border ? _s.border : null)}>
       <span className={_s.name}>{name}</span>
-      {more ? <a className={_s.more} href={more}></a> : ''}
-    </div>
+      {more ? <a className={_s.more} href={more}></a> : null}
+    </div> : null
   )
 }
 
