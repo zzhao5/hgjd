@@ -5,12 +5,12 @@ declare namespace TAPI {
   /**
    * 导航菜单列表
    */
-  type TMenuList = {
+  type TMenuItem = {
     titles: string;
     urls: string;
     id: number | string;
-    mlist: TMenuList;
-  }[];
+    mlist: TMenuItem[];
+  };
   /**
    * 网站信息，主要作用于脚文件
    */

@@ -20,7 +20,7 @@ const ServiceList = ({title, content}: {title:string; content:string;}) => {
   </>
 }
 
-const Service = ({ menu } : { menu: TAPI.TMenuList; }) => {
+const Service = ({ menu } : { menu: TAPI.TMenuItem[]; }) => {
   const { type } = useParams<{ type: string }>();
   const [data, setData] = useState<TAPI.TServiceData[]>();
   const [content, setContent] = useState<TAPI.TServiceData>();

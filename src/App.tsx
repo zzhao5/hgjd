@@ -12,7 +12,7 @@ import Service from './pages/service';
 
 
 function App() {
-  const [menu, setMenu] = useState([] as TAPI.TMenuList);
+  const [menu, setMenu] = useState([] as TAPI.TMenuItem[]);
   const [siteInfo, setSiteInfo] = useState({} as TAPI.TWebInfo);
   const [imgs, setImgs] = useState({} as TAPI.TBannerInfo);
   const [cookies, setCookie] = useCookies(['bannerViewIndex']);

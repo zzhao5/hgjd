@@ -28,12 +28,10 @@ i.icon {
       width: 1em;
       height: 1em;
       top: 50%;
+      left: 50%;
       border-right: 1px solid currentColor;
       border-bottom: 1px solid currentColor;
-      transform: rotate(-45deg) translateY(-50%);
-    }
-    &::before {
-      left: 0;
+      transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg);
     }
     &.turn_down {
       transform: rotateZ(90deg);
@@ -51,13 +49,13 @@ i.icon {
       top: 50%;
       border-right: 1px solid currentColor;
       border-bottom: 1px solid currentColor;
-      transform: rotate(-45deg) translateY(-50%);
+      transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg);
     }
     &::before {
-      left: 0;
+      left: 30%;
     }
     &::after {
-      left: .8em;
+      left: 50%;
     }
   }
 

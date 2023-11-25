@@ -4,7 +4,7 @@ import _s from './index.module.scss';
 import logo from './images/logo_white.png'
 
 
-const Footer = ({ data: { email, address, tels, copyrightInformation, icp }, menu }: { data: TAPI.TWebInfo; menu: TAPI.TMenuList}) => {
+const Footer = ({ data: { email, address, tels, copyrightInformation, icp }, menu }: { data: TAPI.TWebInfo; menu: TAPI.TMenuItem[]}) => {
 
   return (
     <footer className={_s.wrap}>
