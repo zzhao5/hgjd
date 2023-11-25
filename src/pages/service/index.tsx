@@ -8,13 +8,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { useParams, NavLink } from 'react-router-dom';
 import Banner from '../../components/banner';
 import Title from '../../components/title';
+import IconRight from '../../components/icon_right';
 
 const ServiceList = ({title, content}: {title:string; content:string;}) => {
   const [show, setShow] = useState(false);
   return <>
     <p className={c(_s.title, show ? _s.active : null)} onClick={() => setShow((old) => !old)}>
       <span>{title}</span>
-      <i className={c(_s.icon, _s.icon_right, show ? _s.turn_down : null)} style={{fontSize: '10px'}}></i>
+      <IconRight size={10} turn={show} />
     </p>
     <p className={_s.text}>{content}</p>
   </>

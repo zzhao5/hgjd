@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import _s from './index.module.scss';
 import c from 'classnames';
 import logo from './images/logo.png'
+import IconRight from "../icon_right";
 
 
 const NavSub = ({list}: { list:TAPI.TMenuItem[] }) => {
@@ -38,7 +39,7 @@ const NavItem = ({ titles, mlist, urls, mini, id, setNav, hideNav, active }: { m
         onMouseEnter={handleEnter}
         onMouseLeave={() => hideNav('onMouseLeave')}
       >
-          <span>{titles}</span> {mlist?.length > 0 ? <i className={c(_s.icon, _s.icon_right, active ? _s.turn_down : null)} style={{fontSize: '6px'}}></i> : null}
+          <span>{titles}</span> {mlist?.length > 0 ? <IconRight turn={active} /> : null}
       </NavLink>
       {
         mini && mlist?.length > 0 ? <NavSub list={mlist} /> : null
