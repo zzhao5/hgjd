@@ -2,9 +2,13 @@
 @import '../../styles/variables';
 @import '../../styles/icon';
 
-.wrap {
+.bannerHold, .wrap {
   height: 100px;
-  position: relative;
+}
+.wrap {
+  width: 100%;
+  position: fixed;
+  top: 0;
   z-index: 9;
 }
 .nav {
@@ -29,6 +33,7 @@
   }
   .list {
     font-size: 14px;
+    color: $blackColor;
     .item {
       position: relative;
       display: inline-flex;
@@ -37,7 +42,6 @@
       height: 20px;
       padding: 10px 20px 30px;
       font-weight: 500;
-      color: $blackColor;
       &::after {
         content: '';
         position: absolute;
@@ -59,20 +63,6 @@
       }
       span {
         margin-right: 7px;
-      }
-    }
-    .sub{
-      position: absolute;
-      width: 80px;
-      display: none;
-      background-color: #fff;
-      padding: 5px;
-      border: 1px solid #000;
-      &.active {
-        display: block;
-      }
-      a {
-        display: block;
       }
     }
   }
@@ -99,12 +89,22 @@
   }
   .sub {
     width: 390px;
-    margin-right: 300px;
+    margin-right: 255px;
     font-size: 12px;
-    line-height: 300;
     line-height: 30px;
     p {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       border-bottom: 1px solid $lightGreyColor;
+      transition: all 0.3s ease-in-out;
+      a {
+        flex-grow: 1;
+      }
+      &:hover {
+        font-weight: 500;
+        padding-left: 10px;
+      }
       &:last-child {
         border-bottom: none;
       }
@@ -131,9 +131,21 @@
   }
 }
 @include xs {
-  .nav {
+  .bannerHold, .wrap {
     height: 0;
     padding-top: po(120);
+  }
+  .nav {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    .main {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
     .nav_button {
       display: block;
       position: absolute;
@@ -172,20 +184,47 @@
     }
     .list {
       position: absolute;
-      width: 40%;
-      background-color: #fff;
-      right: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow-y: auto;
+      padding-top: 60px;
+      box-sizing: border-box;
+      background-color: $darkBlueColor;
+      left: 0;
       top: 0;
+      color: $whiteColor;
+      font-size: 24px;
       transition: all 0.3s ease-in-out;
       transform: translateX(100%);
       &.showNav {
         transform: translateX(0);
       }
+      .item {
+        display: flex;
+        justify-content: space-between;
+        padding: 25px 0;
+        margin: 0 20px;
+        border-bottom: 1px solid $whiteColor;
+        &.active {
+          color: $lightBlueColor;
+        }
+      }
       .sub {
-        position: initial;
-        display: block;
-        border: none;
+        margin: 0 20px;
+        padding: 10px 0;
+        font-size: 16px;
         padding-left: 20px;
+        font-weight: 300;
+        line-height: 40px;
+        border-bottom: 1px solid $whiteColor;
+        p a {
+          display: block;
+        }
+      }
+      .icon_close {
+        position: absolute;
+        top: 20px;
+        left: 20px;
       }
     }
   }

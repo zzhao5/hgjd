@@ -16,6 +16,27 @@ i.icon {
   &.icon_phone {
     background-position: 0 -40px;
   }
+  &.icon_close {
+    position: relative;
+    background: none;
+    margin-right: 0;
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background-color: currentColor;
+      transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, 45deg);
+    }
+    &::before {
+      width: 1px;
+      height: 100%;
+    }
+    &::after {
+      width: 100%;
+      height: 1px;
+    }
+  }
   &.icon_right {
     background: none;
     position: relative;

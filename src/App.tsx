@@ -55,7 +55,9 @@ function App() {
   
   return (
     <BrowserRouter>
-      <Header menu={menu} />
+      <Routes>
+        <Route path="/:type?/" element={<Header menu={menu} />}></Route>
+      </Routes>
       <Routes>
         <Route path="/" index element={<Main data={imgs} />}></Route>
         <Route path="/news/" element={<NewsList />} />
