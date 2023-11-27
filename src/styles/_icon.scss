@@ -36,6 +36,9 @@ i.icon {
       width: 100%;
       height: 1px;
     }
+    &.turn_down {
+      transform: rotateZ(90deg);
+    }
   }
   &.icon_right {
     background: none;

@@ -1,12 +1,6 @@
 @import '../../styles/media-queries';
 @import '../../styles/variables';
 
-.main {
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto 80px;
-  box-sizing: border-box;
-}
 .news {
   font-size: 20px;
   font-weight: 300;
@@ -52,10 +46,6 @@
 
 
 @include xs {
-  .main {
-    margin-bottom: 40px;
-    padding: 0 20px;
-  }
   .news {
     .title {
       font-size: 16px;

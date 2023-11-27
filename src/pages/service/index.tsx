@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import c from 'classnames';
-import Pagination from 'rc-pagination';
 import _s from './index.module.scss';
 import API from '../../apis';
-import { News } from '../../components/cards';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams, NavLink } from 'react-router-dom';
 import Banner from '../../components/banner';
@@ -29,6 +27,10 @@ const Service = ({ menu } : { menu: TAPI.TMenuItem[]; }) => {
     const menus = menu.filter(({urls}) => urls === '/service/');
     if (menus.length > 0) return menus[0].mlist; 
   }, [menu]);
+  const activeMenu = useMemo(() => {
+    const menu = menuList?.filter(({urls}) => urls === `/service/${type}/`);
+    return menu?.[0];
+  }, [menuList]);
 
   useEffect(() => {
     // API.getNewsInfo({
@@ -59,14 +61,26 @@ const Service = ({ menu } : { menu: TAPI.TMenuItem[]; }) => {
     }
   }, [data, type]);
 
+  const handleClick = useCallback(() => {
+    
+  }, []);
+
   return (
     <>
       <Banner name='服务内容' />
       <section className={c(_s.nav, _s.main, _s.flex_3)}>
+        <div className={_s.nav_active}>
+          {activeMenu?.titles}
+        </div>
         {
-          menuList ? menuList.map(({id, urls, titles}) => {
+          menuList ? menuList.map(({id, urls, titles}, index) => {
             return (
-              <NavLink key={id} className={({isActive}) => c(_s.item, isActive ? _s.active : null)} to={urls} >
+              <NavLink
+                key={id}
+                data-title={titles}
+                className={({isActive}) => c(_s.item, isActive ? _s.active : null, index === 0 ? _s.active : null)}
+                to={urls}
+              >
                   { titles }
               </NavLink>
             )

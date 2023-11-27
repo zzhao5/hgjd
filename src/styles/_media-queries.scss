@@ -74,10 +74,22 @@
   }
 }
 
+.main {
+  position: relative;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto 80px;
+  box-sizing: border-box;
+}
+
 @include xs {
   .flex_2, .flex_3, .flex_4 {
     & > * {
       width: 100%;
     }
+  }
+  .main {
+    margin-bottom: 40px;
+    padding: 0 20px;
   }
 }

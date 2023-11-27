@@ -2,10 +2,7 @@
 @import '../../styles/variables';
 
 .main {
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto 65px;
-  box-sizing: border-box;
+  margin-bottom: 65px;
 }
 
 .banner {
@@ -115,10 +112,6 @@
 }
 
 @include xs {
-  .main {
-    margin-bottom: 40px;
-    padding: 0 20px;
-  }
   .banner {
     height: 0;
     padding-top: po(300);
