@@ -1,14 +1,29 @@
+import { useEffect, useState } from 'react';
 import c from 'classnames';
 import _s from './index.module.scss';
 import Title from '@/components/title';
 import { News, ImgText, Text } from '@/components/cards';
+import { useCookies } from 'react-cookie';
 import pic from './images/pic_best.jpeg';
+import banner1 from './images/pic_banner1.jpeg';
+import banner2 from './images/pic_banner2.jpeg';
 
-const Main = ({ data: { pctureUrl } }: { data: TAPI.TBannerInfo }) => {
+const BANNERS = [banner1, banner2];
+
+const Main = () => {
+  const [cookies, setCookie] = useCookies(['bannerViewIndex']);
+  const [banner, setBanner] = useState<string>(BANNERS[0]);
+
+  useEffect(() => {
+    const idx = cookies.bannerViewIndex === undefined ? 0 : (parseInt(cookies.bannerViewIndex) + 1);
+    const newIdx = idx >= BANNERS.length ? 0 : idx;
+    setCookie('bannerViewIndex', newIdx);
+    setBanner(BANNERS[newIdx]);
+  }, []);
 
   return (
     <>
-      <section className={_s.banner} style={{ backgroundImage: `url(${pctureUrl})`, }}>
+      <section className={_s.banner} style={{ backgroundImage: `url(${banner})`, }}>
         <div className={_s.main}>
           <h1>专业、公正、科学</h1>
           <h3>知识产权证据服务</h3>
