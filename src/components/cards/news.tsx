@@ -30,7 +30,7 @@ const News = ({
       <p className={_s.time}>
         <span>{time}</span> <IconRight double />
       </p>
-      <IconRight size={8} />
+      <IconRight className={_s.icon_right} size={8} />
     </div>
   )
 }

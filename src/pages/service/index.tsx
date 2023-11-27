@@ -20,17 +20,18 @@ const ServiceList = ({title, content}: {title:string; content:string;}) => {
 }
 
 const Service = ({ menu } : { menu: TAPI.TMenuItem[]; }) => {
-  const { type } = useParams<{ type: string }>();
+  const { type } = useParams<{ type: string;}>();
   const [data, setData] = useState<TAPI.TServiceData[]>();
   const [content, setContent] = useState<TAPI.TServiceData>();
-  const menuList = useMemo(() => {
+  const [showNav, setShowNav] = useState(false);
+  const serviceMenu = useMemo(() => {
     const menus = menu.filter(({urls}) => urls === '/service/');
-    if (menus.length > 0) return menus[0].mlist; 
+    if (menus.length > 0) return menus[0]; 
   }, [menu]);
   const activeMenu = useMemo(() => {
-    const menu = menuList?.filter(({urls}) => urls === `/service/${type}/`);
-    return menu?.[0];
-  }, [menuList]);
+    const menu = serviceMenu?.mlist.filter(({urls}) => urls === `/service/${type}/`);
+    return menu && menu.length > 0 ? menu[0] : serviceMenu;
+  }, [serviceMenu, type]);
 
   useEffect(() => {
     // API.getNewsInfo({
@@ -61,24 +62,29 @@ const Service = ({ menu } : { menu: TAPI.TMenuItem[]; }) => {
     }
   }, [data, type]);
 
+  useEffect(() => {
+    setShowNav(false);
+  }, [type]);
+
   const handleClick = useCallback(() => {
-    
+    setShowNav((o) => !o);
   }, []);
 
   return (
     <>
       <Banner name='服务内容' />
       <section className={c(_s.nav, _s.main, _s.flex_3)}>
-        <div className={_s.nav_active}>
-          {activeMenu?.titles}
+        <div className={_s.nav_active} onClick={handleClick}>
+          <span>{activeMenu?.titles}</span>
+          <IconRight double size={8} turn={true} />
         </div>
         {
-          menuList ? menuList.map(({id, urls, titles}, index) => {
+          serviceMenu && showNav ? serviceMenu.mlist.map(({id, urls, titles}, index) => {
             return (
               <NavLink
                 key={id}
                 data-title={titles}
-                className={({isActive}) => c(_s.item, isActive ? _s.active : null, index === 0 ? _s.active : null)}
+                className={({isActive}) => c(_s.item, isActive ? _s.active : null)}
                 to={urls}
               >
                   { titles }

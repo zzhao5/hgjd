@@ -105,18 +105,18 @@
       &::before {
         content: attr(data-tips);
       }
-      a {
-        text-overflow: ellipsis;
-        overflow: hidden;
-      }
-      .time, .type {
-        display: none;
-      }
-      .icon_right {
-        flex-shrink: 0;
-        display: block;
-        margin-left: 5px;
-      }
+    }
+    a {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .time, .type {
+      display: none;
+    }
+    .icon_right {
+      flex-shrink: 0;
+      display: block;
+      margin-left: 5px;
     }
   }
   .img_text {

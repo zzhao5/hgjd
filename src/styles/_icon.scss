@@ -81,6 +81,9 @@ i.icon {
     &::after {
       left: 50%;
     }
+    &.turn_down {
+      transform: rotateZ(90deg);
+    }
   }
 
 }

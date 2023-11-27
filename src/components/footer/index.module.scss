@@ -39,7 +39,7 @@
 @include xs {
   .wrap {
     text-align: center;
-    padding: po(70) 20px;
+    padding: po(70) 0;
     font-size: 12px;
     line-height: 2;
     .logo, .list{

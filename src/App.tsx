@@ -32,7 +32,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={`${ROUTER_PATH}/:type?/`}  element={<Header menu={menu} />}></Route>
+        <Route path={`${ROUTER_PATH}/:type?/:sub?/`}  element={<Header menu={menu} />}></Route>
       </Routes>
       <Routes>
         <Route path={`${ROUTER_PATH}/`} index element={<Main />}></Route>
