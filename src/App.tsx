@@ -10,12 +10,15 @@ import Details from './pages/details';
 import About from './pages/about';
 import Service from './pages/service';
 
+const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 
 function App() {
   const [menu, setMenu] = useState([] as TAPI.TMenuItem[]);
   const [siteInfo, setSiteInfo] = useState({} as TAPI.TWebInfo);
   const [imgs, setImgs] = useState({} as TAPI.TBannerInfo);
   const [cookies, setCookie] = useCookies(['bannerViewIndex']);
+
+
 
   useEffect(() => {
     API.getSiteInfo().then((res) => {
@@ -56,14 +59,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/:type?/" element={<Header menu={menu} />}></Route>
+        <Route path={`${ROUTER_PATH}/:type?/`}  element={<Header menu={menu} />}></Route>
       </Routes>
       <Routes>
-        <Route path="/" index element={<Main data={imgs} />}></Route>
-        <Route path="/news/" element={<NewsList />} />
-        <Route path="/news/:id/" element={<Details />} />
-        <Route path="/about/" element={<About />} />
-        <Route path="/service/:type?/" element={<Service menu={menu} />} />
+        <Route path={`${ROUTER_PATH}/`} index element={<Main data={imgs} />}></Route>
+        <Route path={`${ROUTER_PATH}/news/`} element={<NewsList />} />
+        <Route path={`${ROUTER_PATH}/news/:id/`} element={<Details />} />
+        <Route path={`${ROUTER_PATH}/about/`} element={<About />} />
+        <Route path={`${ROUTER_PATH}/service/:type?/`} element={<Service menu={menu} />} />
       </Routes>
       <Footer menu={menu} data={siteInfo} />
     </BrowserRouter>
