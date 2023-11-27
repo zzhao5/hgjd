@@ -4,9 +4,9 @@ import _s from './index.module.scss';
 import API from '../../apis';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams, NavLink } from 'react-router-dom';
-import Banner from '../../components/banner';
-import Title from '../../components/title';
-import IconRight from '../../components/icon_right';
+import Banner from '@/components/banner';
+import Title from '@/components/title';
+import IconRight from '@/components/icon_right';
 
 const ServiceList = ({title, content}: {title:string; content:string;}) => {
   const [show, setShow] = useState(false);

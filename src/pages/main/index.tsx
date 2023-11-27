@@ -1,7 +1,7 @@
 import c from 'classnames';
 import _s from './index.module.scss';
-import Title from '../../components/title';
-import { News, ImgText, Text } from '../../components/cards';
+import Title from '@/components/title';
+import { News, ImgText, Text } from '@/components/cards';
 import pic from './images/pic_best.jpeg';
 
 const Main = ({ data: { pctureUrl } }: { data: TAPI.TBannerInfo }) => {

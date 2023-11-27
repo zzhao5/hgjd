@@ -2,10 +2,10 @@ import c from 'classnames';
 import Pagination from 'rc-pagination';
 import _s from './index.module.scss';
 import API from '../../apis';
-import { News } from '../../components/cards';
+import { News } from '@/components/cards';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Banner from '../../components/banner';
+import Banner from '@/components/banner';
 
 const Details = () => {
   const { id } = useParams<{ id: string }>();

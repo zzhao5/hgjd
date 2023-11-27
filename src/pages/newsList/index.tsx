@@ -1,10 +1,10 @@
 import c from 'classnames';
 import _s from './index.module.scss';
 import API from '../../apis';
-import { News } from '../../components/cards';
-import Pages from '../../components/pagination';
-import Title from '../../components/title';
-import Banner from '../../components/banner';
+import { News } from '@/components/cards';
+import Pages from '@/components/pagination';
+import Title from '@/components/title';
+import Banner from '@/components/banner';
 import { useCallback, useEffect, useState } from 'react';
 
 const NewsList = () => {

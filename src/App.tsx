@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import API from './apis';
-import Header from './components/header';
-import Footer from './components/footer';
-import Main from './pages/main';
-import NewsList from './pages/newsList';
-import Details from './pages/details';
-import About from './pages/about';
-import Service from './pages/service';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
+import Main from '@/pages/main';
+import NewsList from '@/pages/newsList';
+import Details from '@/pages/details';
+import About from '@/pages/about';
+import Service from '@/pages/service';
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 
