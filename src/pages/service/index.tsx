@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import c from 'classnames';
 import _s from './index.module.scss';
-import API from '../../apis';
+import API from '@/apis';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams, NavLink } from 'react-router-dom';
 import Banner from '@/components/banner';
@@ -19,7 +19,7 @@ const ServiceList = ({title, content}: {title:string; content:string;}) => {
   </>
 }
 
-const Service = ({ menu } : { menu: TAPI.TMenuItem[]; }) => {
+const Service = ({ menu, mini } : { menu: TAPI.TMenuItem[]; mini: boolean; }) => {
   const { type } = useParams<{ type: string;}>();
   const [data, setData] = useState<TAPI.TServiceData[]>();
   const [content, setContent] = useState<TAPI.TServiceData>();
@@ -74,12 +74,14 @@ const Service = ({ menu } : { menu: TAPI.TMenuItem[]; }) => {
     <>
       <Banner name='服务内容' />
       <section className={c(_s.nav, _s.main, _s.flex_3)}>
-        <div className={_s.nav_active} onClick={handleClick}>
-          <span>{activeMenu?.titles}</span>
-          <IconRight double size={8} turn={true} />
-        </div>
         {
-          serviceMenu && showNav ? serviceMenu.mlist.map(({id, urls, titles}, index) => {
+          mini ? <div className={_s.nav_active} onClick={handleClick}>
+            <span>{activeMenu?.titles}</span>
+            <IconRight double size={8} turn={true} />
+          </div> : null
+        }
+        {
+          serviceMenu && (mini && showNav || !mini) ? serviceMenu.mlist.map(({id, urls, titles}) => {
             return (
               <NavLink
                 key={id}

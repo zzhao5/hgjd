@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import c from 'classnames';
 import _s from './index.module.scss';
 import Title from '@/components/title';
-import { News, ImgText, Text } from '@/components/cards';
+import { Card, Image, Text } from '@/components/cards';
 import { useCookies } from 'react-cookie';
 import pic from './images/pic_best.jpeg';
 import banner1 from './images/pic_banner1.jpeg';
@@ -40,13 +40,13 @@ const Main = () => {
           </div>
         </div>
       </section>
-      <section className={c(_s.news, _s.main)}>
-        <Title name="最新消息" more="/news/" />
+      <section className={c(_s.Card, _s.main)}>
+        <Title name="最新消息" more="/Card/" />
         <div className={_s.flex_2}>
           {
             [1, 2].map((item, index) => {
               return (
-                <News
+                <Card
                   key={index}
                   link={''}
                   className={index % 2 === 0 ? _s.even : _s.odd}
@@ -65,7 +65,7 @@ const Main = () => {
           {
             [1, 2, 3, 4].map((item, index) => {
               return (
-                <ImgText
+                <Image
                   key={index}
                   link={''}
                   img={'https://t7.baidu.com/it/u=27018761,936335273&fm=193&f=GIF'}

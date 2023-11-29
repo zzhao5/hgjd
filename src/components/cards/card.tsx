@@ -3,7 +3,7 @@ import c from 'classnames';
 import IconRight from '../icon_right';
 
 
-const News = ({
+const Card = ({
   link,
   type,
   text,
@@ -22,7 +22,7 @@ const News = ({
 }) => {
 
   return (
-    <div className={c(_s.news, className, (mini ? _s.mini : null))} data-tips={tips}>
+    <div className={c(_s.card, className, (mini ? _s.mini : null))} data-tips={tips}>
       <p className={_s.type}>{type}</p>
       <a href={link}>
           {text}
@@ -35,4 +35,4 @@ const News = ({
   )
 }
 
-export default News;
+export default Card;

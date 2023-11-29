@@ -79,24 +79,14 @@ const NavItem = ({ titles, mlist, urls, mini, id, setNav, hideNav, active }: { m
 }
 
 
-const Header = ({ menu }: { menu: TAPI.TMenuItem[] } ) => {
+const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => {
 
-  const [mini, setMini] = useState(false); // 是否为移动端
   const [showNav, setShowNav] = useState(false); // 移动端显示菜单 | PC 端显示二级菜单
   const [subNavData, setSubNav] = useState<TAPI.TMenuItem>(); // 二级菜单内容
-  const params = useParams<{ type: string }>();
+  const params = useParams<{ name:string; type: string }>();
 
-  const bannerRef = useRef<HTMLDivElement>(null);
   const timeRef = useRef<NodeJS.Timeout>();
   const resetRef = useRef<NodeJS.Timeout>();
-
-  const resetMini = useCallback(() => {
-    if (bannerRef.current && bannerRef.current.clientWidth < 768) {
-      setMini(true);
-    } else {
-      setMini(false);
-    }
-  }, [bannerRef.current]);
 
   const stopHideSubNav = useCallback(() => {
     console.log('stopHideSubNav');
@@ -130,42 +120,14 @@ const Header = ({ menu }: { menu: TAPI.TMenuItem[] } ) => {
 
   useEffect(() => {
     setShowNav(false);
-  }, [params.type]);
+  }, [params.name, params.type]);
 
 
-  /**
-   * 监听当前视口大小
-   */
-  useEffect(() => {
-    const throttle = (fn = Function.prototype, delay = 20) => {
-      let lastTime = Date.now();
-      // TODO: arguments in ts
-      return (...args: any) => {
-        const nowTime = +new Date();
-        if (nowTime - lastTime > delay || !lastTime) {
-          fn.apply(this, args);
-          lastTime = nowTime;
-        }
-      };
-    };
-
-    const resizeFn = throttle(() => {
-      resetMini();
-    }, 100);
-
-    // 默认执行一次
-    resetMini();
-    window.addEventListener('resize', resizeFn);
-
-    return () => {
-      window.removeEventListener('resize', resizeFn);
-    };
-  }, [resetMini]);
 
   return (
     <>
       <div className={_s.bannerHold}></div>
-      <header className={_s.wrap} ref={bannerRef}>
+      <header className={_s.wrap}>
         <div className={_s.nav}>
           <div className={_s.main}>
             <div className={_s.logo}>

@@ -9,8 +9,8 @@ const Text = ({
   text,
   className,
 }: {
-  link: string;
-  time: string;
+  link?: string;
+  time?: string;
   title: string;
   text: string;
   className?: string;
@@ -18,8 +18,13 @@ const Text = ({
 
   return (
     <div className={c(_s.text, className)}>
-      <p className={_s.title}><a href={link}>{title}</a><span>{time}</span></p>
-      <p><a href={link}>{text}</a></p>
+      <p className={_s.title}>
+        {link ? <a href={link}>{title}</a> : title}
+        {time ? <span>{time}</span> : null}
+      </p>
+      <p>
+        {link ? <a href={link}>{text}</a> : text}
+      </p>
     </div>
   )
 }

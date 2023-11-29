@@ -51,7 +51,7 @@
         background-color: $darkBlueColor;
         transition: all 0.3s ease-in-out;
       }
-      &.active {
+      .active {
         color: $darkBlueColor;
       }
       &.border::after {
@@ -200,7 +200,7 @@
         padding: 25px 0;
         margin: 0 20px;
         border-bottom: 1px solid $whiteColor;
-        &.active {
+        .active {
           color: $lightBlueColor;
         }
       }

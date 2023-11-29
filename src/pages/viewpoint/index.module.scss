@@ -5,6 +5,9 @@
   justify-content: space-between;
   flex-wrap: nowrap;
   margin-bottom: 65px;
+  .nav_active {
+    display: none;
+  }
   .item {
     width: 33%;
     height: 90px;

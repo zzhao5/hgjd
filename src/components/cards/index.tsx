@@ -1,9 +1,9 @@
-import News from "./news";
-import ImgText from "./img-text";
+import Card from "./card";
+import Image from "./image";
 import Text from "./text";
 
 export {
-  News,
+  Card,
   Text,
-  ImgText,
+  Image,
 }

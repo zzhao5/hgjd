@@ -48,6 +48,21 @@ declare namespace TAPI {
     }[];
   };
 
+  /**
+   * 观点与经验
+   */
+  type TViewPoint = {
+    id: number | string;
+    title: string;
+    content: string;
+    video: string;
+  }
+  type TViewList = {
+    id: number | string;
+    title: string;
+    content: string;
+  }
+
 
   /**
    * 消息组件

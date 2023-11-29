@@ -1,7 +1,7 @@
 import c from 'classnames';
 import _s from './index.module.scss';
-import API from '../../apis';
-import { News } from '@/components/cards';
+import API from '@/apis';
+import { Card } from '@/components/cards';
 import Pages from '@/components/pagination';
 import Title from '@/components/title';
 import Banner from '@/components/banner';
@@ -33,7 +33,7 @@ const NewsList = () => {
           {
             [1, 2, 3, 4, 5, 6, 7, ].map((item, index) => {
               return (
-                <News
+                <Card
                   key={index}
                   link={'/news/16'}
                   className={index % 2 === 0 ? _s.even : _s.odd}

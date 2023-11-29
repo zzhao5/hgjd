@@ -1,6 +1,6 @@
 @import '@/styles/index';
 
-.news {
+.card {
   position: relative;
   padding: 40px;
   font-size: 26px;
@@ -37,7 +37,7 @@
     display: none;
   }
 }
-.img_text {
+.image {
   font-size: 20px;
   line-height: 1.5;
   font-weight: 300;
@@ -50,6 +50,20 @@
     width: 100%;
     display: block;
     margin-bottom: 30px;
+  }
+  .video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+    margin-bottom: 30px;
+    video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+
+    }
   }
   p {
     padding: 0 40px;
@@ -74,16 +88,15 @@
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 15px;
-    a {
-      font-weight: 500;
-    }
+    font-weight: 500;
     span {
       font-size: 16px;
+      font-weight: 300;
     }
   }
 }
 @include xs {
-  .news {
+  .card {
     padding: 25px;
     font-size: 18px;
     .type {
@@ -105,21 +118,21 @@
       &::before {
         content: attr(data-tips);
       }
-    }
-    a {
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-    .time, .type {
-      display: none;
-    }
-    .icon_right {
-      flex-shrink: 0;
-      display: block;
-      margin-left: 5px;
+      .icon_right {
+        flex-shrink: 0;
+        display: block;
+        margin-left: 5px;
+      }
+      a {
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      .time, .type {
+        display: none;
+      }
     }
   }
-  .img_text {
+  .image {
     img {
       margin-bottom: 10px;
     }
