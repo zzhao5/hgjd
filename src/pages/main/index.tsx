@@ -40,7 +40,7 @@ const Main = () => {
           </div>
         </div>
       </section>
-      <section className={c(_s.Card, _s.main)}>
+      <section className={c(_s.card, _s.main)}>
         <Title name="最新消息" more="/Card/" />
         <div className={_s.flex_2}>
           {

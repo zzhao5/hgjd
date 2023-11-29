@@ -97,7 +97,7 @@
     }
   }
 }
-.news {
+.card {
   .even {
     background-color: $darkBlueColor;
     color: $whiteColor;
@@ -106,8 +106,6 @@
     background-color: $lightBlueColor;
     color: $blackColor;
   }
-}
-.img_list {
 }
 
 @include xs {
