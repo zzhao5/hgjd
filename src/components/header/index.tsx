@@ -14,7 +14,7 @@ const NavSub = ({list, mini}: { list:TAPI.TMenuItem[]; mini:boolean; }) => {
       {
         list.map((subItem) =>
           <p key={subItem.id}>
-            <NavLink to={`${ROUTER_PATH}subItem.urls`}>{subItem.titles}</NavLink>
+            <NavLink to={ROUTER_PATH + subItem.urls}>{subItem.titles}</NavLink>
             {mini ? null : <IconRight />}
           </p>
         )
@@ -66,7 +66,7 @@ const NavItem = ({ titles, mlist, urls, mini, id, setNav, hideNav, active }: { m
       >
         <NavLink
           className={({ isActive }) => c(isActive ? _s.active : null)}
-          to={`${ROUTER_PATH}urls`}
+          to={ROUTER_PATH + urls}
           end={urls === '/'} 
         >
             {titles} 

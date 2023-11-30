@@ -90,7 +90,7 @@ const Service = ({ menu, mini } : { menu: TAPI.TMenuItem[]; mini: boolean; }) =>
                 key={id}
                 data-title={titles}
                 className={({isActive}) => c(_s.item, isActive ? _s.active : null)}
-                to={`${ROUTER_PATH}urls`}
+                to={ROUTER_PATH + urls}
               >
                   { titles }
               </NavLink>
