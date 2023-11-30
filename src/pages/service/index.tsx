@@ -8,6 +8,9 @@ import Banner from '@/components/banner';
 import Title from '@/components/title';
 import IconRight from '@/components/icon_right';
 
+
+const ROUTER_PATH = process.env.REACT_APP_ROUTER;
+
 const ServiceList = ({title, content}: {title:string; content:string;}) => {
   const [show, setShow] = useState(false);
   return <>
@@ -87,7 +90,7 @@ const Service = ({ menu, mini } : { menu: TAPI.TMenuItem[]; mini: boolean; }) =>
                 key={id}
                 data-title={titles}
                 className={({isActive}) => c(_s.item, isActive ? _s.active : null)}
-                to={urls}
+                to={`${ROUTER_PATH}urls`}
               >
                   { titles }
               </NavLink>
