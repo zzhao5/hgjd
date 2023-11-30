@@ -1,14 +1,13 @@
 import _s from './index.module.scss';
 import API from '@/apis';
-import { useEffect, useMemo, useState } from 'react';
-import { useParams, NavLink } from 'react-router-dom';
-import { Man, Image } from '@/components/cards';
+import { useEffect, useState } from 'react';
+import { Man } from '@/components/cards';
 import Banner from '@/components/banner';
 import Title from '@/components/title';
+import Pages from '@/components/pagination';
 
 
-const Group = () => {
-  const { type } = useParams<{ type: string;}>();
+const GroupTeam = () => {
   const [data, setData] = useState<TAPI.TGroupPeopel[]>();
 
   useEffect(() => {
@@ -80,16 +79,6 @@ const Group = () => {
         </div>
       </section>
       <section className={_s.main}>
-        <Title name='典型专家' border more={'typical'} />
-        <div className={_s.flex_2}>
-          {
-            data?.slice(0,1).map(({id, img, name, title, link, content}) => {
-              return <Man key={id} img={img} name={name} title={title} link={link} text={content} />
-            })
-          }
-        </div>
-      </section>
-      <section className={_s.main}>
         <Title name='专家团队' border more={'team'} />
         <div className={_s.flex_2}>
           {
@@ -98,19 +87,10 @@ const Group = () => {
             })
           }
         </div>
-      </section>
-      <section className={_s.main}>
-        <Title name='合作机构' border more={'institution'} />
-        <div className={_s.flex_3}>
-          {
-            data?.map(({id, img, link, content}) => {
-              return <Image key={id} className={_s.logo_list} img={'https://www.autohome.com.cn/about/img/mail@2x.jpg'} link={link} text={'网站名称是啥'} />
-            })
-          }
-        </div>
+        <Pages total={20} pageSize={8} onChange={() => {}} />
       </section>
     </>
   )
 }
 
-export default Group;
+export default GroupTeam;

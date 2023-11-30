@@ -11,17 +11,19 @@ const Text = ({
 }: {
   link?: string;
   time?: string;
-  title: string;
+  title?: string;
   text: string;
   className?: string;
 }) => {
 
   return (
     <div className={c(_s.text, className)}>
-      <p className={_s.title}>
-        {link ? <a href={link}>{title}</a> : title}
-        {time ? <span>{time}</span> : null}
-      </p>
+      {
+        title ? <p className={_s.title}>
+          {link ? <a href={link}>{title}</a> : title}
+          {time ? <span>{time}</span> : null}
+        </p> : null
+      }
       <p>
         {link ? <a href={link}>{text}</a> : text}
       </p>

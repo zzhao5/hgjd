@@ -63,6 +63,18 @@ declare namespace TAPI {
     content: string;
   }
 
+  /**
+   * 专家
+   */
+  type TGroupPeopel = {
+    id: number | string;
+    img: string;
+    name: string;
+    title: string;
+    link: string;
+    content: string;
+  }
+
 
   /**
    * 消息组件

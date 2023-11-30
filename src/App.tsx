@@ -11,6 +11,10 @@ import Service from '@/pages/service';
 import ViewPoint from '@/pages/viewpoint';
 import ViewList from '@/pages/viewpoint/list';
 import Group from '@/pages/group';
+import GroupTypical from '@/pages/group/typical';
+import GroupTeam from '@/pages/group/team';
+import GroupInstitution from '@/pages/group/institution';
+import Contact from '@/pages/contact';
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 
@@ -83,6 +87,10 @@ const App = () => {
         <Route path={`${ROUTER_PATH}/viewpoint/science/`} element={<ViewList />} />
         <Route path={`${ROUTER_PATH}/viewpoint/:id/`} element={<Details type='viewpoint' />} />
         <Route path={`${ROUTER_PATH}/group/`} element={<Group />} />
+        <Route path={`${ROUTER_PATH}/group/typical/`} element={<GroupTypical />} />
+        <Route path={`${ROUTER_PATH}/group/team/`} element={<GroupTeam />} />
+        <Route path={`${ROUTER_PATH}/group/institution/`} element={<GroupInstitution />} />
+        <Route path={`${ROUTER_PATH}/contact/`} element={<Contact />} />
       </Routes>
       <Footer menu={menu} data={siteInfo} />
     </BrowserRouter>
