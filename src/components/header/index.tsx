@@ -26,26 +26,19 @@ const NavSub = ({list, mini}: { list:TAPI.TMenuItem[]; mini:boolean; }) => {
 const NavItem = ({ titles, mlist, urls, mini, id, setNav, hideNav, active }: { mini: boolean; active: boolean; setNav: Function; hideNav: Function; } & TAPI.TMenuItem) => {
   const [hasClick, setHasClick] = useState(false);
   const handleEnter = useCallback(() => {
-    if (!mini) {
-      console.log('handleEnter');
-      if (mlist && mlist.length > 0) {
-        setNav({titles, id, mlist});
-      } else {
-        hideNav('handleEnter - leave');
-      }
+    if (!mini && mlist && mlist.length > 0) {
+      setNav({titles, id, mlist});
     }
   }, [titles, id, mlist, mini]);
 
   const handleLeave = useCallback(() => {
-    if (!mini) {
-      console.log('handleLeave');
+    if (!mini && mlist && mlist.length > 0) {
       hideNav();
     }
-  }, [mini]);
+  }, [mini, mlist]);
 
   const handleClick = useCallback(() => {
     if (mini && mlist && mlist.length > 0) {
-      console.log('handleClick');
       if (!hasClick) {
         setHasClick(true);
         setNav({titles, id, mlist});
@@ -91,38 +84,36 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
   const resetRef = useRef<NodeJS.Timeout>();
 
   const stopHideSubNav = useCallback(() => {
-    console.log('stopHideSubNav');
+    console.log('subNav enter');
     clearTimeout(timeRef.current);
     clearTimeout(resetRef.current);
   }, [timeRef.current, resetRef.current]);
 
   const showSubNav = useCallback((t:TAPI.TMenuItem) => {
-    console.log('showSubNav');
+    console.warn('showSubNav');
     clearTimeout(timeRef.current);
     clearTimeout(resetRef.current);
-    setShowNav(false);
+    setShowNav(true);
     setSubNav(t);
   }, [timeRef.current, resetRef.current]);
 
   const hideSubNav = useCallback(() => {
-    console.log('hideSubNav');
+    console.error('hideSubNav');
     timeRef.current = setTimeout(() => {
-      console.log('hideSubNav - setTimeout');
-      setShowNav(true);
+      setShowNav(false);
       setSubNav((t) => {
         const n =  t ? {...t, id: '-'} : {id: '-'} as TAPI.TMenuItem;
         return n;
       });
-    }, 300);
+    }, 0);
     resetRef.current = setTimeout(() => {
-      console.log('hideSubNav - resetTimeout');
       setSubNav(undefined);
-    }, 610);
+    }, 300);
   }, [timeRef.current, resetRef.current]);
 
   useEffect(() => {
-    setShowNav(false);
-  }, [params.name, params.type]);
+    setShowNav(!mini);
+  }, [params.name, params.type, mini]);
 
 
 
@@ -162,7 +153,7 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
         </div>
         {
           !mini && !!subNavData && subNavData.mlist?.length > 0 ? 
-          <div className={c(_s.subNav, showNav ? _s.hideSubNav : null)} onMouseEnter={stopHideSubNav} onMouseLeave={hideSubNav}>
+          <div className={c(_s.subNav, !showNav ? _s.hideSubNav : null)} onMouseEnter={stopHideSubNav} onMouseLeave={hideSubNav}>
             <div className={_s.main}>
               <div className={_s.title}>{subNavData.titles}</div>
               <NavSub list={subNavData.mlist} mini={mini} />
