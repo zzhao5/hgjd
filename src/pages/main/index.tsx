@@ -48,6 +48,7 @@ const Main = () => {
               return (
                 <Card
                   key={index}
+                  typeLink={''}
                   link={''}
                   className={index % 2 === 0 ? _s.even : _s.odd}
                   type={'新闻分类'} 

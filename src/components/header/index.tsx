@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import _s from './index.module.scss';
 import c from 'classnames';
 import logo from './images/logo.png'
@@ -124,7 +124,7 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
         <div className={_s.nav}>
           <div className={_s.main}>
             <div className={_s.logo}>
-              <img src={logo} alt="" />
+              <Link to='/'><img src={logo} alt="" /></Link>
             </div>
             <div className={c(_s.list, mini && showNav ? _s.showNav : null)}>
               {

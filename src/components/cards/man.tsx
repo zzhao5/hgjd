@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import _s from './index.module.scss';
 import c from 'classnames';
 
@@ -21,10 +22,10 @@ const Man = ({
   return (
     <div className={c(_s.man, className)}>
       <div className={_s.img}>
-        <a href={link}><img src={img} alt={title} /></a>
+        <Link to={link}><img src={img} alt={title} /></Link>
       </div>
       <div className={_s.info}>
-        <p className={_s.name}><a href=''>{name}</a></p>
+        <p className={_s.name}><Link to={link}>{name}</Link></p>
         <p className={_s.title}>{title}</p>
         <p>{text}</p>
       </div>

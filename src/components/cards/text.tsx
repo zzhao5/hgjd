@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import _s from './index.module.scss';
 import c from 'classnames';
 
@@ -20,12 +21,12 @@ const Text = ({
     <div className={c(_s.text, className)}>
       {
         title ? <p className={_s.title}>
-          {link ? <a href={link}>{title}</a> : title}
+          {link ? <Link to={link}>{title}</Link> : title}
           {time ? <span>{time}</span> : null}
         </p> : null
       }
       <p>
-        {link ? <a href={link}>{text}</a> : text}
+        {link ? <Link to={link}>{text}</Link> : text}
       </p>
     </div>
   )

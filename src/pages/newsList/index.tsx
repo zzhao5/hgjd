@@ -35,6 +35,7 @@ const NewsList = () => {
               return (
                 <Card
                   key={index}
+                  typeLink={''}
                   link={'/news/16'}
                   className={index % 2 === 0 ? _s.even : _s.odd}
                   type={'新闻分类'} 

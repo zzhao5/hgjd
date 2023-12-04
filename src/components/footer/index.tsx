@@ -4,6 +4,8 @@ import _s from './index.module.scss';
 import logo from './images/logo_white.png'
 
 
+const ROUTER_PATH = process.env.REACT_APP_ROUTER;
+
 const Footer = ({ data: { email, address, tels, copyrightInformation, icp }, menu }: { data: TAPI.TWebInfo; menu: TAPI.TMenuItem[]}) => {
 
   return (
@@ -18,7 +20,7 @@ const Footer = ({ data: { email, address, tels, copyrightInformation, icp }, men
               return (
                 item.urls === '/' ? null :
                 <p key={item.urls}>
-                  <Link to={item.urls} className={_s.item}>{item.titles}</Link>
+                  <Link to={ROUTER_PATH + item.urls} className={_s.item}>{item.titles}</Link>
                 </p>
               )
             })
@@ -26,9 +28,9 @@ const Footer = ({ data: { email, address, tels, copyrightInformation, icp }, men
         </div>
         <div className={_s.contact}>
           联系方式
-          <p><i className={c(_s.icon, _s.icon_mail)}></i>{email}</p>
+          <p><i className={c(_s.icon, _s.icon_mail)}></i><a href={`mailto:${email}`}>{email}</a></p>
           <p><i className={c(_s.icon, _s.icon_address)}></i>{address}</p>
-          <p><i className={c(_s.icon, _s.icon_phone)}></i>{tels}</p>
+          <p><i className={c(_s.icon, _s.icon_phone)}></i><a href={`tel:${tels}`}>{tels}</a></p>
         </div>
         <div className={_s.copy}>
           <span>{copyrightInformation}</span> <span>{icp}</span>

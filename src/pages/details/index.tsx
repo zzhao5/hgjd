@@ -52,6 +52,7 @@ const Details = ({ type }: {type: 'news' | 'viewpoint';}) => {
             [1, 2].map((item, index) => {
               return <Card
                 key={index}
+                typeLink={''}
                 link={'/news/16'}
                 className={_s.newsCard}
                 type={'新闻分类'} 

@@ -1,9 +1,5 @@
 @import '@/styles/index';
 
-.main {
-  margin-bottom: 65px;
-}
-
 .banner {
   position: relative;
   height: 750px;
@@ -44,7 +40,6 @@
     z-index: 2;
     display: flex;
     flex-direction: row;
-    margin-bottom: 80px;
     justify-content: space-between;
     &::before {
       content: '';

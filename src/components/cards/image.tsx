@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import _s from './index.module.scss';
 import c from 'classnames';
 
@@ -20,14 +21,15 @@ const Image = ({
 
   return (
     <div className={c(_s.image, className)}>
+      
       {
-        img ? <a href={link}><img src={img} alt={title} /></a> :
+        img ? <Link to={link} className={_s.imgLink}><img src={img} alt={title} /></Link> :
         video ? <div className={_s.video}><video src={video} preload='preload' controls></video></div> : null
       }
       {
-        title ? <p className={_s.title}><a href={link}>{title}</a></p> : null
+        title ? <p className={_s.title}><Link to={link}>{title}</Link></p> : null
       }
-      <p><a href={link}>{text}</a></p>
+      <p><Link to={link}>{text}</Link></p>
     </div>
   )
 }

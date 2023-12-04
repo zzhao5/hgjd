@@ -21,6 +21,9 @@
       content: '了解更多';
       vertical-align: middle;
     }
+    &:hover::after {
+      border-bottom: 1px solid $darkBlueColor;
+    }
   }
   &.border {
     padding-bottom: 15px;

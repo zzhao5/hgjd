@@ -21,7 +21,8 @@ const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 const App = () => {
   const [menu, setMenu] = useState([] as TAPI.TMenuItem[]);
   const [siteInfo, setSiteInfo] = useState({} as TAPI.TWebInfo);
-  const [mini, setMini] = useState(false); // 是否为移动端
+  const [mini, setMini] = useState(false); // 是否为小屏幕
+  // const [phone, setPhone] = useState(false); // 是否为移动端
   const bodyRef = useRef(document.getElementsByTagName('body')[0] as HTMLBodyElement);
 
   const resetMini = useCallback(() => {
@@ -38,7 +39,6 @@ const App = () => {
   useEffect(() => {
     const throttle = (fn = Function.prototype, delay = 20) => {
       let lastTime = Date.now();
-      // TODO: arguments in ts
       return (...args: any) => {
         const nowTime = +new Date();
         if (nowTime - lastTime > delay || !lastTime) {
@@ -48,9 +48,15 @@ const App = () => {
       };
     };
 
+
     const resizeFn = throttle(() => {
       resetMini();
     }, 100);
+
+    // const ua = navigator.userAgent || '';
+    // // TODO: 需要替换为手机判断
+    // const bePhone = /iPhone/.test(ua);
+    // setPhone(bePhone);
 
     // 默认执行一次
     resetMini();

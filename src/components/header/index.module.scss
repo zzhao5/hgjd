@@ -51,7 +51,7 @@
         background-color: $darkBlueColor;
         transition: all 0.3s ease-in-out;
       }
-      .active {
+      .active, &:hover {
         color: $darkBlueColor;
       }
       &.border::after {
