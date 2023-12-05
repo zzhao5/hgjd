@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 const Card = ({
   link,
   type,
-  typeLink,
   text,
   time,
   className,
@@ -15,8 +14,7 @@ const Card = ({
   tips,
 }: {
   link: string;
-  typeLink: string;
-  type: string;
+  type?: string;
   text: string;
   time: string;
   className?: string;
@@ -26,7 +24,7 @@ const Card = ({
 
   return (
     <div className={c(_s.card, className, (mini ? _s.mini : null))} data-tips={tips}>
-      <p className={_s.type}><Link to={link}>{type}</Link></p>
+      { type ? <p className={_s.type}>{type}</p> : null}
       <Link to={link}>{text}</Link>
       <p className={_s.time}>
         <span>{time}</span> <IconRight double />

@@ -18,3 +18,5 @@
  | 专家团队 |	/group/team/ | 专家和合作机构 |
  | 合作机构 | /group/institution/ | 专家和合作机构|
  | 联系我们 | /contact/ | |
+ | 最新消息 | /news/ | |
+ | 资质证明 | /license/ | |

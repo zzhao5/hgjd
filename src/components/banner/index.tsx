@@ -6,6 +6,7 @@ import pic3 from './images/pic_banner3.jpeg';
 import pic4 from './images/pic_banner4.jpeg';
 import pic5 from './images/pic_banner5.jpeg';
 import pic6 from './images/pic_banner6.jpeg';
+import pic7 from './images/pic_banner7.jpeg';
 import { useMemo } from 'react';
 
 const PICS = [
@@ -15,6 +16,7 @@ const PICS = [
   { text: '经验', pic: pic4, },
   { text: '专家', pic: pic5, },
   { text: '联系', pic: pic6, },
+  { text: '资质', pic: pic7, },
 ];
 
 const Banner = ({

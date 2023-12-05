@@ -6,22 +6,24 @@ import c from 'classnames';
 const Text = ({
   link,
   time,
-  title,
+  type,
+  typeLink,
   text,
   className,
 }: {
   link?: string;
   time?: string;
-  title?: string;
-  text: string;
+  type?: string;
+  typeLink?: string;
+  text?: string;
   className?: string;
 }) => {
 
   return (
     <div className={c(_s.text, className)}>
       {
-        title ? <p className={_s.title}>
-          {link ? <Link to={link}>{title}</Link> : title}
+        type ? <p className={_s.title}>
+          {typeLink ? <Link to={typeLink}>{type}</Link> : type}
           {time ? <span>{time}</span> : null}
         </p> : null
       }
