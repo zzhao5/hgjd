@@ -56,7 +56,8 @@ const ViewPoint = () => {
               list?.map(({id, title, content}) => {
                 return <Text
                   key={id}
-                  title={title}
+                  type={title}
+                  typeLink={''}
                   text={content}
                 />
               })

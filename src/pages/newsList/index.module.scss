@@ -1,13 +1,7 @@
 @import '@/styles/index';
 
 
-.news {
-  .even {
-    background-color: $darkBlueColor;
-    color: $whiteColor;
-  }
-  .odd {
-    background-color: $lightBlueColor;
-    color: $blackColor;
-  }
+.item {
+  background-color: $lightBlueColor;
+  color: $blackColor;
 }

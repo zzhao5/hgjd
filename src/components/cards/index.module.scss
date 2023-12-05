@@ -7,14 +7,23 @@
   font-weight: 300;
   box-sizing: border-box;
   display: flex;
+  justify-content: flex-end;
   flex-direction: column;
   border: 1px solid transparent;
-  a {
+  .content {
     display: block;
-    flex-grow: 1;
+    overflow: hidden;
+    line-height: 1.2;
     &:hover {
       text-decoration: underline;
     }
+  }
+  &.mini .content{
+    height: 63px;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
   }
   .type {
     font-weight: 500;
@@ -36,6 +45,7 @@
   .icon_right {
     display: none;
   }
+
 }
 .image {
   font-size: 20px;

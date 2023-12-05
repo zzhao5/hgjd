@@ -5,48 +5,61 @@ import { Card } from '@/components/cards';
 import Pages from '@/components/pagination';
 import Title from '@/components/title';
 import Banner from '@/components/banner';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const NewsList = () => {
-  const [list, setList] = useState<TAPI.TNewsList[]>([]);
-  
+  const [data, setData] = useState<TAPI.TNewsList>(); // 最新消息
+
   useEffect(() => {
     API.getNewsList({
-      newsId: 22,
+      newsId: 30,
       pageNo: 1,
-      pageSize: 20,
+      pageSize: 6,
     }).then((res) => {
-      setList(res.data);
+      setData(res.result);
     });
   }, []);
 
-  const pageChange = useCallback((page: number) => {
-
-  }, []);
+  const pageChange = (page: number) => {
+    API.getNewsList({
+      newsId: 30,
+      pageNo: page,
+      pageSize: 6,
+    }).then((res) => {
+      setData(res.result);
+    });
+  };
 
   return (
     <>
       <Banner name='最新消息' />
-      <section className={c(_s.news, _s.main)}>
+      <section className={_s.main}>
         <Title name='最新消息' />
-        <div className={_s.flex_3}>
+        <div className={_s.flex_2}>
           {
-            [1, 2, 3, 4, 5, 6, 7, ].map((item, index) => {
+            data?.records.map(({id, tags, describes, createTime}) => {
               return (
                 <Card
-                  key={index}
-                  typeLink={''}
-                  link={'/news/16'}
-                  className={index % 2 === 0 ? _s.even : _s.odd}
-                  type={'新闻分类'} 
-                  time={'2023-11-10'}
-                  text={'专业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务专业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务'}
+                  className={_s.item}
+                  key={id}
+                  link={`/news/${id}/`}
+                  type={tags}
+                  time={createTime}
+                  text={describes}
                 />
               )
             })
           }
         </div>
-        <Pages onChange={pageChange} total={28} pageSize={9} />
+        {
+          data && data?.total > 6 && (
+            <Pages
+              total={data?.total}
+              pageSize={6}
+              onChange={pageChange}
+            />
+          )
+        }
       </section>
     </>
   )

@@ -114,7 +114,10 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
   useEffect(() => {
     setShowNav(!mini);
   }, [params.name, params.type, mini]);
-
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [params.name]);
 
 
   return (

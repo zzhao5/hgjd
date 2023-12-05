@@ -25,7 +25,7 @@ const Card = ({
   return (
     <div className={c(_s.card, className, (mini ? _s.mini : null))} data-tips={tips}>
       { type ? <p className={_s.type}>{type}</p> : null}
-      <Link to={link}>{text}</Link>
+      <Link to={link} className={_s.content}>{text}</Link>
       <p className={_s.time}>
         <span>{time}</span> <IconRight double />
       </p>

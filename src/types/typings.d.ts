@@ -26,6 +26,19 @@ declare namespace TAPI {
     seoDescription: string;
   };
   /**
+   * 最新消息
+   */
+  type TNews = {
+    id: number | string;
+    titles: string;
+    imgs: string;
+    describes: string;
+    tags: string;
+    contents: string;
+    createTime: s
+  }
+
+  /**
    * 首页大图
    */
   type TBannerInfo = {
@@ -95,14 +108,20 @@ declare namespace TAPI {
     size: number;
     current: number;
     pages: number;
-    records: TNewsListItem[];
-    orders: any[];
+    records: TNewsItem[];
   };
 
-  type TNewsListItem = {
+  type TNewsItem = {
     id: number | string;
-    title: string;
-    link: string;
+    menuId: number | string;
+    menuName: string;
+    titles: string;
+    imgs?: string;
+    describes: string;
+    tags?: string;
+    contents: string;
+    video?: string;
+    createTime: string;
   };
 
   /**

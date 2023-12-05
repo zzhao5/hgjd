@@ -15,18 +15,21 @@ import GroupTypical from '@/pages/group/typical';
 import GroupTeam from '@/pages/group/team';
 import GroupInstitution from '@/pages/group/institution';
 import Contact from '@/pages/contact';
+import Licenses from '@/pages/license';
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 
 const App = () => {
-  const [menu, setMenu] = useState([] as TAPI.TMenuItem[]);
-  const [siteInfo, setSiteInfo] = useState({} as TAPI.TWebInfo);
+  const [menu, setMenu] = useState([] as TAPI.TMenuItem[]); // 导航
+  const [siteInfo, setSiteInfo] = useState({} as TAPI.TWebInfo); // 网站信息
+  const [license, setLicense] = useState([] as TAPI.TNewsItem[]); // 资质证书
+  const [news, setNews] = useState([] as TAPI.TNewsItem[]); // 最新消息
+
   const [mini, setMini] = useState(false); // 是否为小屏幕
   // const [phone, setPhone] = useState(false); // 是否为移动端
   const bodyRef = useRef(document.getElementsByTagName('body')[0] as HTMLBodyElement);
 
   const resetMini = useCallback(() => {
-    console.log(bodyRef.current.clientWidth);
     if (bodyRef.current && bodyRef.current.clientWidth < 768) {
       setMini(true);
     } else {
@@ -71,9 +74,11 @@ const App = () => {
     API.getSiteInfo().then((res) => {
       const { result, code } = res;
       if (code === 200) {
-        const { menuList, siteInfo } = result;
+        const { menuList, siteInfo, zjList, messageList, } = result;
         setMenu(menuList);
         setSiteInfo(siteInfo);
+        setLicense(zjList);
+        setNews(messageList);
       }
     });
   }, []);
@@ -84,9 +89,7 @@ const App = () => {
         <Route path={`${ROUTER_PATH}/:name?/:type?/`}  element={<Header menu={menu} mini={mini} />} />
       </Routes>
       <Routes>
-        <Route path={`${ROUTER_PATH}/`} index element={<Main />} />
-        <Route path={`${ROUTER_PATH}/news/`} element={<NewsList />} />
-        <Route path={`${ROUTER_PATH}/news/:id/`} element={<Details type='news' />} />
+        <Route path={`${ROUTER_PATH}/`} index element={<Main license={license} news={news} />} />
         <Route path={`${ROUTER_PATH}/about/`} element={<About />} />
         <Route path={`${ROUTER_PATH}/service/:type?/`} element={<Service menu={menu} mini={mini} />} />
         <Route path={`${ROUTER_PATH}/viewpoint/`} element={<ViewPoint />} />
@@ -97,6 +100,11 @@ const App = () => {
         <Route path={`${ROUTER_PATH}/group/team/`} element={<GroupTeam />} />
         <Route path={`${ROUTER_PATH}/group/institution/`} element={<GroupInstitution />} />
         <Route path={`${ROUTER_PATH}/contact/`} element={<Contact />} />
+
+        <Route path={`${ROUTER_PATH}/news/`} element={<NewsList />} />
+        <Route path={`${ROUTER_PATH}/news/:id/`} element={<Details type='news' />} />
+        <Route path={`${ROUTER_PATH}/license/`} element={<Licenses />} />
+        <Route path={`${ROUTER_PATH}/license/:id/`} element={<Details type='license' />} />
       </Routes>
       <Footer menu={menu} data={siteInfo} />
     </BrowserRouter>

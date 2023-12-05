@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import c from 'classnames';
 import _s from './index.module.scss';
+import API from '@/apis';
 import Title from '@/components/title';
 import { Card, Image, Text } from '@/components/cards';
 import { useCookies } from 'react-cookie';
@@ -10,9 +11,18 @@ import banner2 from './images/pic_banner2.jpeg';
 
 const BANNERS = [banner1, banner2];
 
-const Main = () => {
+const Main = ({
+  license,
+  news,
+}: {
+  license: TAPI.TNewsItem[];
+  news: TAPI.TNewsItem[];
+}) => {
   const [cookies, setCookie] = useCookies(['bannerViewIndex']);
   const [banner, setBanner] = useState<string>(BANNERS[0]);
+
+  useEffect(() => {
+  }, []);
 
   useEffect(() => {
     const idx = cookies.bannerViewIndex === undefined ? 0 : (parseInt(cookies.bannerViewIndex) + 1);
@@ -36,24 +46,25 @@ const Main = () => {
           </div>
           <div className={_s.text}>
             <h6>为什么选择我们？</h6>
-            <p>专业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务专业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务</p>
+            <p>深耕知识产权领域20余年；<br/>
+              提供鉴定、意见及评估等证据服务10余年；<br/>
+              持续深入研究知识产权证据。</p>
           </div>
         </div>
       </section>
       <section className={c(_s.card, _s.main)}>
-        <Title name="最新消息" more="/Card/" />
+        <Title name="最新消息" more="/news/" />
         <div className={_s.flex_2}>
           {
-            [1, 2].map((item, index) => {
+            news.map(({id, tags, createTime, describes }, index) => {
               return (
                 <Card
-                  key={index}
-                  typeLink={''}
-                  link={''}
+                  key={id}
+                  link={`/news/${id}`}
                   className={index % 2 === 0 ? _s.even : _s.odd}
-                  type={'新闻分类'} 
-                  time={'2023-11-10'}
-                  text={'专业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务专业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务'}
+                  type={tags} 
+                  time={createTime}
+                  text={describes}
                 />
               )
             })
@@ -61,17 +72,18 @@ const Main = () => {
         </div>
       </section>
       <section className={c(_s.img_list, _s.main)}>
-        <Title name="资质证明" more='/about/' />
+        <Title name="资质证明" more='/license/' />
         <div className={_s.flex_2}>
           {
-            [1, 2, 3, 4].map((item, index) => {
+            license.map(({id, imgs, titles, describes}) => {
               return (
                 <Image
-                  key={index}
+                  key={id}
                   link={''}
-                  img={'https://t7.baidu.com/it/u=27018761,936335273&fm=193&f=GIF'}
-                  title={'汉光资质'}
-                  text={'专业的知识产权鉴定团队，为您提供专业业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务'}
+                  img={imgs}
+                  title={titles}
+                  text={describes}
+                  proportion={50}
                  />
               )
             })
@@ -87,7 +99,7 @@ const Main = () => {
                 <Text
                   link={''}
                   key={index}
-                  title={'汉光研究'}
+                  type={'汉光研究'}
                   time={'2023-11-10'}
                   text={'专业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务专业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务'}
                 />
