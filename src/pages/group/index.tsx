@@ -12,7 +12,7 @@ const Group = () => {
   const [data, setData] = useState<TAPI.TGroupPeopel[]>();
 
   useEffect(() => {
-    // API.getNewsInfo({
+    // API.getDataInfo({
     //   type,
     // }).then((res) => {
     //   setData(res.data);

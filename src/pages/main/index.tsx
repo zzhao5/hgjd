@@ -9,6 +9,7 @@ import pic from './images/pic_best.jpeg';
 import banner1 from './images/pic_banner1.jpeg';
 import banner2 from './images/pic_banner2.jpeg';
 
+const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 const BANNERS = [banner1, banner2];
 
 const Main = ({
@@ -53,14 +54,14 @@ const Main = ({
         </div>
       </section>
       <section className={c(_s.card, _s.main)}>
-        <Title name="最新消息" more="/news/" />
+        <Title name="最新消息" more={`${ROUTER_PATH}/news/`} />
         <div className={_s.flex_2}>
           {
             news.map(({id, tags, createTime, describes }, index) => {
               return (
                 <Card
                   key={id}
-                  link={`/news/${id}`}
+                  link={`${ROUTER_PATH}/news/${id}`}
                   className={index % 2 === 0 ? _s.even : _s.odd}
                   type={tags} 
                   time={createTime}
@@ -72,14 +73,14 @@ const Main = ({
         </div>
       </section>
       <section className={c(_s.img_list, _s.main)}>
-        <Title name="资质证明" more='/license/' />
+        <Title name="资质证明" more={`${ROUTER_PATH}/license/`} />
         <div className={_s.flex_2}>
           {
             license.map(({id, imgs, titles, describes}) => {
               return (
                 <Image
                   key={id}
-                  link={''}
+                  link={`${ROUTER_PATH}/license/${id}`}
                   img={imgs}
                   title={titles}
                   text={describes}
@@ -91,7 +92,7 @@ const Main = ({
         </div>
       </section>
       <section className={c(_s.text_list, _s.main)}>
-        <Title name="汉光研究" more='/about/' border />
+        <Title name="汉光研究" more={`${ROUTER_PATH}/about/`} border />
         <div className={_s.flex_1}>
           {
             [1, 2, 3].map((item, index) => {

@@ -7,11 +7,13 @@ import Title from '@/components/title';
 import Banner from '@/components/banner';
 import { useEffect, useState } from 'react';
 
+const ROUTER_PATH = process.env.REACT_APP_ROUTER;
+
 const NewsList = () => {
   const [data, setData] = useState<TAPI.TNewsList>(); // 最新消息
 
   useEffect(() => {
-    API.getNewsList({
+    API.getDataList({
       newsId: 30,
       pageNo: 1,
       pageSize: 6,
@@ -21,7 +23,7 @@ const NewsList = () => {
   }, []);
 
   const pageChange = (page: number) => {
-    API.getNewsList({
+    API.getDataList({
       newsId: 30,
       pageNo: page,
       pageSize: 6,
@@ -42,7 +44,7 @@ const NewsList = () => {
                 <Card
                   className={_s.item}
                   key={id}
-                  link={`/news/${id}/`}
+                  link={`${ROUTER_PATH}/news/${id}/`}
                   type={tags}
                   time={createTime}
                   text={describes}

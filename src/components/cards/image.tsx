@@ -10,6 +10,7 @@ const Image = ({
   text,
   className,
   video,
+  border,
   proportion = 75, 
 }: {
   link: string;
@@ -18,6 +19,7 @@ const Image = ({
   text?: string;
   video?: string;
   className?: string;
+  border?: boolean;
   proportion?: number; // 宽高比，默认 75%
 }) => {
 
@@ -25,7 +27,7 @@ const Image = ({
     <div className={c(_s.image, className)}>
       
       {
-        img ? <Link to={link} className={_s.imgLink} style={{paddingTop: `${proportion}%`,}}><img src={img} alt={title} /></Link> :
+        img ? <Link to={link} className={c(_s.imgLink, border ? _s.imgBorder : null)} style={{paddingTop: `${proportion}%`,}}><img src={img} alt={title} /></Link> :
         video ? <div className={_s.video}><video src={video} preload='preload' controls></video></div> : null
       }
       {

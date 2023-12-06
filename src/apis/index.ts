@@ -251,12 +251,12 @@ const getSiteInfo = async () => {
   }
 };
 
-const getNewsList = async (params: TAPI.TGetNewsList) => {
+const getDataList = async (params: TAPI.TGetNewsList) => {
   const res = await axios.get(`${baseURL}hanguang-community/site/index/newsList`, { params });
   return res.data;
 }
 
-const getNewsInfo = async (params: TAPI.TGetNewsInfo) => {
+const getDataInfo = async (params: TAPI.TGetNewsInfo) => {
   const res = await axios.get(`${baseURL}hanguang-community/site/index/queryNewsById`, { params });
   return res.data;
 }
@@ -264,6 +264,6 @@ const getNewsInfo = async (params: TAPI.TGetNewsInfo) => {
   
 export default {
   getSiteInfo,
-  getNewsList,
-  getNewsInfo,
+  getDataList,
+  getDataInfo,
 };

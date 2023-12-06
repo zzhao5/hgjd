@@ -11,59 +11,55 @@ import IconRight from '@/components/icon_right';
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 
-const ServiceList = ({title, content}: {title:string; content:string;}) => {
+const ServiceList = ({title, content}: {title:string; content?:string;}) => {
   const [show, setShow] = useState(false);
   return <>
-    <p className={c(_s.title, show ? _s.active : null)} onClick={() => setShow((old) => !old)}>
+    <p className={c(_s.title, show ? _s.active : null)} onClick={() => { if (content) setShow((old) => !old)}}>
       <span>{title}</span>
       <IconRight size={10} turn={show} />
     </p>
-    <p className={_s.text}>{content}</p>
+    {
+      content ? <p className={_s.text}>{content}</p> : null
+    }
   </>
 }
 
 const Service = ({ menu, mini } : { menu: TAPI.TMenuItem[]; mini: boolean; }) => {
   const { type } = useParams<{ type: string;}>();
-  const [data, setData] = useState<TAPI.TServiceData[]>();
-  const [content, setContent] = useState<TAPI.TServiceData>();
+  const [data, setData] = useState<TAPI.TServiceData>();
+  const [content, setContent] = useState<TAPI.TNewsItem>();
   const [showNav, setShowNav] = useState(false);
-  const serviceMenu = useMemo(() => {
-    const menus = menu.filter(({urls}) => urls === '/service/');
-    if (menus.length > 0) return menus[0]; 
+  const subMenuList = useMemo(() => {
+    if (!menu || menu.length === 0) return undefined;
+    const current = menu.filter(({urls}) => urls === '/service/');
+    return current[0].mlist; 
   }, [menu]);
-  const activeMenu = useMemo(() => {
-    const menu = serviceMenu?.mlist.filter(({urls}) => urls === `/service/${type}/`);
-    return menu && menu.length > 0 ? menu[0] : serviceMenu;
-  }, [serviceMenu, type]);
+  const currentType = useMemo(() => {
+    return type ? type : 'appraisal';
+  }, [type]);
 
   useEffect(() => {
-    // API.getNewsInfo({
-    //   type,
-    // }).then((res) => {
-    //   setData(res.data);
-    // });
-    setData([{
-      type: 'appraisal',
-      title: '汉光鉴定服务',
-      data: [
-        {id: 1, title: '鉴定服务鉴定服务鉴定服务', content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务'}
-      ],
-    }])
-  }, []);
+    if (!subMenuList || subMenuList.length === 0) return;
+    const getData = async () => {
+      const result =  await Promise.all(
+        subMenuList.map(({id}) => {
+          return API.getDataList({newsId: id, pageNo: 1, pageSize: 20});
+        })
+      );
+      return result;
+    };
+    getData().then((res) => {
+      const obj: TAPI.TServiceData = {};
+      for (let i = 0; i < subMenuList.length; i++) {
+        const {titles, urls, id} = subMenuList[i];
+        const records = res[i].result.records;
+        const key = urls.split('/')[2];
+        obj[key] = { titles, id, urls, records};
+      }
+      setData(obj);
+    });
 
-  useEffect(() => {
-    const cnt = [] as TAPI.TServiceData[];
-    if (type && data?.length) {
-      cnt.concat(data.filter((item) => {
-        return item.type === type;
-      }));
-    }
-    if (cnt.length) {
-      setContent(cnt[0]);
-    } else {
-      setContent(data?.[0]);
-    }
-  }, [data, type]);
+  }, [subMenuList]);
 
   useEffect(() => {
     setShowNav(false);
@@ -79,12 +75,13 @@ const Service = ({ menu, mini } : { menu: TAPI.TMenuItem[]; mini: boolean; }) =>
       <section className={c(_s.nav, _s.main, _s.flex_3)}>
         {
           mini ? <div className={_s.nav_active} onClick={handleClick}>
-            <span>{activeMenu?.titles}</span>
+            <span>{data ? `${data[currentType].titles}` : null}</span>
             <IconRight double size={8} turn={true} />
           </div> : null
         }
         {
-          serviceMenu && (mini && showNav || !mini) ? serviceMenu.mlist.map(({id, urls, titles}) => {
+          data && (mini && showNav || !mini) ? Object.keys(data).map((item) => {
+            const {titles, id, urls} = data[item];
             return (
               <NavLink
                 key={id}
@@ -99,11 +96,11 @@ const Service = ({ menu, mini } : { menu: TAPI.TMenuItem[]; mini: boolean; }) =>
         }
       </section>
       <section className={c(_s.content, _s.main)}>
-        <Title border name={content?.title} />
+        <Title border name={data ? data[currentType].titles : undefined} />
         {
-          content?.data.map(({title, content, id}) => {
-            return <ServiceList title={title} content={content} key={id} />
-          })
+          data && data[currentType]?.records ? data[currentType].records.map(({titles, describes, id}) => {
+            return <ServiceList title={titles} content={describes} key={id} />
+          }) : null
         }
       </section>
     </>

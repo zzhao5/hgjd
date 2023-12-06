@@ -12,7 +12,7 @@ const ViewPoint = () => {
   const [list, setList] = useState<TAPI.TViewList[]>();
 
   useEffect(() => {
-    // API.getNewsInfo({
+    // API.getDataInfo({
     //   type,
     // }).then((res) => {
     //   setData(res.data);

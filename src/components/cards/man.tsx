@@ -11,10 +11,10 @@ const Man = ({
   text,
   className,
 }: {
-  link: string;
-  img: string;
+  link?: string;
+  img?: string;
   name: string;
-  title: string;
+  title?: string;
   text: string;
   className?: string;
 }) => {
@@ -22,11 +22,17 @@ const Man = ({
   return (
     <div className={c(_s.man, className)}>
       <div className={_s.img}>
-        <Link to={link}><img src={img} alt={title} /></Link>
+        {
+          link ? <Link to={link}><img src={img} alt={title} /></Link> : <img src={img} alt={title} />
+        }
       </div>
       <div className={_s.info}>
-        <p className={_s.name}><Link to={link}>{name}</Link></p>
-        <p className={_s.title}>{title}</p>
+        <p className={_s.name}>
+          {
+            link ? <Link to={link}>{name}</Link> : name
+          }
+        </p>
+        { title ? <p className={_s.title}>业务领域：{title}</p> : null}
         <p>{text}</p>
       </div>
     </div>

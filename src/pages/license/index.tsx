@@ -10,7 +10,7 @@ const Licenses = () => {
   const [data, setData] = useState<TAPI.TNewsList>(); // 资质证书
   
   useEffect(() => {
-    API.getNewsList({
+    API.getDataList({
       newsId: 31,
       pageNo: 1,
       pageSize: 6,
@@ -20,7 +20,7 @@ const Licenses = () => {
   }, []);
 
   const pageChange = (page: number) => {
-    API.getNewsList({
+    API.getDataList({
       newsId: 31,
       pageNo: page,
       pageSize: 6,

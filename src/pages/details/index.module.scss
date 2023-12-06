@@ -17,6 +17,16 @@
       font-weight: 500;
     }
   }
+  .manBox {
+    .typical {
+      align-items: center;
+    }
+    & + .content:not(:empty) {
+      margin-top: 20px;
+      border-top: 1px solid $lightGreyColor;
+      padding-top: 80px;
+    }
+  }
   .content {
     img {
       width: 100%;

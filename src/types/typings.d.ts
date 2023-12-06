@@ -52,13 +52,12 @@ declare namespace TAPI {
    * 服务内容
    */
   type TServiceData = {
-    type: string;
-    title: string;
-    data: {
+    [key: string] : {
+      titles: string;
       id: number | string;
-      title: string;
-      content: string;
-    }[];
+      urls: string;
+      records: TAPI.TNewsItem[];
+    }
   };
 
   /**
@@ -93,7 +92,7 @@ declare namespace TAPI {
    * 消息组件
    */
   type TGetNewsList = {
-    newsId: number;
+    newsId: number | string;
     pageNo?: number;
     /** 每页条数 */
     pageSize?: number;
@@ -122,6 +121,7 @@ declare namespace TAPI {
     contents: string;
     video?: string;
     createTime: string;
+    remarks?: string;
   };
 
   /**

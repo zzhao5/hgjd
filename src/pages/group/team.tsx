@@ -6,68 +6,29 @@ import Banner from '@/components/banner';
 import Title from '@/components/title';
 import Pages from '@/components/pagination';
 
+const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 
 const GroupTeam = () => {
-  const [data, setData] = useState<TAPI.TGroupPeopel[]>();
+  const [data, setData] = useState<TAPI.TNewsList>();
 
   useEffect(() => {
-    // API.getNewsInfo({
-    //   type,
-    // }).then((res) => {
-    //   setData(res.data);
-    // });
-    setData([
-        {
-          id: 1,
-          name: '程晓鸣副教授',
-          title: '鉴定服务鉴定服务鉴定服务',
-          img: 'https://life.kust.edu.cn/__local/4/AE/71/995CC0D2EA353829BD7661D89C0_59681445_17B30.jpg',
-          link: '',
-          content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务',
-        },
-        {
-          id: 2,
-          name: '程晓鸣副教授',
-          title: '鉴定服务鉴定服务鉴定服务',
-          img: 'https://life.kust.edu.cn/__local/4/AE/71/995CC0D2EA353829BD7661D89C0_59681445_17B30.jpg',
-          link: '',
-          content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务',
-        },
-        {
-          id: 3,
-          name: '程晓鸣副教授',
-          title: '鉴定服务鉴定服务鉴定服务',
-          img: 'https://life.kust.edu.cn/__local/4/AE/71/995CC0D2EA353829BD7661D89C0_59681445_17B30.jpg',
-          link: '',
-          content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务',
-        },
-        {
-          id: 4,
-          name: '程晓鸣副教授',
-          title: '鉴定服务鉴定服务鉴定服务',
-          img: 'https://life.kust.edu.cn/__local/4/AE/71/995CC0D2EA353829BD7661D89C0_59681445_17B30.jpg',
-          link: '',
-          content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务',
-        },
-        {
-          id: 5,
-          name: '程晓鸣副教授',
-          title: '鉴定服务鉴定服务鉴定服务',
-          img: 'https://life.kust.edu.cn/__local/4/AE/71/995CC0D2EA353829BD7661D89C0_59681445_17B30.jpg',
-          link: '',
-          content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务',
-        },
-        {
-          id: 6,
-          name: '程晓鸣副教授',
-          title: '鉴定服务鉴定服务鉴定服务',
-          img: 'https://life.kust.edu.cn/__local/4/AE/71/995CC0D2EA353829BD7661D89C0_59681445_17B30.jpg',
-          link: '',
-          content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务',
-        },
-    
-    ])
+    API.getDataList({
+      newsId: 28,
+      pageNo: 1,
+      pageSize: 6,
+    }).then((res) => {
+      setData(res.result);
+    });
   }, []);
+  const pageChange = (page: number) => {
+    API.getDataList({
+      newsId: 28,
+      pageNo: page,
+      pageSize: 6,
+    }).then((res) => {
+      setData(res.result);
+    });
+  };
 
 
   return (
@@ -82,12 +43,14 @@ const GroupTeam = () => {
         <Title name='专家团队' border more={'team'} />
         <div className={_s.flex_2}>
           {
-            data?.map(({id, img, name, title, link, content}) => {
-              return <Man key={id} img={img} name={name} title={title} link={link} text={content} />
+            data?.records.map(({id, imgs, titles, remarks, describes}) => {
+              return <Man key={id} img={imgs} name={titles} title={remarks} link={`${ROUTER_PATH}/group/${id}`} text={describes} />
             })
           }
         </div>
-        <Pages total={20} pageSize={8} onChange={() => {}} />
+        {
+          data && data?.total > 6 ? <Pages total={data.total} pageSize={6} onChange={pageChange} /> : null
+        }
       </section>
     </>
   )
