@@ -83,10 +83,10 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'service' |
         {
           type !== 'service' && id !== 'typical' && id !== '35'  ? 
           <div className={c(_s.more, _s.flex_2)}>
-            { prev ? <div className={_s.prev}>上一篇</div> : null }
-            { next ? <div className={_s.next}>下一篇</div> : null }
+            { prev && prev.describes ? <div className={_s.prev}>上一篇</div> : <div></div> }
+            { next && next.describes ? <div className={_s.next}>下一篇</div> : <div></div> }
             {
-              prev ? <Card
+              prev && prev.describes ? <Card
                 link={`${ROUTER_PATH}/${getMenuPath(prev.menuId)}/${prev.id}/`}
                 className={_s.newsCard}
                 type={prev.tags} 
@@ -94,10 +94,10 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'service' |
                 text={prev.describes}
                 tips={'上一篇：'}
                 mini
-              /> : null
+              /> : <div></div>
             }
             {
-              next ? <Card
+              next && next.describes ? <Card
                 link={`${ROUTER_PATH}/${getMenuPath(next.menuId)}/${next.id}/`}
                 className={_s.newsCard}
                 type={next.tags} 
@@ -105,7 +105,7 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'service' |
                 text={next.describes}
                 tips={'下一篇：'}
                 mini
-              /> : null
+              /> : <div></div>
             }
           </div> : null
         }
