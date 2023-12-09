@@ -1,6 +1,91 @@
 @charset "UTF-8";
 /* normalize.css v3.0.2 | MIT License | git.io/normalize */
+@font-face {
+  font-family: 'NotoSansKR';
+  font-style: normal;
+  font-weight: 100;
+  src: url(./styles/font/NotoSansKR-Thin.otf) format('opentype');
+}
+@font-face {
+  font-family: 'NotoSansKR';
+  font-style: normal;
+  font-weight: 350;
+  src: url(./styles/font/NotoSansKR-DemiLight.otf) format('opentype');
+}
+@font-face {
+  font-family: 'NotoSansKR';
+  font-style: normal;
+  font-weight: 500;
+  src: url(./styles/font/NotoSansKR-Medium.otf) format('opentype');
+}
 
+/* zh-Cn */
+@font-face {
+  font-family: 'NotoSansSC';
+  font-style: normal;
+  font-weight: 100;
+  src: url(./styles/font/NotoSansSC-Thin.otf) format('opentype');
+}
+@font-face {
+  font-family: 'NotoSansSC';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./styles/font/NotoSansSC-Regular.otf) format('opentype');
+}
+@font-face {
+  font-family: 'NotoSansSC';
+  font-style: normal;
+  font-weight: 500;
+  src: url(./styles/font/NotoSansSC-Medium.otf) format('opentype');
+}
+
+/* ja */
+@font-face {
+  font-family: 'NotoSansJP';
+  font-style: normal;
+  font-weight: 100;
+  src: url(./styles/font/NotoSansJP-Thin.otf) format('opentype');
+}
+@font-face {
+  font-family: 'NotoSansJP';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./styles/font/NotoSansJP-Regular.otf) format('opentype');
+}
+@font-face {
+  font-family: 'NotoSansJP';
+  font-style: normal;
+  font-weight: 500;
+  src: url(./styles/font/NotoSansJP-Medium.otf) format('opentype');
+}
+
+/* openSans */
+@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: 300;
+  src: url(./styles/font/OpenSans-Light.woff) format('woff'),
+       url(./styles/font/OpenSans-Light.eot) format('embedded-opentype'),
+       url(./styles/font/OpenSans-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./styles/font/OpenSans-Regular.woff) format('woff'),
+       url(./styles/font/OpenSans-Regular.eot) format('embedded-opentype'),
+       url(./styles/font/OpenSans-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: 600;
+  src: url(./styles/font/OpenSans-Semibold.woff) format('woff'),
+       url(./styles/font/OpenSans-Semibold.eot) format('embedded-opentype'),
+       url(./styles/font/OpenSans-Semibold.ttf) format('truetype');
+}
 /**
  * 1. Set default font family to sans-serif.
  * 2. Prevent iOS text size adjust after orientation change, without disabling
@@ -198,17 +283,6 @@ pre {
   overflow: auto;
 }
 
-/**
- * Address odd `em`-unit font size rendering in all browsers.
- */
-
-code,
-kbd,
-pre,
-samp {
-  font-family: monospace, monospace;
-  font-size: 1em;
-}
 
 /* Forms
    ========================================================================== */
