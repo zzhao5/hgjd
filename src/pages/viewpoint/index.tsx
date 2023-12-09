@@ -6,27 +6,23 @@ import Banner from '@/components/banner';
 import Title from '@/components/title';
 import { Image, Text } from '@/components/cards';
 
-
+const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 const ViewPoint = () => {
-  const [data, setData] = useState<TAPI.TViewPoint[]>();
-  const [list, setList] = useState<TAPI.TViewList[]>();
+  const [data, setData] = useState<TAPI.TNewsItem[]>();
+  const [list, setList] = useState<TAPI.TNewsItem[]>();
 
   useEffect(() => {
-    // API.getDataInfo({
-    //   type,
-    // }).then((res) => {
-    //   setData(res.data);
-    // });
-    setData([
-      {id: 1, video: 'https://www.w3school.com.cn/i/video/shanghai.mp4', title: '鉴定服务鉴定服务鉴定服务', content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务'},
-      {id: 2, video: 'https://www.w3school.com.cn/i/video/shanghai.mp4', title: '鉴定服务鉴鉴定服务', content: '汉光鉴定服务汉光鉴定服汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务'},
-    ])
-    setList([
-      {id: 1, title: '鉴定服务鉴定服务鉴定服务', content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务'},
-      {id: 2, title: '鉴定服务鉴定服务鉴定服务', content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务'},
-      {id: 3, title: '鉴定服务鉴定服务鉴定服务', content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务'},
-      
-    ]);
+    const getData = async () => {
+      const result =  await Promise.all([
+        API.getDataList({ newsId: 25, pageNo: 1, pageSize: 2, }),
+        API.getDataList({ newsId: 26, pageNo: 1, pageSize: 6, }),
+      ]);
+      return result;
+    };
+    getData().then((res) => {
+      setData(res[0].result.records);
+      setList(res[1].result.records);
+    });
   }, []);
 
 
@@ -37,28 +33,30 @@ const ViewPoint = () => {
         <Title name={'研究与案例'} />
         <div className={_s.flex_2}>
           {
-            data?.map(({id, video, title, content}) => {
+            data?.map(({id, titles, describes, imgs}) => {
               return <Image
                 key={id}
-                video={video}
-                link=''
-                title={title}
-                text={content}
+                img={imgs}
+                proportion={56}
+                link={`${ROUTER_PATH}/viewpoint/${id}/`}
+                title={titles}
+                text={describes}
               />
             })
           }
         </div>
       </section>
       <section className={_s.main}>
-          <Title name={'学术研讨'} more='science/' border />
+          <Title name={'学术研讨'} more={`${ROUTER_PATH}/viewpoint/science/`} border />
           <div className={_s.flex_1}>
             {
-              list?.map(({id, title, content}) => {
+              list?.map(({id, titles, tags, createTime}) => {
                 return <Text
                   key={id}
-                  type={title}
-                  typeLink={''}
-                  text={content}
+                  time={createTime.split(' ')[0]}
+                  type={tags}
+                  link={`${ROUTER_PATH}/viewpoint/${id}/`}
+                  text={titles}
                 />
               })
             }

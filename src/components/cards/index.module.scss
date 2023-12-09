@@ -134,11 +134,24 @@
   line-height: 1.5;
   .img {
     margin-right: 30px;
+    display: block;
+    width: 200px;
+    height: 265px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
   }
   img {
     width: 200px;
     height: 265px;
     box-sizing: border-box;
+    transform-origin: center;
+    transition: all 1s ease-out;
+  }
+  a:hover {
+    img {
+      transform: scale(1.1);
+    }
   }
   .title {
     position: relative;
@@ -160,6 +173,9 @@
     font-size: 30px;
     line-height: 1.4;
     margin-bottom: 5px;
+    a:hover {
+      text-decoration: underline;
+    }
   }
 }
 @include xs {
@@ -231,8 +247,6 @@
   }
   .man {
     font-size: 14px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid $lightGreyColor;
     .img {
       position: relative;
       width: po(200);

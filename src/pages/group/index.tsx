@@ -7,69 +7,28 @@ import Banner from '@/components/banner';
 import Title from '@/components/title';
 
 
+const ROUTER_PATH = process.env.REACT_APP_ROUTER;
+
 const Group = () => {
-  const { type } = useParams<{ type: string;}>();
-  const [data, setData] = useState<TAPI.TGroupPeopel[]>();
+  const [typical, setTypical] = useState<TAPI.TNewsItem>();
+  const [team, setTeam] = useState<TAPI.TNewsItem[]>();
+  const [institution, setInstitution] = useState<TAPI.TNewsItem[]>();
 
   useEffect(() => {
-    // API.getDataInfo({
-    //   type,
-    // }).then((res) => {
-    //   setData(res.data);
-    // });
-    setData([
-        {
-          id: 1,
-          name: '程晓鸣副教授',
-          title: '鉴定服务鉴定服务鉴定服务',
-          img: 'https://life.kust.edu.cn/__local/4/AE/71/995CC0D2EA353829BD7661D89C0_59681445_17B30.jpg',
-          link: '',
-          content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务',
-        },
-        {
-          id: 2,
-          name: '程晓鸣副教授',
-          title: '鉴定服务鉴定服务鉴定服务',
-          img: 'https://life.kust.edu.cn/__local/4/AE/71/995CC0D2EA353829BD7661D89C0_59681445_17B30.jpg',
-          link: '',
-          content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务',
-        },
-        {
-          id: 3,
-          name: '程晓鸣副教授',
-          title: '鉴定服务鉴定服务鉴定服务',
-          img: 'https://life.kust.edu.cn/__local/4/AE/71/995CC0D2EA353829BD7661D89C0_59681445_17B30.jpg',
-          link: '',
-          content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务',
-        },
-        {
-          id: 4,
-          name: '程晓鸣副教授',
-          title: '鉴定服务鉴定服务鉴定服务',
-          img: 'https://life.kust.edu.cn/__local/4/AE/71/995CC0D2EA353829BD7661D89C0_59681445_17B30.jpg',
-          link: '',
-          content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务',
-        },
-        {
-          id: 5,
-          name: '程晓鸣副教授',
-          title: '鉴定服务鉴定服务鉴定服务',
-          img: 'https://life.kust.edu.cn/__local/4/AE/71/995CC0D2EA353829BD7661D89C0_59681445_17B30.jpg',
-          link: '',
-          content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务',
-        },
-        {
-          id: 6,
-          name: '程晓鸣副教授',
-          title: '鉴定服务鉴定服务鉴定服务',
-          img: 'https://life.kust.edu.cn/__local/4/AE/71/995CC0D2EA353829BD7661D89C0_59681445_17B30.jpg',
-          link: '',
-          content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务',
-        },
-    
-    ])
+    const getData = async () => {
+      const result =  await Promise.all([
+        API.getDataInfo({ id: 35, }),
+        API.getDataList({ newsId: 28, pageNo: 1, pageSize: 6, }),
+        API.getDataList({ newsId: 29, pageNo: 1, pageSize: 6, }),
+      ]);
+      return result;
+    };
+    getData().then((res) => {
+      setTypical(res[0].result.info);
+      setTeam(res[1].result.records);
+      setInstitution(res[2].result.records);
+    });
   }, []);
-
 
   return (
     <>
@@ -79,36 +38,41 @@ const Group = () => {
           依托上海市雄厚的科学资源、门类齐全的技术实力以及完整的产业链基础，建立有丰富的专家资源库和检测资源库。现有入库专家200名，合作的检测、检验机构和国家重点实验室五十多家，覆盖上海交通大学、复旦大学、同济大学、华东师范大学、上海大学等985,211的高校，涵盖机械、电子、化工、生物、软件、芯片等多个技术类别。
         </div>
       </section>
-      <section className={_s.main}>
-        <Title name='典型专家' border more={'typical'} />
-        <div className={_s.flex_2}>
-          {
-            data?.slice(0,1).map(({id, img, name, title, link, content}) => {
-              return <Man key={id} img={img} name={name} title={title} link={link} text={content} />
-            })
-          }
-        </div>
-      </section>
-      <section className={_s.main}>
-        <Title name='专家团队' border more={'team'} />
-        <div className={_s.flex_2}>
-          {
-            data?.map(({id, img, name, title, link, content}) => {
-              return <Man key={id} img={img} name={name} title={title} link={link} text={content} />
-            })
-          }
-        </div>
-      </section>
-      <section className={_s.main}>
-        <Title name='合作机构' border more={'institution'} />
-        <div className={_s.flex_3}>
-          {
-            data?.map(({id, img, link, content}) => {
-              return <Image key={id} className={_s.logo_list} img={'https://www.autohome.com.cn/about/img/mail@2x.jpg'} link={link} text={'网站名称是啥'} />
-            })
-          }
-        </div>
-      </section>
+      {
+        typical ? 
+        <section className={_s.main}>
+          <Title name='典型专家' border more={`${ROUTER_PATH}/group/typical/`} />
+          <div className={_s.flex_2}>
+            <Man img={typical.imgs} name={typical.titles} title={typical.tags} link={`${ROUTER_PATH}/group/typical/`} text={typical.describes} />
+          </div>
+        </section> : null
+      }
+      {
+        team ? 
+        <section className={_s.main}>
+          <Title name='专家团队' border more={`${ROUTER_PATH}/group/team/`} />
+          <div className={_s.flex_2}>
+            {
+              team.map(({id, imgs, titles, describes, tags}) => {
+                return <Man key={id} img={imgs} name={titles} title={tags} link={`${ROUTER_PATH}/group/${id}/`} text={describes} />
+              })
+            }
+          </div>
+        </section> : null
+      }
+      {
+        institution ? 
+        <section className={_s.main}>
+          <Title name='合作机构' border more={'institution'} />
+          <div className={_s.flex_3}>
+            {
+              institution.map(({id, imgs, titles}) => {
+                return <Image border key={id} className={_s.logo_list} proportion={56} link='javascript:void(0)' img={imgs} text={titles} />
+              })
+            }
+          </div>
+        </section> : null
+      }
     </>
   )
 }

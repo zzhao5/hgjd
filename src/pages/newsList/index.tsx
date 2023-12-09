@@ -39,28 +39,22 @@ const NewsList = () => {
         <Title name='最新消息' />
         <div className={_s.flex_2}>
           {
-            data?.records.map(({id, tags, describes, createTime}) => {
+            data?.records.map(({id, tags, titles, createTime}) => {
               return (
                 <Card
                   className={_s.item}
                   key={id}
                   link={`${ROUTER_PATH}/news/${id}/`}
                   type={tags}
-                  time={createTime}
-                  text={describes}
+                  time={createTime.split(' ')[0]}
+                  text={titles}
                 />
               )
             })
           }
         </div>
         {
-          data && data?.total > 6 && (
-            <Pages
-              total={data?.total}
-              pageSize={6}
-              onChange={pageChange}
-            />
-          )
+          data ? <Pages total={data?.total} pageSize={6} onChange={pageChange} /> : null
         }
       </section>
     </>

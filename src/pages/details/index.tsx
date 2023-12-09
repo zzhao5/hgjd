@@ -13,11 +13,10 @@ const NAME_LIST = {
   news: '最新消息',
   viewpoint: '观点和经验',
   license: '资质证明',
-  service: '服务内容',
   group: '专家和合作机构',
 };
 
-const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'service' | 'group';}) => {
+const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'group';}) => {
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<TAPI.TNewsItem>();
   const [prev, setPrev] = useState<TAPI.TNewsItem>();
@@ -32,6 +31,8 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'service' |
       case 27:
       case 28:
         return 'group';
+      case 26:
+        return 'viewpoint';
       default:
         return 'news';
     }
@@ -40,14 +41,19 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'service' |
   useEffect(() => {
     if (id) {
       const trueId = id === 'typical' ? 35 : parseInt(id);
-      API.getDataInfo({ id: trueId, }).then((res) => {
-        setData(res.result.info);
-      });
-      API.getDataInfo({ id: trueId - 1, }).then((res) => {
-        setPrev(res.result.info);
-      });
-      API.getDataInfo({ id: trueId + 1, }).then((res) => {
-        setNext(res.result.info);
+
+      const getData = async () => {
+        const result =  await Promise.all([
+          API.getDataInfo({ id: trueId, }),
+          API.getDataInfo({ id: trueId - 1, }),
+          API.getDataInfo({ id: trueId + 1, })
+        ]);
+        return result;
+      };
+      getData().then((res) => {
+        setData(res[0].result.info);
+        setPrev(res[1].result.info);
+        setNext(res[2].result.info);
       });
     }
   }, [id]);
@@ -68,7 +74,7 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'service' |
           <div className={_s.title}>
             { data?.tags ? <p className={_s.type}>{data.tags}</p> : null}
             <h5>{ data?.titles }</h5>
-            <p>{ data?.createTime }</p>
+            <p>{ data?.createTime.split(' ')[0] }</p>
           </div>
         }
         <div className={_s.content}>
@@ -81,28 +87,28 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'service' |
           
         </div>
         {
-          type !== 'service' && id !== 'typical' && id !== '35'  ? 
+          id !== 'typical' && id !== '35'  ? 
           <div className={c(_s.more, _s.flex_2)}>
-            { prev && prev.describes ? <div className={_s.prev}>上一篇</div> : <div></div> }
-            { next && next.describes ? <div className={_s.next}>下一篇</div> : <div></div> }
+            { prev && prev.titles ? <div className={_s.prev}>上一篇</div> : <div></div> }
+            { next && next.titles ? <div className={_s.next}>下一篇</div> : <div></div> }
             {
-              prev && prev.describes ? <Card
+              prev && prev.titles ? <Card
                 link={`${ROUTER_PATH}/${getMenuPath(prev.menuId)}/${prev.id}/`}
                 className={_s.newsCard}
                 type={prev.tags} 
-                time={prev.createTime}
-                text={prev.describes}
+                time={prev.createTime.split(' ')[0]}
+                text={prev.titles}
                 tips={'上一篇：'}
                 mini
               /> : <div></div>
             }
             {
-              next && next.describes ? <Card
+              next && next.titles ? <Card
                 link={`${ROUTER_PATH}/${getMenuPath(next.menuId)}/${next.id}/`}
                 className={_s.newsCard}
                 type={next.tags} 
-                time={next.createTime}
-                text={next.describes}
+                time={next.createTime.split(' ')[0]}
+                text={next.titles}
                 tips={'下一篇：'}
                 mini
               /> : <div></div>

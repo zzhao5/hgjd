@@ -1,7 +1,7 @@
 import c from 'classnames';
 import _s from './index.module.scss';
 import Banner from '@/components/banner';
-import { Map, APILoader} from '@uiw/react-amap';
+import { Map, APILoader, Marker, ToolBarControl} from '@uiw/react-amap';
 
 
 const Contact = () => {
@@ -25,7 +25,9 @@ const Contact = () => {
               zoom={15}
               center={[121.46591,31.231381]}
               viewMode='2D'
-            />
+            >
+              <Marker visiable={true} title="仲益大厦B座" position={[121.46591,31.231381]} />
+            </Map>
           </APILoader>
         </div>
       </section>

@@ -8,23 +8,25 @@ import Pages from '@/components/pagination';
 import _s from './index.module.scss';
 
 
+const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 const ViewList = () => {
-  const [list, setList] = useState<TAPI.TViewList[]>();
+  const [data, setData] = useState<TAPI.TNewsList>();
 
   useEffect(() => {
-    // API.getDataInfo({
-    //   type,
-    // }).then((res) => {
-    //   setData(res.data);
-    // });
-    setList([
-      {id: 1, title: '鉴定服务鉴定服务鉴定服务', content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务'},
-      {id: 2, title: '鉴定服务鉴定服务鉴定服务', content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务'},
-      {id: 3, title: '鉴定服务鉴定服务鉴定服务', content: '汉光鉴定服务汉光鉴定服务汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务,汉光鉴定服务汉光鉴定服务汉光鉴定服务'},
-      
-    ]);
+    API.getDataList({ newsId: 26, pageNo: 1, pageSize: 6, }).then((res) => {
+      setData(res.result);
+    });
   }, []);
 
+  const pageChange = (page: number) => {
+    API.getDataList({
+      newsId: 26,
+      pageNo: page,
+      pageSize: 6,
+    }).then((res) => {
+      setData(res.result);
+    });
+  };
 
   return (
     <>
@@ -32,17 +34,21 @@ const ViewList = () => {
       <section className={_s.main}>
         <Title name={'学术研讨'} border />
         <div className={_s.flex_1}>
-          {
-            list?.map(({id, title, content}) => {
+          { data ? 
+            data.records.map(({id, titles, tags, createTime}) => {
               return <Text
                 key={id}
-                type={title}
-                text={content}
+                time={createTime.split(' ')[0]}
+                type={tags}
+                link={`${ROUTER_PATH}/viewpoint/${id}/`}
+                text={titles}
               />
-            })
+            }) : null
           }
         </div>
-        <Pages total={30} pageSize={9} onChange={() => {}} />
+        {
+          data ? <Pages total={data?.total} pageSize={6} onChange={pageChange} /> : null
+        }
       </section>
     </>
   )

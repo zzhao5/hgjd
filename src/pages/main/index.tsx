@@ -21,8 +21,12 @@ const Main = ({
 }) => {
   const [cookies, setCookie] = useCookies(['bannerViewIndex']);
   const [banner, setBanner] = useState<string>(BANNERS[0]);
+  const [data, setData] = useState<TAPI.TNewsItem[]>();
 
   useEffect(() => {
+    API.getDataList({ newsId: 26, pageNo: 1, pageSize: 3, }).then((res) => {
+      setData(res.result.records);
+    })
   }, []);
 
   useEffect(() => {
@@ -57,15 +61,15 @@ const Main = ({
         <Title name="最新消息" more={`${ROUTER_PATH}/news/`} />
         <div className={_s.flex_2}>
           {
-            news.map(({id, tags, createTime, describes }, index) => {
+            news.slice(0, 2).map(({id, tags, createTime, titles }, index) => {
               return (
                 <Card
                   key={id}
                   link={`${ROUTER_PATH}/news/${id}`}
                   className={index % 2 === 0 ? _s.even : _s.odd}
                   type={tags} 
-                  time={createTime}
-                  text={describes}
+                  time={createTime.split(' ')[0]}
+                  text={titles}
                 />
               )
             })
@@ -76,7 +80,7 @@ const Main = ({
         <Title name="资质证明" more={`${ROUTER_PATH}/license/`} />
         <div className={_s.flex_2}>
           {
-            license.map(({id, imgs, titles, describes}) => {
+            license.slice(0, 4).map(({id, imgs, titles, describes}) => {
               return (
                 <Image
                   key={id}
@@ -92,17 +96,17 @@ const Main = ({
         </div>
       </section>
       <section className={c(_s.text_list, _s.main)}>
-        <Title name="汉光研究" more={`${ROUTER_PATH}/about/`} border />
+        <Title name="学术研讨" more={`${ROUTER_PATH}/viewpoint/science/`} border />
         <div className={_s.flex_1}>
           {
-            [1, 2, 3].map((item, index) => {
+            data?.map(({titles, tags, createTime, id}) => {
               return (
                 <Text
-                  link={''}
-                  key={index}
-                  type={'汉光研究'}
-                  time={'2023-11-10'}
-                  text={'专业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务专业的知识产权鉴定团队，为您提供专业的知识产权鉴定服务'}
+                  link={`${ROUTER_PATH}/viewpoint/${id}/`}
+                  key={id}
+                  type={tags}
+                  time={createTime.split(' ')[0]}
+                  text={titles}
                 />
               )
             })

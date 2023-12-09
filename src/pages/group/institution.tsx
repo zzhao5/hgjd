@@ -38,12 +38,12 @@ const GroupInstitution = () => {
         <div className={_s.flex_3}>
           {
             data?.records.map(({id, imgs, titles}) => {
-              return <Image key={id} border link='' img={imgs} text={titles} proportion={56} />
+              return <Image key={id} link='javascript:void(0)' border img={imgs} text={titles} proportion={56} />
             })
           }
         </div>
         {
-          data && data?.total > 6 ? <Pages total={data.total} pageSize={12} onChange={pageChange} /> : null
+          data ? <Pages total={data.total} pageSize={12} onChange={pageChange} /> : null
         }
       </section>
     </>

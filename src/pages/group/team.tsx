@@ -40,7 +40,7 @@ const GroupTeam = () => {
         </div>
       </section>
       <section className={_s.main}>
-        <Title name='专家团队' border more={'team'} />
+        <Title name='专家团队' border />
         <div className={_s.flex_2}>
           {
             data?.records.map(({id, imgs, titles, remarks, describes}) => {
@@ -49,7 +49,7 @@ const GroupTeam = () => {
           }
         </div>
         {
-          data && data?.total > 6 ? <Pages total={data.total} pageSize={6} onChange={pageChange} /> : null
+          data ? <Pages total={data.total} pageSize={6} onChange={pageChange} /> : null
         }
       </section>
     </>

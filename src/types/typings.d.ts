@@ -35,7 +35,7 @@ declare namespace TAPI {
     describes: string;
     tags: string;
     contents: string;
-    createTime: s
+    createTime: string;
   }
 
   /**

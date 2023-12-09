@@ -13,15 +13,10 @@
     color: $darkBlueColor;
     font-size: 16px;
     &::before {
-      content: '...';
-      font-size: 40px;
-      line-height: 20px;
-    }
-    &::after {
       content: '了解更多';
       vertical-align: middle;
     }
-    &:hover::after {
+    &:hover::before {
       border-bottom: 1px solid $darkBlueColor;
     }
   }
@@ -40,9 +35,6 @@
     }
     .more {
       font-size: 14px;
-      &::before {
-        font-size: 30px;
-      }
     }
   }
 }

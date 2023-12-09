@@ -51,7 +51,7 @@ const Licenses = () => {
           }
         </div>
         {
-          data?.total && data?.total > 6 ? <Pages onChange={pageChange} total={data?.total || 0} pageSize={8} /> : null
+          data?.total ? <Pages onChange={pageChange} total={data?.total || 0} pageSize={8} /> : null
         
         }
       </section>
