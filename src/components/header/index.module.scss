@@ -200,7 +200,7 @@
         padding: 25px 0;
         margin: 0 20px;
         border-bottom: 1px solid $whiteColor;
-        .active {
+        .active, &:hover {
           color: $lightBlueColor;
         }
       }

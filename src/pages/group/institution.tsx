@@ -43,7 +43,7 @@ const GroupInstitution = () => {
           }
         </div>
         {
-          data ? <Pages total={data.total} pageSize={12} onChange={pageChange} /> : null
+          data && data.total > 12 ? <Pages total={data.total} pageSize={12} onChange={pageChange} /> : null
         }
       </section>
     </>

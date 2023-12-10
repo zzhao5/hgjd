@@ -3,7 +3,7 @@ import c from 'classnames';
 import _s from './index.module.scss';
 import API from '@/apis';
 import { useEffect, useMemo, useState } from 'react';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams, NavLink, Navigate } from 'react-router-dom';
 import Banner from '@/components/banner';
 import Title from '@/components/title';
 import IconRight from '@/components/icon_right';
@@ -27,13 +27,17 @@ const ServiceList = ({title, content}: {title:string; content?:string;}) => {
 const Service = ({ menu, mini } : { menu: TAPI.TMenuItem[]; mini: boolean; }) => {
   const { type } = useParams<{ type: string;}>();
   const [data, setData] = useState<TAPI.TServiceData>();
-  const [content, setContent] = useState<TAPI.TNewsItem>();
   const [showNav, setShowNav] = useState(false);
   const subMenuList = useMemo(() => {
     if (!menu || menu.length === 0) return undefined;
     const current = menu.filter(({urls}) => urls === '/service/');
     return current[0].mlist; 
   }, [menu]);
+  
+  useEffect(() => {
+    setShowNav(false);
+  }, [type]);
+
   const currentType = useMemo(() => {
     return type ? type : 'appraisal';
   }, [type]);
@@ -61,15 +65,13 @@ const Service = ({ menu, mini } : { menu: TAPI.TMenuItem[]; mini: boolean; }) =>
 
   }, [subMenuList]);
 
-  useEffect(() => {
-    setShowNav(false);
-  }, [type]);
 
   const handleClick = useCallback(() => {
     setShowNav((o) => !o);
   }, []);
 
   return (
+    type === undefined ? <Navigate to={ROUTER_PATH + '/service/appraisal/'} /> :
     <>
       <Banner name='服务内容' />
       <section className={c(_s.nav, _s.main, _s.flex_3)}>

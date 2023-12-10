@@ -84,13 +84,11 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
   const resetRef = useRef<NodeJS.Timeout>();
 
   const stopHideSubNav = useCallback(() => {
-    console.log('subNav enter');
     clearTimeout(timeRef.current);
     clearTimeout(resetRef.current);
   }, [timeRef.current, resetRef.current]);
 
   const showSubNav = useCallback((t:TAPI.TMenuItem) => {
-    console.warn('showSubNav');
     clearTimeout(timeRef.current);
     clearTimeout(resetRef.current);
     setShowNav(true);
@@ -98,7 +96,6 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
   }, [timeRef.current, resetRef.current]);
 
   const hideSubNav = useCallback(() => {
-    console.error('hideSubNav');
     timeRef.current = setTimeout(() => {
       setShowNav(false);
       setSubNav((t) => {

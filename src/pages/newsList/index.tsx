@@ -54,7 +54,7 @@ const NewsList = () => {
           }
         </div>
         {
-          data ? <Pages total={data?.total} pageSize={6} onChange={pageChange} /> : null
+          data && data.total > 6 ? <Pages total={data?.total} pageSize={6} onChange={pageChange} /> : null
         }
       </section>
     </>

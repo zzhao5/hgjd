@@ -41,7 +41,7 @@ const Group = () => {
       {
         typical ? 
         <section className={_s.main}>
-          <Title name='典型专家' border more={`${ROUTER_PATH}/group/typical/`} />
+          <Title name='典型专家' border />
           <div className={_s.flex_2}>
             <Man img={typical.imgs} name={typical.titles} title={typical.tags} link={`${ROUTER_PATH}/group/typical/`} text={typical.describes} />
           </div>
