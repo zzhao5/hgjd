@@ -21,11 +21,11 @@ const Man = ({
 
   return (
     <div className={c(_s.man, className)}>
-      <div className={_s.img}>
+      {/* <div className={_s.img}>
         {
           link ? <Link to={link}><img src={img} alt={title} /></Link> : <img src={img} alt={title} />
         }
-      </div>
+      </div> */}
       <div className={_s.info}>
         <p className={_s.name}>
           {

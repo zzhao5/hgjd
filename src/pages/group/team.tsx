@@ -34,11 +34,11 @@ const GroupTeam = () => {
   return (
     <>
       <Banner name='专家和合作机构' />
-      <section className={_s.main}>
+      {/* <section className={_s.main}>
         <div className={_s.text}>
           依托上海市雄厚的科学资源、门类齐全的技术实力以及完整的产业链基础，建立有丰富的专家资源库和检测资源库。现有入库专家200名，合作的检测、检验机构和国家重点实验室五十多家，覆盖上海交通大学、复旦大学、同济大学、华东师范大学、上海大学等985,211的高校，涵盖机械、电子、化工、生物、软件、芯片等多个技术类别。
         </div>
-      </section>
+      </section> */}
       <section className={_s.main}>
         <Title name='专家团队' border />
         <div className={_s.flex_2}>

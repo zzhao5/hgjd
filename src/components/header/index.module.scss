@@ -22,14 +22,18 @@
   }
   .logo {
     padding:0 0 20px;
+    width: 178px;
+    flex-shrink: 1;
     img {
-      width: 178px;
-      height: 60px;
+      width: 100%;
+      aspect-ratio: 89 / 30;
     }
   }
   .list {
-    font-size: 14px;
+    font-size: 18px;
     color: $blackColor;
+    display: flex;
+    align-items: flex-end;
     .item {
       position: relative;
       display: inline-flex;
@@ -38,6 +42,8 @@
       height: 20px;
       padding: 10px 20px 30px;
       font-weight: 500;
+      white-space: nowrap;
+
       &::after {
         content: '';
         position: absolute;
@@ -72,7 +78,8 @@
   left: 0;
   animation: fadeDown ease-out 300ms forwards;
   .main {
-    padding: 35px 0;
+    padding: 35px 60px;
+    max-width: 1400px;
     display: flex;
     margin-bottom: 0;
     justify-content: space-between;
@@ -85,8 +92,8 @@
   .sub {
     width: 390px;
     margin-right: 255px;
-    font-size: 12px;
-    line-height: 30px;
+    font-size: 14px;
+    line-height: 36px;
     p {
       display: flex;
       justify-content: space-between;
@@ -123,6 +130,21 @@
     100% {
       transform: translateY(0);
     }
+  }
+}
+
+@include mq($min-width: 768px, $max-width: 1100px) {
+  .main {
+    padding: 0 20px;
+  }
+  .nav {
+    .list .item {
+      font-size: 16px;
+      padding: 10px 10px 30px;
+    }
+  }
+  .subNav .sub {
+    margin-right: 0px;
   }
 }
 @include xs {
@@ -200,8 +222,8 @@
         padding: 25px 0;
         margin: 0 20px;
         border-bottom: 1px solid $whiteColor;
-        .active, &:hover {
-          color: $lightBlueColor;
+        .active, &:active, &:hover {
+          color: $blueColor;
         }
       }
       .sub {

@@ -124,7 +124,7 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
         <div className={_s.nav}>
           <div className={_s.main}>
             <div className={_s.logo}>
-              <Link to='/'><img src={logo} alt="" /></Link>
+              <Link to={ROUTER_PATH + '/'}><img src={logo} alt="" /></Link>
             </div>
             <div className={c(_s.list, mini && showNav ? _s.showNav : null)}>
               {

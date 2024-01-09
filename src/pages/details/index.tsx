@@ -79,7 +79,7 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'group';}) 
         }
         <div className={_s.content}>
           {
-            type === 'group' && data?.imgs ? null : <img src={data?.imgs} alt="" />
+            // type === 'group' && data?.imgs ? null : <img src={data?.imgs} alt="" />
           }
           {
             data?.contents ? <div dangerouslySetInnerHTML={{__html: data?.contents.replace(/<p>&nbsp;<\/p>/g, '') || ''}}></div> : null

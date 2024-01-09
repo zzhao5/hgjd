@@ -34,7 +34,6 @@
     margin-bottom: 30px;
   }
   .time {
-    color: $darkBlueColor;
     margin-top: 30px;
     font-size: 16px;
     display: flex;
@@ -52,7 +51,7 @@
 
 }
 .image {
-  font-size: 20px;
+  font-size: 24px;
   line-height: 1.5;
   font-weight: 300;
   padding-bottom: 15px;
@@ -109,26 +108,30 @@
   }
 }
 .text {
-  font-size: 20px;
+  font-size: 24px;
   line-height: 1.5;
   font-weight: 300;
-  padding-bottom: 15px;
+  padding-bottom: 30px;
   color: $lightBlackColor;
   border-bottom: 1px solid $lightGreyColor;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
   a:hover {
     text-decoration: underline;
     text-decoration-thickness: .5px;
   }
   .title {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 15px;
     font-weight: 500;
-    span {
-      font-size: 16px;
-      font-weight: 300;
-    }
+  }
+  .time {
+    font-size: 16px;
+    font-weight: 300;
+  }
+  .content {
+    padding-top: 15px;
+    width: 100%;
   }
 }
 .man {
@@ -136,6 +139,14 @@
   font-weight: 300;
   font-size: 20px;
   line-height: 1.5;
+  border-bottom: 1px solid $lightGreyColor;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  &:only-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
   .img {
     margin-right: 30px;
     display: block;
@@ -157,26 +168,26 @@
       transform: scale(1.1);
     }
   }
-  .title {
+  .info {
+    flex-grow: 1;
+  }
+  .name {
     position: relative;
     padding-bottom: 15px;
     margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.4;
     &::after {
       content: '';
       position: absolute;
       display: block;
       left: 0;
       bottom: 0;
-      width: 25px;
+      width: 60px;
       height: 2px;
       background-color: $darkBlueColor;
     }
-  }
-  .name {
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 1.4;
-    margin-bottom: 5px;
     a:hover {
       text-decoration: underline;
       text-decoration-thickness: .5px;
@@ -232,6 +243,7 @@
     }
   }
   .image {
+    font-size: 20px;
     img {
       margin-bottom: 10px;
     }
@@ -243,11 +255,11 @@
     }
   }
   .text {
-    font-size: 18px;
-    .title {
-      span {
-        font-size: 16px;
-      }
+    font-size: 20px;
+    padding-bottom: 20px;
+    .time {
+      padding-top: 30px;
+      order: 99;
     }
   }
   .man {

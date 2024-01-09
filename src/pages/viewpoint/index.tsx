@@ -8,7 +8,7 @@ import { Image, Text } from '@/components/cards';
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 const ViewPoint = () => {
-  const [data, setData] = useState<TAPI.TNewsItem[]>();
+  const [data, setData] = useState<{total: number; records: TAPI.TNewsItem[]}>();
   const [list, setList] = useState<TAPI.TNewsItem[]>();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const ViewPoint = () => {
       return result;
     };
     getData().then((res) => {
-      setData(res[0].result.records);
+      setData(res[0].result);
       setList(res[1].result.records);
     });
   }, []);
@@ -30,10 +30,10 @@ const ViewPoint = () => {
     <>
       <Banner name='观点和经验' />
       <section className={_s.main}>
-        <Title name={'研究与案例'} />
+        <Title name={'研究与案例'} more={data && data.total > 2 ? `${ROUTER_PATH}/viewpoint/case/` : undefined} />
         <div className={_s.flex_2}>
           {
-            data?.map(({id, titles, describes, imgs}) => {
+            data?.records.map(({id, titles, describes, imgs}) => {
               return <Image
                 key={id}
                 img={imgs}

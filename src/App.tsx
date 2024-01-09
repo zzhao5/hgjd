@@ -10,6 +10,7 @@ import About from '@/pages/about';
 import Service from '@/pages/service';
 import ViewPoint from '@/pages/viewpoint';
 import ViewList from '@/pages/viewpoint/list';
+import Case from '@/pages/viewpoint/case';
 import Group from '@/pages/group';
 import GroupTeam from '@/pages/group/team';
 import GroupInstitution from '@/pages/group/institution';
@@ -88,11 +89,12 @@ const App = () => {
         <Route path={`${ROUTER_PATH}/:name?/:type?/`}  element={<Header menu={menu} mini={mini} />} />
       </Routes>
       <Routes>
-        <Route path={`${ROUTER_PATH}/`} index element={<Main license={license} news={news} />} />
+        <Route path={`${ROUTER_PATH}/`} index element={<Main license={license} news={news} menu={menu} />} />
         <Route path={`${ROUTER_PATH}/about/`} element={<About />} />
         <Route path={`${ROUTER_PATH}/service/:type?/`} element={<Service menu={menu} mini={mini} />} />
         <Route path={`${ROUTER_PATH}/viewpoint/`} element={<ViewPoint />} />
         <Route path={`${ROUTER_PATH}/viewpoint/science/`} element={<ViewList />} />
+        <Route path={`${ROUTER_PATH}/viewpoint/case/`} element={<Case />} />
         <Route path={`${ROUTER_PATH}/viewpoint/:id/`} element={<Details type='viewpoint' />} />
         <Route path={`${ROUTER_PATH}/group/`} element={<Group />} />
         <Route path={`${ROUTER_PATH}/group/team/`} element={<GroupTeam />} />

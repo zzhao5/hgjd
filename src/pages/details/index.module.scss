@@ -32,7 +32,7 @@
       width: 100%;
       margin-bottom: 20px;
     }
-    video {
+    video, iframe {
       width: 100%;
       height: auto;
       aspect-ratio: 2 / 1;
@@ -93,9 +93,6 @@
       }
     }
     .more {
-      margin-top: 20px;
-      padding-top: 20px;
-      border: none;
       .prev, .next {
         display: none;
       }

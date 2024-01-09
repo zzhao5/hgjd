@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import c from 'classnames';
 import _s from './index.module.scss';
 import API from '@/apis';
 import Title from '@/components/title';
 import { Card, Image, Text } from '@/components/cards';
 import { useCookies } from 'react-cookie';
-import pic from './images/pic_best.jpeg';
+import pic from './images/pic_best.jpg';
 import banner1 from './images/pic_banner1.jpeg';
 import banner2 from './images/pic_banner2.jpeg';
 
@@ -15,19 +15,50 @@ const BANNERS = [banner1, banner2];
 const Main = ({
   license,
   news,
+  menu,
 }: {
   license: TAPI.TNewsItem[];
   news: TAPI.TNewsItem[];
+  menu: TAPI.TMenuItem[];
 }) => {
   const [cookies, setCookie] = useCookies(['bannerViewIndex']);
   const [banner, setBanner] = useState<string>(BANNERS[0]);
   const [data, setData] = useState<TAPI.TNewsItem[]>();
+  const [service, setService] = useState<TAPI.TServiceData>();
+  const subMenuList = useMemo(() => {
+    if (!menu || menu.length === 0) return undefined;
+    const current = menu.filter(({urls}) => urls === '/service/');
+    return current[0].mlist; 
+  }, [menu]);
 
   useEffect(() => {
     API.getDataList({ newsId: 26, pageNo: 1, pageSize: 3, }).then((res) => {
       setData(res.result.records);
     })
   }, []);
+
+  useEffect(() => {
+    if (!subMenuList || subMenuList.length === 0) return;
+    const getData = async () => {
+      const result =  await Promise.all(
+        subMenuList.map(({id}) => {
+          return API.getDataList({newsId: id, pageNo: 1, pageSize: 20});
+        })
+      );
+      return result;
+    };
+    getData().then((res) => {
+      const obj: TAPI.TServiceData = {};
+      for (let i = 0; i < subMenuList.length; i++) {
+        const {titles, urls, id} = subMenuList[i];
+        const records = res[i].result.records;
+        const key = urls.split('/')[2];
+        obj[key] = { titles, id, urls, records};
+      }
+      setService(obj);
+    });
+
+  }, [subMenuList]);
 
   useEffect(() => {
     const idx = cookies.bannerViewIndex === undefined ? 0 : (parseInt(cookies.bannerViewIndex) + 1);
@@ -59,6 +90,25 @@ const Main = ({
       </section>
       <section className={c(_s.card, _s.main)}>
         <Title name="最新消息" more={`${ROUTER_PATH}/news/`} />
+        <div className={_s.flex_2}>
+          {
+            news.slice(0, 2).map(({id, tags, createTime, titles }, index) => {
+              return (
+                <Card
+                  key={id}
+                  link={`${ROUTER_PATH}/news/${id}`}
+                  className={index % 2 === 0 ? _s.even : _s.odd}
+                  type={tags} 
+                  time={createTime.split(' ')[0]}
+                  text={titles}
+                />
+              )
+            })
+          }
+        </div>
+      </section>
+      <section className={c(_s.card, _s.main)}>
+        <Title name="服务内容" more={`${ROUTER_PATH}/news/`} />
         <div className={_s.flex_2}>
           {
             news.slice(0, 2).map(({id, tags, createTime, titles }, index) => {

@@ -24,10 +24,10 @@ const Text = ({
       {
         type ? <p className={_s.title}>
           {typeLink ? <Link to={typeLink}>{type}</Link> : type}
-          {time ? <span>{time}</span> : null}
         </p> : null
       }
-      <p>
+      {time ? <span className={_s.time}>{time}</span> : null}
+      <p className={_s.content}>
         {link ? <Link to={link}>{text}</Link> : text}
       </p>
     </div>

@@ -56,6 +56,7 @@
 .flex_1 {
   & > * {
     width: 100%;
+    margin-bottom: 30px;
   }
 }
 .flex_2 {
@@ -76,13 +77,17 @@
 
 .main {
   position: relative;
-  max-width: 1280px;
+  max-width: 1400px;
   width: 100%;
   margin: 0 auto 80px;
+  padding: 0 60px;
   box-sizing: border-box;
 }
 
 @include xs {
+  .flex_1 > * {
+    margin-bottom: 20px;
+  }
   .flex_2, .flex_3, .flex_4 {
     & > * {
       width: 100%;
