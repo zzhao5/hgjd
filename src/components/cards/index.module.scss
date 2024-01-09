@@ -194,6 +194,59 @@
     }
   }
 }
+.service {
+  position: relative;
+  padding: 40px;
+  font-size: 20px;
+  font-weight: 300;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  border: 1px solid transparent;
+  .content {
+    display: block;
+    height: 100%;
+  }
+  .type {
+    font-weight: 500;
+    font-size: 20px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 2px;
+      background-color: currentColor;
+    }
+  }
+  .item {
+    line-height: 2;
+    display: flex;
+    align-items: center;
+    span {
+      text-wrap: nowrap;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      flex-shrink: 1;
+    }
+  }
+  &:hover {
+    background-color: $whiteColor!important;
+    color: $darkBlueColor!important;
+    border-color: $darkBlueColor;
+    .item {
+      text-decoration: underline;
+      text-decoration-thickness: .5px;
+    }
+  }
+}
 @include xs {
   .card {
     padding: 25px;

@@ -3,7 +3,7 @@ import c from 'classnames';
 import _s from './index.module.scss';
 import API from '@/apis';
 import Title from '@/components/title';
-import { Card, Image, Text } from '@/components/cards';
+import { Card, Image, Text, Service } from '@/components/cards';
 import { useCookies } from 'react-cookie';
 import pic from './images/pic_best.jpg';
 import banner1 from './images/pic_banner1.jpeg';
@@ -107,25 +107,27 @@ const Main = ({
           }
         </div>
       </section>
-      <section className={c(_s.card, _s.main)}>
-        <Title name="服务内容" more={`${ROUTER_PATH}/news/`} />
-        <div className={_s.flex_2}>
-          {
-            news.slice(0, 2).map(({id, tags, createTime, titles }, index) => {
-              return (
-                <Card
-                  key={id}
-                  link={`${ROUTER_PATH}/news/${id}`}
-                  className={index % 2 === 0 ? _s.even : _s.odd}
-                  type={tags} 
-                  time={createTime.split(' ')[0]}
-                  text={titles}
-                />
-              )
-            })
-          }
-        </div>
-      </section>
+      {
+        service ? <section className={c(_s.card, _s.main)}>
+          <Title name="服务内容" more={`${ROUTER_PATH}/service/`} />
+          <div className={_s.flex_3}>
+            {
+              Object.keys(service || {}).map((item, index) => {
+                const { titles, urls, records } = service[item];
+                return (
+                  <Service
+                    key={index}
+                    link={`${ROUTER_PATH}${urls}`}
+                    className={index % 2 === 0 ? _s.odd : _s.even}
+                    type={titles} 
+                    text={records}
+                  />
+                )
+              })
+            }
+          </div>
+        </section> : null
+      }
       <section className={c(_s.img_list, _s.main)}>
         <Title name="资质证明" more={`${ROUTER_PATH}/license/`} />
         <div className={_s.flex_2}>

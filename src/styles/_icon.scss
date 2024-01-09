@@ -45,7 +45,7 @@ i.icon {
     position: relative;
     margin-right: 0;
     transform-origin: center center;
-    transition: all .3s ease-in-out;
+    transition: transform .3s ease-in-out;
     &::before {
       content: '';
       position: absolute;
