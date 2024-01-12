@@ -140,12 +140,12 @@
   font-size: 20px;
   line-height: 1.5;
   border-bottom: 1px solid $lightGreyColor;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  padding-bottom: 30px;
+  margin-bottom: 30px!important;
   &:only-child {
     border-bottom: none;
     padding-bottom: 0;
-    margin-bottom: 0;
+    margin-bottom: 0!important;
   }
   .img {
     margin-right: 30px;
@@ -229,6 +229,7 @@
     line-height: 2;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     span {
       text-wrap: nowrap;
       white-space: nowrap;
@@ -294,6 +295,10 @@
         display: none;
       }
     }
+  }
+  .service {
+    padding: 25px;
+    font-size: 16px;
   }
   .image {
     font-size: 20px;

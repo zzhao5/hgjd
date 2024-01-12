@@ -11,6 +11,9 @@
 .info {
   margin-bottom: 30px;
 }
+.flex_2 > * {
+  width: 48%;
+}
 
 @include xs {
   .text {

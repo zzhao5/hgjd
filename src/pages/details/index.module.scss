@@ -29,7 +29,12 @@
   }
   .content {
     img {
+      display: block;
       width: 100%;
+      height: auto;
+      max-height: 800px;
+      margin: auto;
+      object-fit: contain;
       margin-bottom: 20px;
     }
     video, iframe {

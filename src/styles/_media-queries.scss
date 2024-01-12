@@ -90,7 +90,7 @@
   }
   .flex_2, .flex_3, .flex_4 {
     & > * {
-      width: 100%;
+      width: 100%!important;
     }
   }
   .main {
