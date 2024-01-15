@@ -42,19 +42,21 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'group';}) 
     if (id) {
       const trueId = id === 'typical' ? 35 : parseInt(id);
 
-      const getData = async () => {
-        const result =  await Promise.all([
-          API.getDataInfo({ id: trueId, }),
-          API.getDataInfo({ id: trueId - 1, }),
-          API.getDataInfo({ id: trueId + 1, })
-        ]);
-        return result;
-      };
-      getData().then((res) => {
-        setData(res[0].result.info);
-        setPrev(res[1].result.info);
-        setNext(res[2].result.info);
-      });
+      API.getDataInfo({ id: trueId, }).then((res) => {
+        const next = res.result.nextId;
+        const prev = res.result.upId;
+        setData(res.result.info);
+        if (next) {
+          API.getDataInfo({ id: next, }).then((res) => {
+            setNext(res.result.info);
+          });
+        }
+        if (prev) {
+          API.getDataInfo({ id: prev, }).then((res) => {
+            setPrev(res.result.info);
+          });
+        }
+      })
     }
   }, [id]);
 
@@ -89,10 +91,10 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'group';}) 
         {
           id !== 'typical' && id !== '35'  ? 
           <div className={c(_s.more, _s.flex_2)}>
-            { prev && prev.titles && prev?.menuId === data?.menuId ? <div className={_s.prev}>上一篇</div> : <div></div> }
-            { next && next.titles && next?.menuId === data?.menuId ? <div className={_s.next}>下一篇</div> : <div></div> }
+            { prev && prev.titles ? <div className={_s.prev}>上一篇</div> : <div></div> }
+            { next && next.titles ? <div className={_s.next}>下一篇</div> : <div></div> }
             {
-              prev && prev.titles && prev?.menuId === data?.menuId ? <Card
+              prev && prev.titles ? <Card
                 link={`${ROUTER_PATH}/${getMenuPath(prev.menuId)}/${prev.id}/`}
                 className={_s.newsCard}
                 type={prev.tags} 
@@ -103,7 +105,7 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'group';}) 
               /> : <div></div>
             }
             {
-              next && next.titles && next?.menuId === data?.menuId ? <Card
+              next && next.titles ? <Card
                 link={`${ROUTER_PATH}/${getMenuPath(next.menuId)}/${next.id}/`}
                 className={_s.newsCard}
                 type={next.tags} 
