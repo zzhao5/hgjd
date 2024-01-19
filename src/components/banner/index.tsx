@@ -1,12 +1,12 @@
 import _s from './index.module.scss';
 import c from 'classnames';
-import pic1 from './images/pic_banner1.jpeg';
-import pic2 from './images/pic_banner2.jpeg';
-import pic3 from './images/pic_banner3.jpeg';
-import pic4 from './images/pic_banner4.jpeg';
-import pic5 from './images/pic_banner5.jpeg';
-import pic6 from './images/pic_banner6.jpeg';
-import pic7 from './images/pic_banner7.jpeg';
+import pic1 from './images/pic_banner1.jpg';
+import pic2 from './images/pic_banner2.jpg';
+import pic3 from './images/pic_banner3.jpg';
+import pic4 from './images/pic_banner4.jpg';
+import pic5 from './images/pic_banner5.jpg';
+import pic6 from './images/pic_banner6.jpg';
+import pic7 from './images/pic_banner7.jpg';
 import { useMemo } from 'react';
 
 const PICS = [
