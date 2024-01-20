@@ -43,7 +43,7 @@ const Group = () => {
         <section className={_s.main}>
           <Title name='典型专家' border />
           <div className={_s.flex_2}>
-            <Man img={typical.imgs} name={typical.titles} title={typical.tags} link={`${ROUTER_PATH}/group/typical/`} text={typical.describes} />
+            <Man img={typical.imgs} name={typical.titles} title={typical.remarks} link={`${ROUTER_PATH}/group/typical/`} text={typical.describes} />
           </div>
         </section> : null
       }
@@ -53,8 +53,8 @@ const Group = () => {
           <Title name='专家团队' border more={`${ROUTER_PATH}/group/team/`} />
           <div className={_s.flex_2}>
             {
-              team.map(({id, imgs, titles, describes, tags}) => {
-                return <Man key={id} img={imgs} name={titles} title={tags} link={`${ROUTER_PATH}/group/${id}/`} text={describes} />
+              team.map(({id, imgs, titles, describes, remarks}) => {
+                return <Man key={id} img={imgs} name={titles} title={remarks} link={`${ROUTER_PATH}/group/${id}/`} text={describes} />
               })
             }
           </div>

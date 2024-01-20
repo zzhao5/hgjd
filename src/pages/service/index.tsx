@@ -74,7 +74,7 @@ const Service = ({ menu, mini } : { menu: TAPI.TMenuItem[]; mini: boolean; }) =>
     type === undefined ? <Navigate to={ROUTER_PATH + '/service/appraisal/'} /> :
     <>
       <Banner name='服务内容' />
-      <section className={c(_s.nav, _s.main, _s.flex_3)}>
+      <section className={c(_s.nav, _s.main)}>
         {
           mini ? <div className={_s.nav_active} onClick={handleClick}>
             <span>{data ? `${data[currentType].titles}` : null}</span>

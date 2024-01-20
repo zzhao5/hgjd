@@ -7,7 +7,7 @@ import { Card, Image, Text, Service } from '@/components/cards';
 import { useCookies } from 'react-cookie';
 import pic from './images/pic_best.jpg';
 import banner1 from './images/pic_banner1.jpg';
-import banner2 from './images/pic_banner2.jpeg';
+import banner2 from './images/pic_banner2.jpg';
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 const BANNERS = [banner1, banner2];
