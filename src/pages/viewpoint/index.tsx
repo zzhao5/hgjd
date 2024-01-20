@@ -30,7 +30,7 @@ const ViewPoint = () => {
     <>
       <Banner name='观点和经验' />
       <section className={_s.main}>
-        <Title name={'研究与案例'} more={data && data.total > 2 ? `${ROUTER_PATH}/viewpoint/case/` : undefined} />
+        <Title name={'视频案例'} more={data && data.total > 2 ? `${ROUTER_PATH}/viewpoint/case/` : undefined} />
         <div className={_s.flex_2}>
           {
             data?.records.map(({id, titles, describes, imgs}) => {

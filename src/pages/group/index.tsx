@@ -19,7 +19,7 @@ const Group = () => {
       const result =  await Promise.all([
         API.getDataInfo({ id: 35, }),
         API.getDataList({ newsId: 28, pageNo: 1, pageSize: 6, }),
-        API.getDataList({ newsId: 29, pageNo: 1, pageSize: 6, }),
+        API.getDataList({ newsId: 29, pageNo: 1, pageSize: 8, }),
       ]);
       return result;
     };
@@ -64,7 +64,7 @@ const Group = () => {
         institution ? 
         <section className={_s.main}>
           <Title name='合作机构' border more={'institution'} />
-          <div className={_s.flex_3}>
+          <div className={_s.flex_4}>
             {
               institution.map(({id, imgs, titles}) => {
                 return <Image border key={id} className={_s.logo_list} proportion={56} link='javascript:void(0)' img={imgs} text={titles} />

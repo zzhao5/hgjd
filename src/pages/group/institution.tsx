@@ -14,7 +14,7 @@ const GroupInstitution = () => {
     API.getDataList({
       newsId: 29,
       pageNo: 1,
-      pageSize: 9,
+      pageSize: 16,
     }).then((res) => {
       setData(res.result);
     });
@@ -35,7 +35,7 @@ const GroupInstitution = () => {
       <Banner name='专家和合作机构' />
       <section className={_s.main}>
         <Title name='合作机构' border/>
-        <div className={_s.flex_3}>
+        <div className={_s.flex_4}>
           {
             data?.records.map(({id, imgs, titles}) => {
               return <Image key={id} link='javascript:void(0)' border img={imgs} text={titles} proportion={56} />
@@ -43,7 +43,7 @@ const GroupInstitution = () => {
           }
         </div>
         {
-          data && data.total > 12 ? <Pages total={data.total} pageSize={12} onChange={pageChange} /> : null
+          data && data.total > 16 ? <Pages total={data.total} pageSize={12} onChange={pageChange} /> : null
         }
       </section>
     </>

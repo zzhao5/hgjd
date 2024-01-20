@@ -32,7 +32,7 @@ const ViewCase = () => {
     <>
       <Banner name='观点和经验' />
       <section className={_s.main}>
-        <Title name={'研究与案例'} border />
+        <Title name={'视频案例'} border />
         <div className={_s.flex_2}>
           { data ? 
             data.records.map(({id, titles, imgs, describes}) => {

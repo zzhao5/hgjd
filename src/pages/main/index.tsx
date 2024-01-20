@@ -34,7 +34,7 @@ const Main = ({
   useEffect(() => {
     API.getDataList({ newsId: 26, pageNo: 1, pageSize: 3, }).then((res) => {
       setData(res.result.records);
-    })
+    });
   }, []);
 
   useEffect(() => {
@@ -82,9 +82,9 @@ const Main = ({
           </div>
           <div className={_s.text}>
             <h6>为什么选择我们？</h6>
-            <p>深耕知识产权领域20余年；<br/>
-              提供鉴定、意见及评估等证据服务10余年；<br/>
-              持续深入研究知识产权证据。</p>
+            <p>深耕知识产权领域20余年<br/>
+            提供鉴定等服务10余年<br/>
+            持续深入研究诉讼证据</p>
           </div>
         </div>
       </section>

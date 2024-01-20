@@ -21,9 +21,9 @@
     height: 100px;
   }
   .logo {
-    padding:0 0 20px;
-    width: 178px;
+    width: 223px;
     flex-shrink: 1;
+    align-self: center;
     img {
       width: 100%;
       aspect-ratio: 89 / 30;
@@ -87,7 +87,6 @@
   .title {
     font-size: 30px;
     line-height: 1;
-    font-weight: 300;
   }
   .sub {
     width: 390px;
@@ -232,7 +231,6 @@
         padding: 10px 0;
         font-size: 16px;
         padding-left: 20px;
-        font-weight: 300;
         line-height: 40px;
         border-bottom: 1px solid $whiteColor;
         p a {

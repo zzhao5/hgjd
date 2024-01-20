@@ -11,7 +11,7 @@ const Contact = () => {
       <section className={c(_s.main, _s.contact)}>
         <div className={_s.card}>
           <p><span>地　址：</span>上海市南京西路580号仲益大厦B座723</p>
-          <p><span>电　话：</span>021-52666106</p>
+          <p><span>电　话：</span>021-52666106 / 17721158192</p>
           <p><span>邮　箱：</span>lul@ipjianding.com</p>
           <p><span>联系人：</span>陆女士</p>
           <p><span>网　址：</span>www.ipjianding.com</p>
