@@ -27,12 +27,12 @@ const Man = ({
         }
       </div> */}
       <div className={_s.info}>
-        <p className={_s.name}>
+        <div className={_s.name}>
           {
-            link ? <Link to={link}>{name}</Link> : name
+            link ? <p><Link to={link}>{name}</Link></p> : <p>name</p>
           }
-        </p>
-        { title ? <p className={_s.title}>业务领域：{title}</p> : null}
+          { title ? <p className={_s.title}>业务领域：{title}</p> : null}
+        </div>
         <p>{text}</p>
       </div>
     </div>

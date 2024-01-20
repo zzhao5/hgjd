@@ -186,10 +186,10 @@
   .name {
     position: relative;
     padding-bottom: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-weight: 400;
     font-size: 30px;
-    line-height: 1.4;
+    line-height: 1.8;
     &::after {
       content: '';
       position: absolute;
@@ -203,6 +203,10 @@
     a:hover {
       text-decoration: underline;
       text-decoration-thickness: .5px;
+    }
+    .title {
+      font-size: 20px;
+      font-weight: 400;
     }
   }
 }
