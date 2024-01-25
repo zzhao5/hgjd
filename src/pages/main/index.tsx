@@ -5,7 +5,7 @@ import API from '@/apis';
 import Title from '@/components/title';
 import { Card, Image, Text, Service } from '@/components/cards';
 import { useCookies } from 'react-cookie';
-import pic from './images/pic_best.jpg';
+import pic from './images/pic_best.jpeg';
 import banner1 from './images/pic_banner1.jpg';
 import banner2 from './images/pic_banner2.jpg';
 
@@ -108,25 +108,31 @@ const Main = ({
         </div>
       </section>
       {
-        service ? <section className={c(_s.card, _s.main)}>
-          <Title name="服务内容" more={`${ROUTER_PATH}/service/`} />
-          <div className={_s.flex_3}>
-            {
-              Object.keys(service || {}).map((item, index) => {
-                const { titles, urls, records } = service[item];
-                return (
-                  <Service
-                    key={index}
-                    link={`${ROUTER_PATH}${urls}`}
-                    className={index % 2 === 0 ? _s.odd : _s.even}
-                    type={titles} 
-                    text={records}
-                  />
-                )
-              })
-            }
+        service ? 
+        <section>
+          <Title name="服务内容" className={c(_s.main, _s.serviceTitle)} more={`${ROUTER_PATH}/service/`} />
+          <div className={_s.service}>
+            <div className={c(_s.card, _s.main)}>
+              <div className={_s.flex_3}>
+                {
+                  Object.keys(service || {}).map((item, index) => {
+                    const { titles, urls, records } = service[item];
+                    return (
+                      <Service
+                        key={index}
+                        link={`${ROUTER_PATH}${urls}`}
+                        className={index % 2 === 0 ? _s.odd : _s.even}
+                        type={titles} 
+                        text={records}
+                      />
+                    )
+                  })
+                }
+              </div>
+            </div>
           </div>
-        </section> : null
+        </section>
+        : null
       }
       <section className={c(_s.img_list, _s.main)}>
         <Title name="资质证明" more={`${ROUTER_PATH}/license/`} />

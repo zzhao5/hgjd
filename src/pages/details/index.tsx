@@ -65,12 +65,10 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'group';}) 
       <Banner name={NAME_LIST[type]} />
       <section className={c(_s.details, _s.main)}>
         {
-          type === 'group' && data?.imgs ? 
+          type === 'group' && data ? 
           <div className={_s.manBox}>
             <Title name={ id === 'typical' || id === '35' ? '典型专家' : '专家团队'} border />
-            <div className={_s.flex_1}>
-              <Man className={_s.typical} img={data.imgs} name={data.titles} title={data.remarks} text={data.describes} />
-            </div>
+            <Man className={_s.typical} img={data.imgs} name={data.titles} title={data.remarks} text={data.describes} />
           </div>
           : 
           <div className={_s.title}>

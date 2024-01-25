@@ -29,7 +29,7 @@ const Man = ({
       <div className={_s.info}>
         <div className={_s.name}>
           {
-            link ? <p><Link to={link}>{name}</Link></p> : <p>name</p>
+            link ? <p><Link to={link}>{name}</Link></p> : <p>{name}</p>
           }
           { title ? <p className={_s.title}>业务领域：{title}</p> : null}
         </div>
