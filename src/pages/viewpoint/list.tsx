@@ -1,16 +1,18 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import c from 'classnames';
 import API from '@/apis';
 import Banner from '@/components/banner';
 import Title from '@/components/title';
-import { Image, Text } from '@/components/cards';
+import { Text } from '@/components/cards';
 import Pages from '@/components/pagination';
 import _s from './index.module.scss';
-
+import Tag from './tag';
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 const ViewList = () => {
   const [data, setData] = useState<TAPI.TNewsList>();
+  const [tag, setTag] = useState('');
+  const [curPage, setCurPage] = useState(1);
 
   useEffect(() => {
     API.getDataList({ newsId: 26, pageNo: 1, pageSize: 6, }).then((res) => {
@@ -18,21 +20,35 @@ const ViewList = () => {
     });
   }, []);
 
-  const pageChange = (page: number) => {
+  const handleClick = (tag: string) => {
+    console.log('tag', tag);
+    setTag(tag);
+    API.getDataList({ newsId: 26, pageNo: 1, pageSize: 6, tags: tag }).then((res) => {
+      setData(res.result);
+    });
+  };
+
+  useEffect(() => {
+    setCurPage(1);
+  }, [tag]);
+
+  const pageChange = useCallback((page: number) => {
+    setCurPage(page);
     API.getDataList({
       newsId: 26,
       pageNo: page,
       pageSize: 6,
+      tags: tag,
     }).then((res) => {
       setData(res.result);
     });
-  };
+  }, [tag]);
 
   return (
     <>
       <Banner name='观点和经验' />
       <section className={_s.main}>
-        <Title name={'学术研讨'} border />
+        <Title name={'学术研讨'} tags={<Tag click={handleClick} />} border />
         <div className={_s.flex_1}>
           { data ? 
             data.records.map(({id, titles, tags, createTime}) => {
@@ -47,7 +63,7 @@ const ViewList = () => {
           }
         </div>
         {
-          data && data.total > 6 ? <Pages total={data?.total} pageSize={6} onChange={pageChange} /> : null
+          data && data.total > 6 ? <Pages current={curPage} total={data?.total} pageSize={6} onChange={pageChange} /> : null
         }
       </section>
     </>

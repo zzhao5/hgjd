@@ -47,6 +47,28 @@
     }
   }
 }
+.tags {
+  white-space: nowrap;
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  .interval {
+    margin: 0 20px;
+    width: 1px;
+    height: 1em;
+    background-color: $blackColor;
+  }
+  .item {
+    cursor: pointer;
+    &:hover {
+      color: $darkBlueColor;
+    }
+    &.active {
+      font-weight: 700;
+      color: $darkBlueColor;
+    }
+  }
+}
 
 
 @include xs {
@@ -100,6 +122,17 @@
       & + .text {
         padding: 0 25px;
       }
+    }
+  }
+  .tags {
+    position: absolute;
+    width: 100%;
+    top: 70px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $lightGreyColor;
+    justify-content: space-between;
+    .interval {
+      margin: 0 auto;
     }
   }
 }

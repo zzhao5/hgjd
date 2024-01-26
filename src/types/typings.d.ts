@@ -96,6 +96,7 @@ declare namespace TAPI {
     pageNo?: number;
     /** 每页条数 */
     pageSize?: number;
+    tags?: string;
   };
 
   type TGetNewsInfo = {
