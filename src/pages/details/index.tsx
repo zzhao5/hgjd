@@ -94,7 +94,6 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'group';}) 
             {
               prev && prev.titles ? <Card
                 link={`${ROUTER_PATH}/${getMenuPath(prev.menuId)}/${prev.id}/`}
-                className={_s.newsCard}
                 type={prev.tags} 
                 time={prev.createTime.split(' ')[0]}
                 text={prev.titles}
@@ -105,7 +104,6 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'group';}) 
             {
               next && next.titles ? <Card
                 link={`${ROUTER_PATH}/${getMenuPath(next.menuId)}/${next.id}/`}
-                className={_s.newsCard}
                 type={next.tags} 
                 time={next.createTime.split(' ')[0]}
                 text={next.titles}

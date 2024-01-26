@@ -2,30 +2,27 @@
 
 .card {
   position: relative;
-  padding: 40px;
-  font-size: 24px;
   font-weight: 400;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
-  border: 1px solid transparent;
+  background-color: $lightBlueColor;
+  color: $blackColor;
   .content {
-    display: block;
-    overflow: hidden;
-    line-height: 1.2;
-    text-overflow:ellipsis;
-    display:-webkit-box;
-    flex-grow: 1;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient:vertical;
-    &:hover {
-      text-decoration: underline;
-      text-decoration-thickness: .5px;
-    }
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    padding: 40px;
   }
-  &.mini .content{
-    height: 63px;
+  .title {
+    height: 24px * 3.6;
+    overflow: hidden;
+    font-size: 24px;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient:vertical;
+  }
+  &.mini .title{
+    height: 24px * 2.4;
     -webkit-line-clamp: 2;
   }
   .type {
@@ -41,9 +38,8 @@
     justify-content: space-between;
   }
   &:hover {
-    background-color: $whiteColor!important;
-    color: $darkBlueColor!important;
-    border-color: $darkBlueColor;
+    background-color: $darkBlueColor!important;
+    color: $whiteColor!important;
   }
   .icon_right {
     display: none;
@@ -58,8 +54,6 @@
   color: $lightBlackColor;
   a:hover {
     color: $darkBlueColor;
-    text-decoration: underline;
-    text-decoration-thickness: .5px;
   }
   .placeholder {
     width: 100%;
@@ -131,8 +125,7 @@
   align-items: flex-end;
   flex-wrap: wrap;
   a:hover {
-    text-decoration: underline;
-    text-decoration-thickness: .5px;
+    color: $darkBlueColor;
   }
   .title {
     font-weight: 500;
@@ -205,8 +198,7 @@
       background-color: $darkBlueColor;
     }
     a:hover {
-      text-decoration: underline;
-      text-decoration-thickness: .5px;
+      color: $darkBlueColor;
     }
     .title {
       font-size: 20px;
@@ -216,16 +208,17 @@
 }
 .service {
   position: relative;
-  padding: 40px;
   font-size: 20px;
   font-weight: 400;
-  box-sizing: border-box;
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  border: 1px solid transparent;
+  background-color: $lightBlueColor;
+  color: $blackColor;
   .content {
     display: block;
+    box-sizing: border-box;
+    padding: 40px;
     height: 100%;
   }
   .type {
@@ -259,44 +252,46 @@
     }
   }
   &:hover {
-    background-color: $whiteColor!important;
-    color: $darkBlueColor!important;
-    border-color: $darkBlueColor;
-    .item {
-      text-decoration: underline;
-      text-decoration-thickness: .5px;
-    }
+    background: $darkBlueColor!important;
+    color: $whiteColor!important;
   }
 }
 @include xs {
   .card {
-    padding: 25px;
-    font-size: 18px;
+    .content {
+      padding: 25px;
+    }
     .type {
       font-size: 16px;
       margin-bottom: 20px;
+    }
+    .title {
+      font-size: 18px;
+      height: 18px * 3.6;
     }
     .time {
       margin-top: 20px;
       font-size: 14px;
     }
     &.mini {
-      flex-direction: row;
-      padding: 0 5px 0 20px;
-      height: 50px;
-      text-wrap: nowrap;
-      white-space: nowrap;
-      line-height: 50px;
-      align-items: center;
-      &::before {
-        content: attr(data-tips);
-      }
       .content {
-        display: block;
+        &::before {
+          content: attr(data-tips);
+        }
+        flex-direction: row;
+        padding: 0 5px 0 20px;
+        height: 50px;
+        text-wrap: nowrap;
+        white-space: nowrap;
+        line-height: 50px;
+        align-items: center;
+      }
+      .title {
         height: 50px;
         line-height: 50px;
         flex-grow: 1;
         flex-shrink: 1;
+        text-wrap: wrap;
         -webkit-line-clamp: 1;
       }
       .icon_right {
@@ -314,8 +309,10 @@
     }
   }
   .service {
-    padding: 25px;
     font-size: 18px;
+    .content {
+      padding: 25px;
+    }
   }
   .image {
     font-size: 20px;

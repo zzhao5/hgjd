@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import c from 'classnames';
 import _s from './index.module.scss';
@@ -38,7 +39,7 @@ const Footer = ({ data: { email, address, tels, copyrightInformation, icp }, men
             {
               tel.map((item, index) => {
                 return (
-                  <>{index === 0 ? '' : ' / '}<a key={index} href={`tel:${item}`}>{item}</a></>
+                  <Fragment key={index}>{index === 0 ? '' : ' / '}<a href={`tel:${item}`}>{item}</a></Fragment>
                 )
               })
             }

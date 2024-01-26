@@ -97,7 +97,6 @@ const Main = ({
                 <Card
                   key={id}
                   link={`${ROUTER_PATH}/news/${id}`}
-                  className={index % 2 === 0 ? _s.even : _s.odd}
                   type={tags} 
                   time={createTime.split(' ')[0]}
                   text={titles}
@@ -121,7 +120,6 @@ const Main = ({
                       <Service
                         key={index}
                         link={`${ROUTER_PATH}${urls}`}
-                        className={index % 2 === 0 ? _s.odd : _s.even}
                         type={titles} 
                         text={records}
                       />
