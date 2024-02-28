@@ -9,21 +9,22 @@ import _s from './index.module.scss';
 import Tag from './tag';
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
-const ViewList = () => {
+const ViewList = ({mini} : {mini: boolean;}) => {
   const [data, setData] = useState<TAPI.TNewsList>();
-  const [tag, setTag] = useState('');
+  const [tag, setTag] = useState<string | number>('');
+  const [subTag, setSubTag] = useState<string | number>('');
   const [curPage, setCurPage] = useState(1);
 
   useEffect(() => {
-    API.getDataList({ newsId: 26, pageNo: 1, pageSize: 6, }).then((res) => {
+    API.getDataList({ newsId: 26, pageNo: 1, pageSize: 10, }).then((res) => {
       setData(res.result);
     });
   }, []);
 
-  const handleClick = (tag: string) => {
-    console.log('tag', tag);
+  const handleClick = (tag: string | number, subTags: string | number) => {
     setTag(tag);
-    API.getDataList({ newsId: 26, pageNo: 1, pageSize: 6, tags: tag }).then((res) => {
+    setSubTag(subTags);
+    API.getDataList({ newsId: 26, pageNo: 1, pageSize: 10, tags: tag, subTag: subTags }).then((res) => {
       setData(res.result);
     });
   };
@@ -37,18 +38,20 @@ const ViewList = () => {
     API.getDataList({
       newsId: 26,
       pageNo: page,
-      pageSize: 6,
+      pageSize: 10,
       tags: tag,
+      subTag: subTag
     }).then((res) => {
       setData(res.result);
+      window.scrollTo(0, 0);
     });
-  }, [tag]);
+  }, [tag, subTag]);
 
   return (
     <>
       <Banner name='观点和经验' />
       <section className={_s.main}>
-        <Title name={'学术研讨'} tags={<Tag click={handleClick} />} border />
+        <Title name={'学术研讨'} tags={<Tag click={handleClick} mini={mini} />} border />
         <div className={_s.flex_1}>
           { data ? 
             data.records.map(({id, titles, tags, createTime}) => {
@@ -63,7 +66,7 @@ const ViewList = () => {
           }
         </div>
         {
-          data && data.total > 6 ? <Pages current={curPage} total={data?.total} pageSize={6} onChange={pageChange} /> : null
+          data && data.total > 10 ? <Pages current={curPage} total={data?.total} pageSize={10} onChange={pageChange} /> : null
         }
       </section>
     </>

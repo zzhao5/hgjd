@@ -27,6 +27,7 @@ const GroupTeam = () => {
       pageSize: 6,
     }).then((res) => {
       setData(res.result);
+      window.scrollTo(0, 0);
     });
   };
 

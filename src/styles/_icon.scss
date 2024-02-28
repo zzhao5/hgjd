@@ -4,21 +4,22 @@ i.icon {
   width: 20px;
   height: 20px;
   margin-right: 10px;
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-image: url(./images/icon_copy.png);
+  &.icon_mail, &.icon_address, &.icon_phone {
+    background-repeat: no-repeat;
+    background-size: 1em;
+    background-image: url(./images/icon_copy.png);
+  }
   &.icon_mail {
     background-position: 0 0;
   }
   &.icon_address {
-    background-position: 0 -20px;
+    background-position: 0 -1em;
   }
   &.icon_phone {
-    background-position: 0 -40px;
+    background-position: 0 -2em;
   }
   &.icon_close {
     position: relative;
-    background: none;
     margin-right: 0;
     &::before, &::after {
       content: '';
@@ -41,7 +42,6 @@ i.icon {
     }
   }
   &.icon_right {
-    background: none;
     position: relative;
     margin-right: 0;
     transform-origin: center center;
@@ -62,7 +62,6 @@ i.icon {
     }
   }
   &.icon_right_double {
-    background: none;
     position: relative;
     margin-right: 0;
     &::before, &::after {
@@ -85,5 +84,9 @@ i.icon {
       transform: rotateZ(90deg);
     }
   }
-
+  &.icon_triangle {
+    background-image: url(./images/icon_trangle.png);
+    background-repeat: no-repeat;
+    background-size:auto 100%;
+  }
 }

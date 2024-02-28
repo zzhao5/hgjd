@@ -93,7 +93,7 @@ const App = () => {
         <Route path={`${ROUTER_PATH}/about/`} element={<About />} />
         <Route path={`${ROUTER_PATH}/service/:type?/`} element={<Service menu={menu} mini={mini} />} />
         <Route path={`${ROUTER_PATH}/viewpoint/`} element={<ViewPoint />} />
-        <Route path={`${ROUTER_PATH}/viewpoint/science/`} element={<ViewList />} />
+        <Route path={`${ROUTER_PATH}/viewpoint/science/`} element={<ViewList mini={mini} />} />
         <Route path={`${ROUTER_PATH}/viewpoint/case/`} element={<Case />} />
         <Route path={`${ROUTER_PATH}/viewpoint/:id/`} element={<Details type='viewpoint' />} />
         <Route path={`${ROUTER_PATH}/group/`} element={<Group />} />

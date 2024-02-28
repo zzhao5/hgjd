@@ -26,6 +26,7 @@ const GroupInstitution = () => {
       pageSize: 9,
     }).then((res) => {
       setData(res.result);
+      window.scrollTo(0, 0);
     });
   };
 

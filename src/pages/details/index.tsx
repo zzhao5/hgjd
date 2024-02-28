@@ -46,6 +46,7 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'group';}) 
         const next = res.result.nextId;
         const prev = res.result.upId;
         setData(res.result.info);
+        window.scrollTo(0, 0);
         if (next) {
           API.getDataInfo({ id: next, }).then((res) => {
             setNext(res.result.info);

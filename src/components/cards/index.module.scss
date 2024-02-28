@@ -34,12 +34,16 @@
     margin-top: 30px;
     font-size: 16px;
     display: flex;
+    color: $darkBlueColor;
     align-items: center;
     justify-content: space-between;
   }
   &:hover {
     background-color: $darkBlueColor!important;
     color: $whiteColor!important;
+    .time {
+      color: currentColor;
+    }
   }
   .icon_right {
     display: none;
@@ -235,7 +239,7 @@
       bottom: 0;
       width: 50px;
       height: 2px;
-      background-color: currentColor;
+      background-color: $darkBlueColor;
     }
   }
   .item {
@@ -250,10 +254,20 @@
       overflow: hidden;
       flex-shrink: 1;
     }
+    i {
+      flex-shrink: 0;
+      color: $darkBlueColor;
+    }
   }
   &:hover {
     background: $darkBlueColor!important;
     color: $whiteColor!important;
+    .type::after {
+      background-color: currentColor;
+    }
+    .item i {
+      color: currentColor;
+    }
   }
 }
 @include xs {

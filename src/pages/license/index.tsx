@@ -6,6 +6,8 @@ import Title from '@/components/title';
 import Banner from '@/components/banner';
 import { useEffect, useState } from 'react';
 
+const ROUTER_PATH = process.env.REACT_APP_ROUTER;
+
 const Licenses = () => {
   const [data, setData] = useState<TAPI.TNewsList>(); // 资质证书
   
@@ -26,6 +28,7 @@ const Licenses = () => {
       pageSize: 6,
     }).then((res) => {
       setData(res.result);
+      window.scrollTo(0, 0);
     });
   };
 
@@ -40,7 +43,7 @@ const Licenses = () => {
               return (
                 <Image
                   key={id}
-                  link={''}
+                  link={`${ROUTER_PATH}/license/${id}/`}
                   img={imgs}
                   title={titles}
                   text={describes}

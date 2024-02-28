@@ -41,7 +41,7 @@
     z-index: 2;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     &::after {
       content: '';
       position: absolute;
@@ -54,7 +54,7 @@
   .img {
     position: relative;
     z-index: 2;
-    padding: 75px 0 55px 60px;
+    padding: 75px 0 55px 0;
     width: 52.7%;
     img {
       width: 100%;
@@ -64,18 +64,18 @@
   .text {
     position: relative;
     z-index: 2;
-    width: 30%;
+    width: 35%;
     font-size: 20px;
     font-weight: 400;
     line-height: 1.7;
-    padding: 30px calc(5% + 45px) 0 0;
+    padding: 30px 20px 30px 0;
     h6 {
       position: relative;
       font-size: 36px;
-      margin-bottom: 60px;
+      margin-bottom: 20px;
       font-weight: 500;
       line-height: 1;
-      padding: 40px 0 35px;
+      padding: 40px 0 25px;
       &::after {
         content: '';
         position: absolute;

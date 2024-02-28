@@ -52,20 +52,75 @@
   align-items: center;
   display: flex;
   font-size: 20px;
-  .interval {
-    margin: 0 20px;
-    width: 1px;
-    height: 1em;
-    background-color: $blackColor;
-  }
+  font-weight: 500;
+  justify-content: space-between;
+  margin-bottom: 50px;
   .item {
     cursor: pointer;
+    text-align: center;
+    width: 19.8%;
+    height: 60px;
+    line-height: 60px;
+    background-color: $lightBlueColor;
     &:hover {
       color: $darkBlueColor;
     }
     &.active {
-      font-weight: 700;
+      color: $whiteColor;
+      background-color: $darkBlueColor;
+
+    }
+  }
+}
+.subTags {
+  position: relative;
+  margin: -30px 0 50px;
+  border-bottom: 1px solid $blackColor;
+  text-align: center;
+  line-height: 40px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-shrink: 0;
+  .tips {
+    position: absolute;
+    width: 30px;
+    height: 38px;
+    line-height: 38px;
+    top: 0;
+    right: 0;
+    background: #fff;
+    z-index: 2;
+    text-align: right;
+    box-shadow: -10px 0 10px 0 rgba(255, 255, 255, 1);
+    .icon {
+      margin-right: 0;
+    }
+  }
+  .item {
+    cursor: pointer;
+    flex-shrink: 1;
+    width: auto;
+    white-space: nowrap;
+    position: relative;
+    &.active, &:hover {
       color: $darkBlueColor;
+    }
+    &:not(:last-child) {
+      padding-right: 20px;
+      margin-right: 20px;
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 1em;
+        background-color: $lightGreyColor;
+      }
     }
   }
 }
@@ -125,14 +180,12 @@
     }
   }
   .tags {
-    position: absolute;
-    width: 100%;
-    top: 70px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid $lightGreyColor;
-    justify-content: space-between;
-    .interval {
-      margin: 0 auto;
+    font-size: 16px;
+    .item {
+      width: 19.5%;
+      height: 40px;
+      line-height: 40px;
+      position: relative;
     }
   }
 }

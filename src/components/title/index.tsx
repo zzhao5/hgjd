@@ -21,11 +21,13 @@ const Title = ({
 
   return (
     name ?
-    <div className={c(_s.title, className, tags ? _s.hasTags : null, border ? _s.border : null)}>
-      <span className={_s.name}>{name}</span>
-      {more ? <Link className={_s.more} to={more}><IconRight double size={8} /></Link> : null}
+    <>
+      <div className={c(_s.title, className, border ? _s.border : null)}>
+        <span className={_s.name}>{name}</span>
+        {more ? <Link className={_s.more} to={more}><IconRight double size={8} /></Link> : null}
+      </div>
       {tags ? tags : null}
-    </div> : null
+    </> : null
   )
 }
 
