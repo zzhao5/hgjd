@@ -13,7 +13,7 @@ const Image = ({
   border,
   proportion = 75, 
 }: {
-  link: string;
+  link?: string;
   img?: string;
   title?: string;
   text?: string;
@@ -27,14 +27,23 @@ const Image = ({
     <div className={c(_s.image, className)}>
       
       {
-        img ? <Link to={link} className={c(_s.imgLink, border ? _s.imgBorder : null)} style={{paddingTop: `${proportion}%`,}}><img src={img} alt={title} /></Link> :
+        img && link ? <Link to={link} className={c(_s.imgLink, border ? _s.imgBorder : null)} style={{paddingTop: `${proportion}%`,}}><img src={img} alt={title} /></Link> :
+        img ? <span className={c(_s.imgLink, border ? _s.imgBorder : null)} style={{paddingTop: `${proportion}%`,}}><img src={img} alt={title} /></span> :
         video ? <div className={_s.video}><video src={video} preload='preload' controls></video></div> : <div className={_s.placeholder} style={{paddingTop: `${proportion}%`}}></div>
       }
       {
-        title ? <p className={_s.title}><Link to={link}>{title}</Link></p> : null
+        title ? <p className={_s.title}>
+          {
+            link ? <Link to={link}>{title}</Link> : title
+          }
+        </p> : null
       }
       {
-        text && text !== title ? <p><Link to={link}>{text}</Link></p> : null
+        text && text !== title ? <p>
+          {
+            link ? <Link to={link}>{text}</Link> : text
+          }
+        </p> : null
       }
     </div>
   )

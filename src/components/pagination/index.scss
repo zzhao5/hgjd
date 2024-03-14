@@ -6,6 +6,9 @@
   padding-top: 60px;
   align-items: center;
   justify-content: center;
+  a:active, a:hover {
+    outline: none!important;
+  }
 }
 .rc-pagination ul,
 .rc-pagination ol {
@@ -257,7 +260,7 @@
 
 @include xs {
   .rc-pagination {
-    padding-top: 30px;
+    padding-bottom: 20px;
   }
   .rc-pagination-prev,
   .rc-pagination-next,

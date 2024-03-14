@@ -1,7 +1,6 @@
 import _s from './index.module.scss';
 import API from '@/apis';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { Man, Image } from '@/components/cards';
 import Banner from '@/components/banner';
 import Title from '@/components/title';
@@ -67,7 +66,7 @@ const Group = () => {
           <div className={_s.flex_4}>
             {
               institution.map(({id, imgs, titles}) => {
-                return <Image border key={id} className={_s.logo_list} proportion={56} link='javascript:void(0)' img={imgs} text={titles} />
+                return <Image border key={id} className={_s.logo_list} proportion={56} img={imgs} text={titles} />
               })
             }
           </div>

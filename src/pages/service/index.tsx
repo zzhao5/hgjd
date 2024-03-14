@@ -16,7 +16,7 @@ const ServiceList = ({title, content}: {title:string; content?:string;}) => {
   return <>
     <p className={c(_s.title, show ? _s.active : null)} onClick={() => { if (content) setShow((old) => !old)}}>
       <span>{title}</span>
-      <IconRight size={10} turn={show} />
+      {content ? <IconRight size={10} turn={show} /> : null}
     </p>
     {
       content ? <p className={_s.text}>{content}</p> : null
@@ -82,7 +82,7 @@ const Service = ({ menu, mini } : { menu: TAPI.TMenuItem[]; mini: boolean; }) =>
           </div> : null
         }
         {
-          data && (mini && showNav || !mini) ? Object.keys(data).map((item) => {
+          data && ((mini && showNav) || !mini) ? Object.keys(data).map((item) => {
             const {titles, id, urls} = data[item];
             return (
               <NavLink

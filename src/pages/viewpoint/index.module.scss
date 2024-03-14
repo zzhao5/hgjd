@@ -87,10 +87,11 @@
   .tips {
     position: absolute;
     width: 30px;
+    padding-right: 5px;
     height: 38px;
     line-height: 38px;
     top: 0;
-    right: 0;
+    right: -5px;
     background: #fff;
     z-index: 2;
     text-align: right;
@@ -124,7 +125,11 @@
     }
   }
 }
-
+.noData {
+  text-align: center;
+  padding-bottom: 50px;
+  color: $lightGreyColor;
+}
 
 @include xs {
   .nav {
@@ -186,6 +191,17 @@
       height: 40px;
       line-height: 40px;
       position: relative;
+    }
+  }
+}
+
+@include mq($min-width: 0, $max-width: 400px) {
+  .tags {
+    .item {
+      width: 18.5%;
+      &:nth-child(2) {
+        width: 24%;
+      }
     }
   }
 }

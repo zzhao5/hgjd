@@ -17,7 +17,7 @@ const NAME_LIST = {
 };
 
 const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'group';}) => {
-  const { id } = useParams<{ id: string }>();
+  const { id, subTag } = useParams<{ id: string; subTag: string; }>();
   const [data, setData] = useState<TAPI.TNewsItem>();
   const [prev, setPrev] = useState<TAPI.TNewsItem>();
   const [next, setNext] = useState<TAPI.TNewsItem>();
@@ -41,8 +41,8 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'group';}) 
   useEffect(() => {
     if (id) {
       const trueId = id === 'typical' ? 35 : parseInt(id);
-
-      API.getDataInfo({ id: trueId, }).then((res) => {
+      const opt = subTag ? { id: trueId, subTag: parseInt(subTag) } : { id: trueId };
+      API.getDataInfo(opt).then((res) => {
         const next = res.result.nextId;
         const prev = res.result.upId;
         setData(res.result.info);
@@ -51,15 +51,19 @@ const Details = ({ type }: {type: 'news' | 'viewpoint' | 'license' | 'group';}) 
           API.getDataInfo({ id: next, }).then((res) => {
             setNext(res.result.info);
           });
+        } else {
+          setNext(undefined);
         }
         if (prev) {
           API.getDataInfo({ id: prev, }).then((res) => {
             setPrev(res.result.info);
           });
+        } else {
+          setPrev(undefined);
         }
       })
     }
-  }, [id]);
+  }, [id, subTag]);
 
   return (
     <>

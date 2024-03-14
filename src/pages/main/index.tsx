@@ -65,7 +65,7 @@ const Main = ({
     const newIdx = idx >= BANNERS.length ? 0 : idx;
     setCookie('bannerViewIndex', newIdx);
     setBanner(BANNERS[newIdx]);
-  }, []);
+  }, [setCookie]);
 
   return (
     <>

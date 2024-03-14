@@ -261,9 +261,10 @@ const getDataInfo = async (params: TAPI.TGetNewsInfo) => {
   return res.data;
 }
 
-  
-export default {
+const API = {
   getSiteInfo,
   getDataList,
   getDataInfo,
 };
+  
+export default API;

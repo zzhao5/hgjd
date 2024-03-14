@@ -1,42 +1,41 @@
-import c from 'classnames';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import _s from './index.module.scss';
 import API from '@/apis';
 import { Card } from '@/components/cards';
 import Pages from '@/components/pagination';
 import Title from '@/components/title';
 import Banner from '@/components/banner';
-import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 
 const NewsList = () => {
+  const mainRef = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<TAPI.TNewsList>(); // 最新消息
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [curPage, setCurPage] = useState(1);
+
+  const handleSetData = useCallback((page: number) => {
+    API.getDataList({ newsId: 30, pageNo: page, pageSize: 6, }).then((res) => {
+      setData(res.result);
+      if (mainRef.current && searchParams.get('page')) mainRef.current.scrollIntoView({ behavior: 'smooth' });
+    });
+  }, [searchParams, mainRef]);
 
   useEffect(() => {
-    API.getDataList({
-      newsId: 30,
-      pageNo: 1,
-      pageSize: 6,
-    }).then((res) => {
-      setData(res.result);
-    });
-  }, []);
+    const page = Number(searchParams.get('page')) || 1;
+    setCurPage(page);
+    handleSetData(page);
+  }, [searchParams, handleSetData]);
 
   const pageChange = (page: number) => {
-    API.getDataList({
-      newsId: 30,
-      pageNo: page,
-      pageSize: 6,
-    }).then((res) => {
-      setData(res.result);
-      window.scrollTo(0, 0);
-    });
+    setSearchParams({ page: page.toString() });
   };
 
   return (
     <>
       <Banner name='最新消息' />
-      <section className={_s.main}>
+      <section className={_s.main} ref={mainRef}>
         <Title name='最新消息' />
         <div className={_s.flex_2}>
           {
@@ -55,7 +54,7 @@ const NewsList = () => {
           }
         </div>
         {
-          data && data.total > 6 ? <Pages total={data?.total} pageSize={6} onChange={pageChange} /> : null
+          data && data.total > 6 ? <Pages total={data?.total} current={curPage} pageSize={6} onChange={pageChange} /> : null
         }
       </section>
     </>

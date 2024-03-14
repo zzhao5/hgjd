@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import API from './apis';
 import Header from '@/components/header';
@@ -29,17 +29,28 @@ const App = () => {
   // const [phone, setPhone] = useState(false); // 是否为移动端
   const bodyRef = useRef(document.getElementsByTagName('body')[0] as HTMLBodyElement);
 
-  const resetMini = useCallback(() => {
-    if (bodyRef.current && bodyRef.current.clientWidth < 768) {
+  const resetMini = () => {
+    if (bodyRef.current && bodyRef.current.clientWidth <= 820) {
       setMini(true);
     } else {
       setMini(false);
     }
-  }, [bodyRef.current]);
+  };
   /**
    * 监听当前视口大小
    */
   useEffect(() => {
+    API.getSiteInfo().then((res) => {
+      const { result, code } = res;
+      if (code === 200) {
+        const { menuList, siteInfo, zjList, messageList, } = result;
+        setMenu(menuList);
+        setSiteInfo(siteInfo);
+        setLicense(zjList);
+        setNews(messageList);
+      }
+    });
+
     const throttle = (fn = Function.prototype, delay = 20) => {
       let lastTime = Date.now();
       return (...args: any) => {
@@ -69,24 +80,11 @@ const App = () => {
       window.removeEventListener('resize', resizeFn);
     };
   }, []);
-
-  useEffect(() => {
-    API.getSiteInfo().then((res) => {
-      const { result, code } = res;
-      if (code === 200) {
-        const { menuList, siteInfo, zjList, messageList, } = result;
-        setMenu(menuList);
-        setSiteInfo(siteInfo);
-        setLicense(zjList);
-        setNews(messageList);
-      }
-    });
-  }, []);
   
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={`${ROUTER_PATH}/:name?/:type?/`}  element={<Header menu={menu} mini={mini} />} />
+        <Route path={`${ROUTER_PATH}/:name?/:type?/:subTag?/`}  element={<Header menu={menu} mini={mini} />} />
       </Routes>
       <Routes>
         <Route path={`${ROUTER_PATH}/`} index element={<Main license={license} news={news} menu={menu} />} />
@@ -95,7 +93,7 @@ const App = () => {
         <Route path={`${ROUTER_PATH}/viewpoint/`} element={<ViewPoint />} />
         <Route path={`${ROUTER_PATH}/viewpoint/science/`} element={<ViewList mini={mini} />} />
         <Route path={`${ROUTER_PATH}/viewpoint/case/`} element={<Case />} />
-        <Route path={`${ROUTER_PATH}/viewpoint/:id/`} element={<Details type='viewpoint' />} />
+        <Route path={`${ROUTER_PATH}/viewpoint/:id/:subTag?/`} element={<Details type='viewpoint' />} />
         <Route path={`${ROUTER_PATH}/group/`} element={<Group />} />
         <Route path={`${ROUTER_PATH}/group/team/`} element={<GroupTeam />} />
         <Route path={`${ROUTER_PATH}/group/institution/`} element={<GroupInstitution />} />

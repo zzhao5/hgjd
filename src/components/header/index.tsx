@@ -29,13 +29,13 @@ const NavItem = ({ titles, mlist, urls, mini, id, setNav, hideNav, active }: { m
     if (!mini && mlist && mlist.length > 0) {
       setNav({titles, id, mlist});
     }
-  }, [titles, id, mlist, mini]);
+  }, [titles, id, mlist, mini, setNav]);
 
   const handleLeave = useCallback(() => {
     if (!mini && mlist && mlist.length > 0) {
       hideNav();
     }
-  }, [mini, mlist]);
+  }, [mini, mlist, hideNav]);
 
   const handleClick = useCallback(() => {
     if (mini && mlist && mlist.length > 0) {
@@ -47,7 +47,7 @@ const NavItem = ({ titles, mlist, urls, mini, id, setNav, hideNav, active }: { m
         setNav(undefined);
       }
     }
-  }, [mini, mlist, hasClick]);
+  }, [mini, mlist, hasClick, setNav, titles, id]);
 
   return (
     <>
@@ -83,19 +83,19 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
   const timeRef = useRef<NodeJS.Timeout>();
   const resetRef = useRef<NodeJS.Timeout>();
 
-  const stopHideSubNav = useCallback(() => {
+  const stopHideSubNav = () => {
     clearTimeout(timeRef.current);
     clearTimeout(resetRef.current);
-  }, [timeRef.current, resetRef.current]);
+  };
 
-  const showSubNav = useCallback((t:TAPI.TMenuItem) => {
+  const showSubNav = (t:TAPI.TMenuItem) => {
     clearTimeout(timeRef.current);
     clearTimeout(resetRef.current);
     setShowNav(true);
     setSubNav(t);
-  }, [timeRef.current, resetRef.current]);
+  };
 
-  const hideSubNav = useCallback(() => {
+  const hideSubNav = () => {
     timeRef.current = setTimeout(() => {
       setShowNav(false);
       setSubNav((t) => {
@@ -106,7 +106,7 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
     resetRef.current = setTimeout(() => {
       setSubNav(undefined);
     }, 300);
-  }, [timeRef.current, resetRef.current]);
+  };
 
   useEffect(() => {
     setShowNav(!mini);
@@ -114,7 +114,11 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
   
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [params.name]);
+  }, [params.name, params.type]);
+
+  useEffect(() => {
+    if (mini) document.getElementsByTagName('html')[0].style.overflow = showNav ? 'hidden' : 'auto';
+  }, [showNav, mini]);
 
 
   return (

@@ -7,33 +7,29 @@ import 'swiper/css';
 const TAG_LIST = ['全部', '商业秘密', '专利', '著作权', '其他'];
 const SUB_TAG_LIST = ['全部', '非公知性', '同一性', '质证审查', '证据', '案例分析', '诉讼相关', '载体', '其他'];
 
-const Tag = ({click, mini} : {click: Function; mini: boolean;}) => {
-  const [active, setActive] = useState(0);
-  const [subActive, setSubActive] = useState(0);
+const Tag = ({click, mini, current, subCurrent} : {click: Function; mini: boolean; current: number; subCurrent: number;}) => {
   const [hasSwiper, setHasSwiper] = useState(false);
 
   const handleClick = useCallback((index: number) => () => {
-    setActive(index);
-    click(index === 0 ? '' : index, 0);
-  }, []);
+    click(index, index === 1 ? subCurrent : '');
+  }, [click]);
 
   const hadndelSubClick = useCallback((index: number) => () => {
-    setSubActive(index);
-    click(active, index === 0 ? '' : 10 + index);
-  }, [active]);
+    click(current, current === 1 ? 10 + index : '');
+  }, [click]);
 
   return (
     <>
       <div className={_s.tags}>
         {
           TAG_LIST.map((item, index) => {
-            return <span key={index} className={c(_s.item, active === index ? _s.active : null )} onClick={handleClick(index)}>{item}</span>
+            return <span key={index} className={c(_s.item, current === index ? _s.active : null )} onClick={handleClick(index)}>{item}</span>
           })
         }
       </div>
       
       {
-        active === 1 ?
+        current === 1 ?
           <Swiper
             slidesPerView={'auto'}
             centeredSlidesBounds={true}
@@ -47,7 +43,7 @@ const Tag = ({click, mini} : {click: Function; mini: boolean;}) => {
           >
             {
               SUB_TAG_LIST.map((item, index) => {
-                return <SwiperSlide key={index} className={c(_s.item, subActive === index ? _s.active : null )} onClick={hadndelSubClick(index)}>{item}</SwiperSlide>
+                return <SwiperSlide key={index} className={c(_s.item, subCurrent === 10 + index ? _s.active : null )} onClick={hadndelSubClick(index)}>{item}</SwiperSlide>
               })
             }
             {

@@ -7,7 +7,7 @@
   width: 100%;
   position: fixed;
   top: 0;
-  z-index: 9;
+  z-index: 999;
 }
 .nav {
   position: relative;
@@ -27,7 +27,7 @@
     align-self: center;
     img {
       width: 100%;
-      aspect-ratio: 104 / 25;
+      aspect-ratio: 329 / 75;
     }
   }
   .list {
@@ -200,16 +200,16 @@
       }
     }
     .list {
-      position: absolute;
+      position: fixed;
       display: block;
-      width: 100vw;
-      height: 100vh;
       overflow-y: auto;
       padding-top: 60px;
       box-sizing: border-box;
       background-color: $darkBlueColor;
       left: 0;
       top: 0;
+      right: 0;
+      bottom: 0;
       color: $whiteColor;
       font-size: 24px;
       transition: all 0.3s ease-in-out;

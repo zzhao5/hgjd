@@ -56,7 +56,6 @@
       }
     }
     p {
-      text-indent: 2em;
       margin-bottom: 15px;
     }
   }
@@ -92,6 +91,9 @@
       }
     }
     .more {
+      div:empty {
+        display: none;
+      }
       .prev, .next {
         display: none;
       }

@@ -1,4 +1,3 @@
-import c from 'classnames';
 import Pagination from 'rc-pagination';
 import './index.scss';
 
