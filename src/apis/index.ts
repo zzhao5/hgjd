@@ -1,6 +1,19 @@
 import axios from 'axios';
 
 const baseURL = process.env.REACT_APP_BASE_URL;
+
+const stringifyJSON = (obj: {[key: string]: any}): any => {
+    if (typeof obj !== 'object' || obj === null) {
+        return obj;
+    } else if (Array.isArray(obj)) {
+        return obj.map(stringifyJSON);
+    } else {
+        return Object.keys(obj).reduce(function(acc: {[key: string]: object}, key: string) {
+            acc[key] = stringifyJSON(obj[key]);
+            return acc;
+        }, Array.isArray(obj) ? [] : {});
+    }
+}
 /**
  * 获取网站信息
  */
@@ -253,8 +266,21 @@ const getSiteInfo = async () => {
 
 const getDataList = async (params: TAPI.TGetNewsList) => {
   const res = await axios.get(`${baseURL}hanguang-community/site/index/newsList`, { params });
+  sessionStorage.setItem(JSON.stringify(params), JSON.stringify(res.data));
   return res.data;
 }
+
+// 加入缓存的 getDataList，如果有缓存则直接使用缓存，否则请求数据
+const getList = (opt: TAPI.TGetNewsList, setData: Function) => {
+    const sessionData = sessionStorage.getItem(JSON.stringify(opt));
+    if (sessionData) {
+      setData(JSON.parse(sessionData).result);
+    } else {
+      getDataList(opt).then((res) => {
+        setData(res.result);
+      });
+    }
+  }
 
 const getDataInfo = async (params: TAPI.TGetNewsInfo) => {
   const res = await axios.get(`${baseURL}hanguang-community/site/index/queryNewsById`, { params });
@@ -264,6 +290,7 @@ const getDataInfo = async (params: TAPI.TGetNewsInfo) => {
 const API = {
   getSiteInfo,
   getDataList,
+  getList,
   getDataInfo,
 };
   

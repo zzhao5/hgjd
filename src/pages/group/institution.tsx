@@ -6,7 +6,7 @@ import { Image } from '@/components/cards';
 import Banner from '@/components/banner';
 import Title from '@/components/title';
 import Pages from '@/components/pagination';
-import Wrap from '@/components/wrap';
+import ScrollView from '@/components/scrollview';
 
 
 const GroupInstitution = () => {
@@ -15,9 +15,8 @@ const GroupInstitution = () => {
   const [curPage, setCurPage] = useState(1);
 
   const handleSetData = useCallback((page: number) => {
-    API.getDataList({ newsId: 29, pageNo: page, pageSize: 16, }).then((res) => {
-      setData(res.result);
-    });
+    const opt = { newsId: 29, pageNo: page, pageSize: 16, };
+    API.getList(opt, setData);
   }, [searchParams]);
 
   useEffect(() => {
@@ -31,7 +30,7 @@ const GroupInstitution = () => {
   };
 
   return (
-    <Wrap>
+    <ScrollView>
       <Title name='合作机构' border/>
       <div className={_s.flex_4}>
         {
@@ -43,7 +42,7 @@ const GroupInstitution = () => {
       {
         data && data.total > 16 ? <Pages current={curPage} total={data.total} pageSize={12} onChange={pageChange} /> : null
       }
-    </Wrap>
+    </ScrollView>
   )
 }
 

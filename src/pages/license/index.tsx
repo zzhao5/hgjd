@@ -6,7 +6,7 @@ import { Image } from '@/components/cards';
 import Pages from '@/components/pagination';
 import Title from '@/components/title';
 import Banner from '@/components/banner';
-import Wrap from '@/components/wrap';
+import ScrollView from '@/components/scrollview';
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 
@@ -17,9 +17,8 @@ const Licenses = () => {
   
 
   const handleSetData = useCallback((page: number) => {
-    API.getDataList({ newsId: 31, pageNo: page, pageSize: 8, }).then((res) => {
-      setData(res.result);
-    });
+    const opt = { newsId: 31, pageNo: page, pageSize: 8, };
+    API.getList(opt, setData);
   },[searchParams]);
 
   useEffect(() => {
@@ -33,7 +32,7 @@ const Licenses = () => {
   };
 
   return (
-    <Wrap>
+    <ScrollView>
       <Title name='资质证明' />
       <div className={_s.flex_2}>
         {
@@ -55,7 +54,7 @@ const Licenses = () => {
         data && data.total > 8 ? <Pages current={curPage} onChange={pageChange} total={data?.total} pageSize={8} /> : null
       
       }
-    </Wrap>
+    </ScrollView>
   )
 }
 

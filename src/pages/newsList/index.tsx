@@ -5,7 +5,7 @@ import { Card } from '@/components/cards';
 import Pages from '@/components/pagination';
 import Title from '@/components/title';
 import Banner from '@/components/banner';
-import Wrap from '@/components/wrap';
+import ScrollView from '@/components/scrollview';
 import { useSearchParams } from 'react-router-dom';
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
@@ -16,9 +16,8 @@ const NewsList = () => {
   const [curPage, setCurPage] = useState(1);
 
   const handleSetData = useCallback((page: number) => {
-    API.getDataList({ newsId: 30, pageNo: page, pageSize: 6, }).then((res) => {
-      setData(res.result);
-    });
+    const opt = { newsId: 30, pageNo: page, pageSize: 6, };
+    API.getList(opt, setData);
   }, [searchParams]);
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const NewsList = () => {
   };
 
   return (
-    <Wrap>
+    <ScrollView>
       <Title name='最新消息' />
       <div className={_s.flex_2}>
         {
@@ -53,7 +52,7 @@ const NewsList = () => {
       {
         data && data.total > 6 ? <Pages total={data?.total} current={curPage} pageSize={6} onChange={pageChange} /> : null
       }
-    </Wrap>
+    </ScrollView>
   )
 }
 

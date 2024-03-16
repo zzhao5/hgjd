@@ -1,10 +1,10 @@
 import { useEffect, useCallback, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigationType } from 'react-router-dom';
 import API from '@/apis';
 import Title from '@/components/title';
 import { Text } from '@/components/cards';
 import Pages from '@/components/pagination';
-import Wrap from '@/components/wrap';
+import ScrollView from '@/components/scrollview';
 import _s from './index.module.scss';
 import Tag from './tag';
 
@@ -18,9 +18,8 @@ const ViewList = ({mini} : {mini: boolean;}) => {
   const [curPage, setCurPage] = useState(1);
 
   const handleSetData = useCallback((page: number, tag: number, subTag: number) => {
-    API.getDataList({ newsId: 26, pageNo: page, pageSize: 10, tags: tag === 0 ? '' : tag, subTag: subTag === 10 ? '' : subTag }).then((res) => {
-      setData(res.result);
-    });
+    const opt = { newsId: 26, pageNo: page, pageSize: 10, tags: tag === 0 ? '' : tag, subTag: subTag === 10 ? '' : subTag };
+    API.getList(opt, setData);
   }, [searchParams]);
 
   useEffect(() => {
@@ -45,7 +44,7 @@ const ViewList = ({mini} : {mini: boolean;}) => {
   };
 
   return (
-    <Wrap>
+    <ScrollView>
       <Title name={'学术研讨'} tags={
         <Tag
           click={handleClick}
@@ -70,7 +69,7 @@ const ViewList = ({mini} : {mini: boolean;}) => {
       {
         data && data.total > 10 ? <Pages current={curPage} total={data?.total} pageSize={10} onChange={pageChange} /> : null
       }
-    </Wrap>
+    </ScrollView>
   )
 }
 

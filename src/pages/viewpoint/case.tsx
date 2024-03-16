@@ -4,7 +4,7 @@ import API from '@/apis';
 import Title from '@/components/title';
 import { Image } from '@/components/cards';
 import Pages from '@/components/pagination';
-import Wrap from '@/components/wrap';
+import ScrollView from '@/components/scrollview';
 import _s from './index.module.scss';
 
 
@@ -15,9 +15,8 @@ const ViewCase = () => {
   const [curPage, setCurPage] = useState(1);
 
   const handleSetData = useCallback((page: number) => {
-    API.getDataList({ newsId: 26, pageNo: page, pageSize: 6, }).then((res) => {
-      setData(res.result);
-    });
+    const opt = { newsId: 26, pageNo: page, pageSize: 6, };
+    API.getList(opt, setData);
   }, [searchParams]);
 
   useEffect(() => {
@@ -31,7 +30,7 @@ const ViewCase = () => {
   };
 
   return (
-    <Wrap>
+    <ScrollView>
       <Title name={'视频案例'} border />
       <div className={_s.flex_2}>
         { data ? 
@@ -50,7 +49,7 @@ const ViewCase = () => {
       {
         data && data.total > 6 ? <Pages total={data?.total} current={curPage} pageSize={6} onChange={pageChange} /> : null
       }
-    </Wrap>
+    </ScrollView>
   )
 }
 
