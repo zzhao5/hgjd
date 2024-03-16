@@ -110,11 +110,8 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
 
   useEffect(() => {
     setShowNav(!mini);
-  }, [params.name, params.type, mini]);
-  
-  useEffect(() => {
     window.scrollTo(0, 0);
-  }, [params.name, params.type]);
+  }, [params.name, params.type, mini]);
 
   useEffect(() => {
     if (mini) document.getElementsByTagName('html')[0].style.overflow = showNav ? 'hidden' : 'auto';

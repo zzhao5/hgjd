@@ -27,7 +27,6 @@ const ViewPoint = () => {
 
   return (
     <>
-      <Banner name='观点和经验' />
       <section className={_s.main}>
         <Title name={'视频案例'} more={data && data.total > 2 ? `${ROUTER_PATH}/viewpoint/case/` : undefined} />
         <div className={_s.flex_2}>

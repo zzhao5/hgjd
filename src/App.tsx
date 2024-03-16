@@ -16,6 +16,10 @@ import GroupTeam from '@/pages/group/team';
 import GroupInstitution from '@/pages/group/institution';
 import Contact from '@/pages/contact';
 import Licenses from '@/pages/license';
+import ViewPointWrap from '@/pages/viewpoint/wrap';
+import GroupWrap from '@/pages/group/wrap';
+import NewsWrap from '@/pages/newsList/wrap';
+import LicensesWrap from '@/pages/license/wrap';
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 
@@ -90,20 +94,29 @@ const App = () => {
         <Route path={`${ROUTER_PATH}/`} index element={<Main license={license} news={news} menu={menu} />} />
         <Route path={`${ROUTER_PATH}/about/`} element={<About />} />
         <Route path={`${ROUTER_PATH}/service/:type?/`} element={<Service menu={menu} mini={mini} />} />
-        <Route path={`${ROUTER_PATH}/viewpoint/`} element={<ViewPoint />} />
-        <Route path={`${ROUTER_PATH}/viewpoint/science/`} element={<ViewList mini={mini} />} />
-        <Route path={`${ROUTER_PATH}/viewpoint/case/`} element={<Case />} />
-        <Route path={`${ROUTER_PATH}/viewpoint/:id/:subTag?/`} element={<Details type='viewpoint' />} />
-        <Route path={`${ROUTER_PATH}/group/`} element={<Group />} />
-        <Route path={`${ROUTER_PATH}/group/team/`} element={<GroupTeam />} />
-        <Route path={`${ROUTER_PATH}/group/institution/`} element={<GroupInstitution />} />
-        <Route path={`${ROUTER_PATH}/group/:id/`} element={<Details type='group' />} />
+        <Route path={`${ROUTER_PATH}/viewpoint/`} element={<ViewPointWrap />}>
+          <Route index element={<ViewPoint />} />
+          <Route path={`${ROUTER_PATH}/viewpoint/science/`} element={<ViewList mini={mini} />} />
+          <Route path={`${ROUTER_PATH}/viewpoint/case/`} element={<Case />} />
+          <Route path={`${ROUTER_PATH}/viewpoint/:id/:subTag?/`} element={<Details />} />
+        </Route>
+
+        <Route path={`${ROUTER_PATH}/group/`} element={<GroupWrap />}>
+          <Route index element={<Group />} />
+          <Route path={'team/'} element={<GroupTeam />} />
+          <Route path={'institution/'} element={<GroupInstitution />} />
+          <Route path={':id/'} element={<Details group />} />
+        </Route>
         <Route path={`${ROUTER_PATH}/contact/`} element={<Contact />} />
 
-        <Route path={`${ROUTER_PATH}/news/`} element={<NewsList />} />
-        <Route path={`${ROUTER_PATH}/news/:id/`} element={<Details type='news' />} />
-        <Route path={`${ROUTER_PATH}/license/`} element={<Licenses />} />
-        <Route path={`${ROUTER_PATH}/license/:id/`} element={<Details type='license' />} />
+        <Route path={`${ROUTER_PATH}/news/`} element={<NewsWrap />}>
+          <Route index element={<NewsList />} />
+          <Route path={':id/'} element={<Details />} />
+        </Route>
+        <Route path={`${ROUTER_PATH}/license/`} element={<LicensesWrap />}>
+          <Route index element={<Licenses />} />
+          <Route path={':id/'} element={<Details />} />
+        </Route>
       </Routes>
       <Footer menu={menu} data={siteInfo} />
     </BrowserRouter>
