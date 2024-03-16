@@ -21,10 +21,13 @@ const Card = ({
   mini?: boolean;
   tips?: string;
 }) => {
+  const handleClick = () => {
+    if (!mini) sessionStorage.setItem('scroll', window.scrollY.toString());
+  }
 
   return (
     <div className={c(_s.card, className, (mini ? _s.mini : null))}>
-      <Link to={link}>
+      <Link onClick={handleClick} to={link}>
         <div className={_s.content} data-tips={tips}>
           { type ? <p className={_s.type}>{type}</p> : null}
           <div className={_s.title}>{text}</div>

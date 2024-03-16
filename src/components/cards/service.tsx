@@ -15,10 +15,13 @@ const Service = ({
   text: TAPI.TNewsItem[];
   className?: string;
 }) => {
+  const handleClick = () => {
+    sessionStorage.setItem('scroll', window.scrollY.toString());
+  }
 
   return (
     <div className={c(_s.service, className)}>
-      <Link to={link} className={_s.content}>
+      <Link onClick={handleClick} to={link} className={_s.content}>
         <div>
           <p className={_s.type}>{type}</p>
           {
