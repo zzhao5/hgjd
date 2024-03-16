@@ -4,7 +4,6 @@ import _s from './index.module.scss';
 import API from '@/apis';
 import Title from '@/components/title';
 import { Card, Image, Text, Service } from '@/components/cards';
-import { useCookies } from 'react-cookie';
 import pic from './images/pic_best.jpeg';
 import banner1 from './images/pic_banner1.jpg';
 import banner2 from './images/pic_banner2.jpg';
@@ -21,7 +20,6 @@ const Main = ({
   news: TAPI.TNewsItem[];
   menu: TAPI.TMenuItem[];
 }) => {
-  const [cookies, setCookie] = useCookies(['bannerViewIndex']);
   const [banner, setBanner] = useState<string>(BANNERS[0]);
   const [data, setData] = useState<TAPI.TNewsItem[]>();
   const [service, setService] = useState<TAPI.TServiceData>();
@@ -61,11 +59,11 @@ const Main = ({
   }, [subMenuList]);
 
   useEffect(() => {
-    const idx = cookies.bannerViewIndex === undefined ? 0 : (parseInt(cookies.bannerViewIndex) + 1);
-    const newIdx = idx >= BANNERS.length ? 0 : idx;
-    setCookie('bannerViewIndex', newIdx);
-    setBanner(BANNERS[newIdx]);
-  }, [setCookie]);
+    const localIdx = localStorage.getItem('bannerViewIndex');
+    const idx = localIdx ? ((Number(localIdx) + 1) % BANNERS.length) : 0;
+    localStorage.setItem('bannerViewIndex', idx.toString());
+    setBanner(BANNERS[idx]);
+  }, []);
 
   return (
     <>

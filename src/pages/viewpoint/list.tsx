@@ -1,5 +1,5 @@
-import { useEffect, useCallback, useState } from 'react';
-import { useSearchParams, useNavigationType } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import API from '@/apis';
 import Title from '@/components/title';
 import { Text } from '@/components/cards';
@@ -17,11 +17,6 @@ const ViewList = ({mini} : {mini: boolean;}) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [curPage, setCurPage] = useState(1);
 
-  const handleSetData = useCallback((page: number, tag: number, subTag: number) => {
-    const opt = { newsId: 26, pageNo: page, pageSize: 10, tags: tag === 0 ? '' : tag, subTag: subTag === 10 ? '' : subTag };
-    API.getList(opt, setData);
-  }, [searchParams]);
-
   useEffect(() => {
     const page = Number(searchParams.get('page')) || 1;
     const tag = Number(searchParams.get('tag')) || 0;
@@ -29,7 +24,7 @@ const ViewList = ({mini} : {mini: boolean;}) => {
     setCurPage(page);
     setTag(tag);
     setSubTag(subTag);
-    handleSetData(page, tag, subTag);
+    API.getList({ newsId: 26, pageNo: page, pageSize: 10, tags: tag === 0 ? '' : tag, subTag: subTag === 10 ? '' : subTag }, setData);
   }, [searchParams]);
 
 

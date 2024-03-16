@@ -1,9 +1,8 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import _s from './index.module.scss';
 import API from '@/apis';
 import { Image } from '@/components/cards';
-import Banner from '@/components/banner';
 import Title from '@/components/title';
 import Pages from '@/components/pagination';
 import ScrollView from '@/components/scrollview';
@@ -14,16 +13,12 @@ const GroupInstitution = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [curPage, setCurPage] = useState(1);
 
-  const handleSetData = useCallback((page: number) => {
-    const opt = { newsId: 29, pageNo: page, pageSize: 16, };
-    API.getList(opt, setData);
-  }, [searchParams]);
 
   useEffect(() => {
     const page = Number(searchParams.get('page')) || 1;
     setCurPage(page);
-    handleSetData(page);
-  }, [searchParams, handleSetData]);
+    API.getList({ newsId: 29, pageNo: page, pageSize: 16, }, setData);
+  }, [searchParams]);
 
   const pageChange = (page: number) => {
     setSearchParams({ page: page.toString() });

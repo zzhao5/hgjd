@@ -1,10 +1,9 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import _s from './index.module.scss';
 import API from '@/apis';
 import { Card } from '@/components/cards';
 import Pages from '@/components/pagination';
 import Title from '@/components/title';
-import Banner from '@/components/banner';
 import ScrollView from '@/components/scrollview';
 import { useSearchParams } from 'react-router-dom';
 
@@ -15,16 +14,12 @@ const NewsList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [curPage, setCurPage] = useState(1);
 
-  const handleSetData = useCallback((page: number) => {
-    const opt = { newsId: 30, pageNo: page, pageSize: 6, };
-    API.getList(opt, setData);
-  }, [searchParams]);
-
   useEffect(() => {
     const page = Number(searchParams.get('page')) || 1;
     setCurPage(page);
-    handleSetData(page);
-  }, [searchParams, handleSetData]);
+    API.getList({ newsId: 30, pageNo: page, pageSize: 6, }, setData);
+
+  }, [searchParams]);
 
   const pageChange = (page: number) => {
     setSearchParams({ page: page.toString() });

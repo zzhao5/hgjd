@@ -12,11 +12,11 @@ const Tag = ({click, mini, current, subCurrent} : {click: Function; mini: boolea
 
   const handleClick = useCallback((index: number) => () => {
     click(index, index === 1 ? subCurrent : '');
-  }, [click]);
+  }, [click, subCurrent]);
 
   const hadndelSubClick = useCallback((index: number) => () => {
     click(current, current === 1 ? 10 + index : '');
-  }, [click]);
+  }, [click, current]);
 
   return (
     <>

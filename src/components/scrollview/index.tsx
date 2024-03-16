@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useSearchParams, useNavigationType, useBlocker } from 'react-router-dom';
+import { useSearchParams, useNavigationType } from 'react-router-dom';
 import _s from './index.module.scss';
 
 const ScrollView = ({children}: {children: any; }) => {

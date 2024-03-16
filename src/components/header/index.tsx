@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Link, NavLink, useParams, useNavigationType, useLocation } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import _s from './index.module.scss';
 import c from 'classnames';
 import logo from './images/logo.png'

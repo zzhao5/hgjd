@@ -2,18 +2,6 @@ import axios from 'axios';
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 
-const stringifyJSON = (obj: {[key: string]: any}): any => {
-    if (typeof obj !== 'object' || obj === null) {
-        return obj;
-    } else if (Array.isArray(obj)) {
-        return obj.map(stringifyJSON);
-    } else {
-        return Object.keys(obj).reduce(function(acc: {[key: string]: object}, key: string) {
-            acc[key] = stringifyJSON(obj[key]);
-            return acc;
-        }, Array.isArray(obj) ? [] : {});
-    }
-}
 /**
  * 获取网站信息
  */

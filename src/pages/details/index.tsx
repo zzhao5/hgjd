@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import _s from './index.module.scss';
 import API from '@/apis';
 import { Card, Man } from '@/components/cards';
-import Banner from '@/components/banner';
 import Title from '@/components/title';
 
 

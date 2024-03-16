@@ -1,7 +1,6 @@
 import _s from './index.module.scss';
 import API from '@/apis';
 import { useEffect, useState } from 'react';
-import Banner from '@/components/banner';
 import Title from '@/components/title';
 import { Image, Text } from '@/components/cards';
 
