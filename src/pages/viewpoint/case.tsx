@@ -17,7 +17,7 @@ const ViewCase = () => {
   useEffect(() => {
     const page = Number(searchParams.get('page')) || 1;
     setCurPage(page);
-    API.getList({ newsId: 26, pageNo: page, pageSize: 6, }, setData);
+    API.getList({ newsId: 25, pageNo: page, pageSize: 6, }, setData);
     
   }, [searchParams]);
 
