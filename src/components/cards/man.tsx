@@ -1,6 +1,22 @@
+import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import _s from './index.module.scss';
 import c from 'classnames';
+
+
+const ManLink = ({
+  link,
+  children,
+  handleClick,
+  className,
+}: {
+  link?: string;
+  handleClick: () => void;
+  children: ReactElement;
+  className?: string;
+}) => {
+  return link ? <Link className={className} onClick={handleClick} to={link}>{children}</Link> : <div className={className}>{children}</div>;
+}
 
 
 const Man = ({
@@ -23,17 +39,13 @@ const Man = ({
   }
 
   return (
-    <div className={c(_s.man, className)}>
-      <div className={_s.info}>
-        <div className={_s.name}>
-          {
-            link ? <p><Link onClick={handleClick} to={link}>{name}</Link></p> : <p>{name}</p>
-          }
-          { title ? <p className={_s.title}>业务领域：{title}</p> : null}
-        </div>
-        <p>{text}</p>
+    <ManLink className={c(_s.man, className ? _s[className] : null)} link={link} handleClick={handleClick}>
+      <div>
+        <div className={_s.name}>{name}</div>
+        { title ? <p className={_s.title}>业务领域：{title}</p> : null }
+        <p className={_s.message}>{text}</p>
       </div>
-    </div>
+    </ManLink>
   )
 }
 

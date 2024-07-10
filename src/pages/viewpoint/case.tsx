@@ -27,17 +27,18 @@ const ViewCase = () => {
 
   return (
     <ScrollView>
-      <Title name={'视频案例'} border />
+      <Title name={'视频案例'} />
       <div className={_s.flex_2}>
         { data ? 
           data.records.map(({id, titles, imgs, describes}) => {
             return <Image
               key={id}
               img={imgs}
-              proportion={56}
+              proportion={57}
               link={`${ROUTER_PATH}/viewpoint/${id}/`}
               title={titles}
               text={describes}
+              className={'doublePd'}
             />
           }) : null
         }

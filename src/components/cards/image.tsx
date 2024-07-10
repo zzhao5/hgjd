@@ -1,7 +1,21 @@
+import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import _s from './index.module.scss';
 import c from 'classnames';
 
+const ImageLink = ({
+  link,
+  children,
+  handleClick,
+  className,
+}: {
+  link?: string;
+  handleClick: () => void;
+  children: ReactElement;
+  className?: string;
+}) => {
+  return link ? <Link className={className} onClick={handleClick} to={link}>{children}</Link> : <div className={className}>{children}</div>;
+}
 
 const Image = ({
   link,
@@ -18,37 +32,31 @@ const Image = ({
   title?: string;
   text?: string;
   video?: string;
-  className?: string;
+  className?: 'grayBg' | 'doublePd' | 'imgBorder';
   border?: boolean;
   proportion?: number; // 宽高比，默认 75%
 }) => {
   const handleClick = () => {
     sessionStorage.setItem('scroll', window.scrollY.toString());
   }
-
   return (
-    <div className={c(_s.image, className)}>
-      
-      {
-        img && link ? <Link onClick={handleClick} to={link} className={c(_s.imgLink, border ? _s.imgBorder : null)} style={{paddingTop: `${proportion}%`,}}><img src={img} alt={title} /></Link> :
-        img ? <span className={c(_s.imgLink, border ? _s.imgBorder : null)} style={{paddingTop: `${proportion}%`,}}><img src={img} alt={title} /></span> :
-        video ? <div className={_s.video}><video src={video} preload='preload' controls></video></div> : <div className={_s.placeholder} style={{paddingTop: `${proportion}%`}}></div>
-      }
-      {
-        title ? <p className={_s.title}>
-          {
-            link ? <Link onClick={handleClick} to={link}>{title}</Link> : title
-          }
-        </p> : null
-      }
-      {
-        text && text !== title ? <p>
-          {
-            link ? <Link onClick={handleClick} to={link}>{text}</Link> : text
-          }
-        </p> : null
-      }
-    </div>
+    <ImageLink className={c(_s.image, className ? _s[className] : null)} handleClick={handleClick} link={link}>
+      <div>
+        {
+          img ? <span className={c(_s.imgLink)} style={proportion ? {paddingTop: `${proportion}%`,} : {}}><img src={img} alt={title} /></span> :
+          video ? <div className={_s.video}><video src={video} preload='preload' controls></video></div> :
+          <div className={_s.placeholder} style={proportion ? {paddingTop: `${proportion}%`} : {}}></div>
+        }
+        {
+          title ? <p className={_s.title}>
+            { title }
+          </p> : null
+        }
+        {
+          text && text !== title ? <p>{ text }</p> : null
+        }
+      </div>
+    </ImageLink>
   )
 }
 

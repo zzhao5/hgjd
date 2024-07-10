@@ -30,7 +30,7 @@ const GroupInstitution = () => {
       <div className={_s.flex_4}>
         {
           data?.records.map(({id, imgs, titles}) => {
-            return <Image key={id} border img={imgs} text={titles} proportion={56} />
+            return <Image key={id} className={'imgBorder'} proportion={40} img={imgs} text={titles} />
           })
         }
       </div>

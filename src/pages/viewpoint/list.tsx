@@ -10,7 +10,7 @@ import Tag from './tag';
 
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
-const ViewList = ({mini} : {mini: boolean;}) => {
+const ViewList = () => {
   const [data, setData] = useState<TAPI.TNewsList>();
   const [tag, setTag] = useState<number>(0);
   const [subTag, setSubTag] = useState<number>(10);
@@ -43,7 +43,6 @@ const ViewList = ({mini} : {mini: boolean;}) => {
       <Title name={'学术研讨'} tags={
         <Tag
           click={handleClick}
-          mini={mini} 
           current={tag}
           subCurrent={subTag}
         />

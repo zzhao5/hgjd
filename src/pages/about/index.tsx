@@ -1,9 +1,9 @@
 import c from 'classnames';
 import _s from './index.module.scss';
 import Banner from '@/components/banner';
-import pic1 from './images/pic_1.jpeg';
-import pic2 from './images/pic_2.jpeg';
-import pic3 from './images/pic_3.jpeg';
+import pic1 from './images/pic_1.jpg';
+import pic2 from './images/pic_2.jpg';
+import pic3 from './images/pic_3.jpg';
 
 const Text = ({ year, text }: { year?: string; text: string; }) => {
   return (

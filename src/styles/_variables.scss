@@ -1,17 +1,25 @@
-$darkBlueColor: #306286;
-$lightBlueColor: #E8F1F7;
+$darkBlueColor: #688CA8;
+$lightBlueColor: #E8F1F7; // 不能改
+
+$blackBlueColor: #306286;
 $middleBlueColor: #D8E3EB;
-$blueColor: #a7d2f0;
+$blueColor: #afc4d4;
+
+
 
 $greyColor: #5F5F5F;
-$darkGreyColor: #363636;
+$darkGreyColor: #333;
+$middleGreyColor: #979797;
 $lightGreyColor: #b3b3b3;
+
+$borderGreyColor: #e8e8e8;
+$bgGreyColor: #f8f8f8;
 
 $whiteColor: #ffffff;
 $darkWhiteColor: #FAFAFA;
 $blackColor: #000;
 $lightBlackColor: #2a2a2a;
 
-@function po($width) {
-  @return calc($width / 750) * 100%;
+@function po($width, $base: 750) {
+  @return calc($width / $base) * 100%;
 }

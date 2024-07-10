@@ -7,21 +7,36 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src:local('NotoSansSC'), url(./styles/font/NotoSansSC-Thin.otf) format('opentype');
+  src:local('NotoSansSC'), 
+    url(./styles/font/NotoSansSC-Thin.ttf) format('truetype'),
+    url(./styles/font/NotoSansSC-Thin.otf) format('opentype');
 }
 @font-face {
   font-family: 'NotoSansSC';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src:local('NotoSansSC'), url(./styles/font/NotoSansSC-Regular.otf) format('opentype');
+  src:local('NotoSansSC'), 
+    url(./styles/font/NotoSansSC-Regular.ttf) format('truetype'),
+    url(./styles/font/NotoSansSC-Regular.otf) format('opentype');
 }
 @font-face {
   font-family: 'NotoSansSC';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src:local('NotoSansSC'), url(./styles/font/NotoSansSC-Medium.otf) format('opentype');
+  src:local('NotoSansSC'), 
+    url(./styles/font/NotoSansSC-Medium.ttf) format('truetype'),
+    url(./styles/font/NotoSansSC-Medium.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Akrobat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:local('Akrobat'), 
+    url(./styles/font/Akrobat-Bold.ttf) format('truetype'),
+    url(./styles/font/Akrobat-Bold.otf) format('opentype');
 }
 
 /* openSans */
@@ -488,9 +503,11 @@ html, body {
   overflow-x: hidden;
 }
 body, pre {
-  font-family: 'OpenSans', 'NotoSansSC', 'Microsoft YaHei', 'SimSun', 'SimHei', sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'SimSun', 'SimHei', sans-serif;
 }
-
+#root {
+  padding-top: 80px;
+}
 .fn-hide {
   display: none!important;
 }

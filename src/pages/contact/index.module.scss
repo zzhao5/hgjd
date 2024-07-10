@@ -1,7 +1,9 @@
 @import '@/styles/index';
+@import '@/styles/wrap';
 
 .contact {
   height: 450px;
+  margin-bottom: 40px;
   color: $whiteColor;
   .card {
     position: relative;
@@ -16,6 +18,15 @@
     font-weight: 400;
     background: url(./images/bg_map.jpeg) no-repeat center center;
     background-size: cover;
+    .icon {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 35px 50px;
+      width: 40px;
+      height: 40px;
+      background: url(./images/point.png) no-repeat;
+      background-size: 100%;
+    }
     p {
       position: relative;
       z-index: 2;
@@ -43,19 +54,25 @@
 @include xs {
   .contact, .map {
     position: relative;
-    width: calc(100% - 40px);
+    width: 100%;
     height: 0;
     padding: po(450) 0 0;
-    margin: 0 20px 40px;
   }
   .contact {
+    margin-bottom: po(50, 670);
     .card {
       position: absolute;
       width: 100%;
       padding-right: 0;
-      font-size: 14px;
+      font-size: 12px;
       line-height: 2.2;
       top: 0;
+      .icon {
+        width: po(50);
+        height: 0;
+        padding-top: po(50);
+        margin: 0 0 po(30) 30px;
+      }
       p {
         padding:0 30px;
       }

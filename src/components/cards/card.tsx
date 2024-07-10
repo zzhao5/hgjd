@@ -26,18 +26,17 @@ const Card = ({
   }
 
   return (
-    <div className={c(_s.card, className, (mini ? _s.mini : null))}>
-      <Link onClick={handleClick} to={link}>
-        <div className={_s.content} data-tips={tips}>
-          { type ? <p className={_s.type}>{type}</p> : null}
+    <Link className={c(_s.card, className, (mini ? _s.mini : null))} onClick={handleClick} to={link}>
+      <div className={_s.content} data-tips={tips}>
+        { type ? <p className={_s.type} data-type={type}></p> : null}
+        <div className={_s.detailed}>
           <div className={_s.title}>{text}</div>
           <p className={_s.time}>
-            <span>{time}</span> <IconRight double />
+            <span className={_s.date}>{time}</span> <IconRight  className={_s.icon_right} size={6} />
           </p>
-          <IconRight className={_s.icon_right} size={8} />
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   )
 }
 

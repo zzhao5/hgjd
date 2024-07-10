@@ -8,10 +8,10 @@
   margin-bottom: 20px;
   .name {
     font-weight: 500;
-    font-size: 28px;
+    font-size: 26px;
   }
-  .more {
-    color: $blackColor;
+  a.more {
+    color: $blueColor;
     font-size: 16px;
     &::before {
       content: '了解更多';
@@ -22,23 +22,67 @@
     }
   }
   &.border {
-    padding-bottom: 15px;
-    border-bottom: 5px solid $blackColor;
+    padding-bottom: 20px;
+    border-bottom: 2px solid $borderGreyColor;
   }
 }
+.main {
+  z-index: 2;
+}
+.titleCenter {
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  margin-bottom: 38px;
+}
+a.moreCenter {
+  width: 180px;
+  height: 55px;
+  text-align: center;
+  display: block;
+  margin: 50px auto 0;
+  background-color: $darkBlueColor;
+  border: 1px solid $darkBlueColor;
+  color: $whiteColor;
+  font-size: 16px;
+  line-height: 55px;
+  border-radius: 10px;
+  &:hover {
+    background: none;
+    color: $darkBlueColor;
+    border-color: $middleGreyColor;
+  }
+}
+
 @include xs {
   .title {
+    margin-bottom: po(20 , 670);
+    .name {
+      font-size: 24px;
+    }
     &.border {
-      border-width: 3px;
+      padding-bottom: po(18, 670);
+      border-width: 1px;
     }
     &.hasTags {
       margin-bottom: 100px;
     }
-    .name {
-      font-size: 24px;
-    }
     .more {
       font-size: 14px;
     }
+  }
+  .titleCenter  {
+    font-size: 24px;
+    margin-bottom: po(40);
+  }
+  a.moreCenter {
+    position: relative;
+    z-index: 2;
+    font-size: 14px;
+    margin-top: po(60);
+    width: po(260 , 670);
+    height: 40px;
+    line-height: 40px;
   }
 }

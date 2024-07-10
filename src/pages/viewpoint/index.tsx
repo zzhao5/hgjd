@@ -3,6 +3,7 @@ import API from '@/apis';
 import { useEffect, useState } from 'react';
 import Title from '@/components/title';
 import { Image, Text } from '@/components/cards';
+import c from 'classnames';
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 const ViewPoint = () => {
@@ -25,8 +26,8 @@ const ViewPoint = () => {
 
 
   return (
-    <>
-      <section className={_s.main}>
+    <div className={_s.wrap}>
+      <section className={c(_s.main)}>
         <Title name={'视频案例'} more={data && data.total > 2 ? `${ROUTER_PATH}/viewpoint/case/` : undefined} />
         <div className={_s.flex_2}>
           {
@@ -34,10 +35,11 @@ const ViewPoint = () => {
               return <Image
                 key={id}
                 img={imgs}
-                proportion={56}
+                proportion={57}
                 link={`${ROUTER_PATH}/viewpoint/${id}/`}
                 title={titles}
                 text={describes}
+                className={'doublePd'}
               />
             })
           }
@@ -59,7 +61,7 @@ const ViewPoint = () => {
             }
           </div>
       </section>
-    </>
+    </div>
   )
 }
 

@@ -4,7 +4,7 @@ import c from 'classnames';
 const IconRight = ({
   className,
   double,
-  size = 6,
+  size = 5,
   turn,
 }: {
   className?: string;

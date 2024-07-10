@@ -3,6 +3,7 @@ import API from '@/apis';
 import { useEffect, useState } from 'react';
 import { Man, Image } from '@/components/cards';
 import Title from '@/components/title';
+import c from 'classnames';
 
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
@@ -29,7 +30,7 @@ const Group = () => {
   }, []);
 
   return (
-    <>
+    <div className={_s.wrap}>
       <section className={_s.main}>
         <div className={_s.text}>
           依托上海市雄厚的科学资源、门类齐全的技术实力以及完整的产业链基础，建立有丰富的专家资源库和检测资源库。现有入库专家200名，合作的检测、检验机构和国家重点实验室五十多家，覆盖上海交通大学、复旦大学、同济大学、华东师范大学、上海大学等985,211的高校，涵盖机械、电子、化工、生物、软件、芯片等多个技术类别。
@@ -37,9 +38,9 @@ const Group = () => {
       </section>
       {
         typical ? 
-        <section className={_s.main}>
+        <section className={c(_s.main)}>
           <Title name='典型专家' border />
-          <div className={_s.flex_2}>
+          <div>
             <Man img={typical.imgs} name={typical.titles} title={typical.remarks} link={`${ROUTER_PATH}/group/typical/`} text={typical.describes} />
           </div>
         </section> : null
@@ -48,7 +49,7 @@ const Group = () => {
         team ? 
         <section className={_s.main}>
           <Title name='专家团队' border more={`${ROUTER_PATH}/group/team/`} />
-          <div className={_s.flex_2}>
+          <div className={c(_s.flex_2, _s.border)}>
             {
               team.map(({id, imgs, titles, describes, remarks}) => {
                 return <Man key={id} img={imgs} name={titles} title={remarks} link={`${ROUTER_PATH}/group/${id}/`} text={describes} />
@@ -64,13 +65,13 @@ const Group = () => {
           <div className={_s.flex_4}>
             {
               institution.map(({id, imgs, titles}) => {
-                return <Image border key={id} className={_s.logo_list} proportion={56} img={imgs} text={titles} />
+                return <Image key={id} className={'imgBorder'} proportion={40} img={imgs} text={titles} />
               })
             }
           </div>
         </section> : null
       }
-    </>
+    </div>
   )
 }
 

@@ -36,7 +36,7 @@ const NewsList = () => {
                 className={_s.item}
                 key={id}
                 link={`${ROUTER_PATH}/news/${id}/`}
-                type={tags}
+                type={'NEWS'}
                 time={createTime.split(' ')[0]}
                 text={titles}
               />

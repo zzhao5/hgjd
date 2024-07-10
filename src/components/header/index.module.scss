@@ -1,9 +1,7 @@
 @import '@/styles/index';
 
-.bannerHold, .wrap {
-  height: 100px;
-}
 .wrap {
+  height: 80px;
   width: 100%;
   position: fixed;
   top: 0;
@@ -18,20 +16,21 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    height: 100px;
+    height: 80px;
     margin-bottom: 0;
   }
   .logo {
-    width: 312px;
+    width: 280px;
     flex-shrink: 1;
     align-self: center;
     img {
+      display: block;
       width: 100%;
       aspect-ratio: 329 / 75;
     }
   }
   .list {
-    font-size: 20px;
+    font-size: 16px;
     color: $blackColor;
     display: flex;
     align-items: flex-end;
@@ -44,33 +43,16 @@
       padding: 10px 20px 30px;
       font-weight: 500;
       white-space: nowrap;
-
-      &::after {
-        content: '';
-        position: absolute;
-        width: calc(100% - 67px);
-        height: 5px;
-        bottom: 0;
-        left: 0;
-        right: 27px;
-        margin: auto;
-        transform: scaleX(0);
-        background-color: $darkBlueColor;
-        transition: all 0.3s ease-in-out;
-      }
-      .active, &:hover {
-        color: $darkBlueColor;
-      }
-      &.border::after {
-        transform: scaleX(1);
-      }
       span {
         margin-right: 7px;
       }
     }
+    .icon_close {
+      display: none;
+    }
   }
 }
-.subNav {
+.pcSubNav {
   width: 100%;
   position: absolute;
   color: $darkBlueColor;
@@ -79,38 +61,15 @@
   left: 0;
   animation: fadeDown ease-out 300ms forwards;
   .main {
-    padding: 35px 60px;
-    max-width: 1400px;
+    padding: 10px 60px 20px;
+    max-width: 1200px;
     display: flex;
     margin-bottom: 0;
     justify-content: space-between;
   }
   .title {
     font-size: 30px;
-    line-height: 1;
-  }
-  .sub {
-    width: 390px;
-    margin-right: 255px;
-    font-size: 14px;
-    line-height: 36px;
-    p {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid $lightGreyColor;
-      transition: all 0.3s ease-in-out;
-      a {
-        flex-grow: 1;
-      }
-      &:hover {
-        font-weight: 500;
-        padding-left: 10px;
-      }
-      &:last-child {
-        border-bottom: none;
-      }
-    }
+    line-height: 2;
   }
   &.hideSubNav {
     animation: fadeUp ease-out 300ms forwards;
@@ -132,6 +91,35 @@
     }
   }
 }
+.mSubNav {
+  display: none;
+}
+.subItem {
+  width: 390px;
+  margin-right: 255px;
+  font-size: 14px;
+  line-height: 32px;
+  p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $lightGreyColor;
+    transition: all 0.3s ease-in-out;
+    a {
+      flex-grow: 1;
+    }
+    i {
+      color: $blueColor;
+    }
+    &:hover {
+      font-weight: 700;
+      padding-left: 10px;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
 
 @include mq($min-width: 768px, $max-width: 1100px) {
   .main {
@@ -147,10 +135,26 @@
     margin-right: 0px;
   }
 }
+@include mq($min-width: 820px) {
+  .nav .list .item {
+    .active, &:hover, .active + i {
+      color: $darkBlueColor;
+    }
+  }
+  .nav_button {
+    display: none;
+  }
+}
 @include xs {
-  .bannerHold, .wrap {
+  .wrap {
     height: 0;
     padding-top: po(120);
+  }
+  .pcSubNav {
+    display: none;
+  }
+  .mSubNav {
+    display: block;
   }
   .nav {
     position: absolute;
@@ -227,18 +231,25 @@
           color: $blueColor;
         }
       }
-      .sub {
+      .subItem {
+        width: auto;
         margin: 0 20px;
         padding: 10px 0;
         font-size: 16px;
         padding-left: 20px;
         line-height: 40px;
-        border-bottom: 1px solid $whiteColor;
         p a {
           display: block;
         }
+        p {
+          border: none;
+        }
+        i {
+          display: none;
+        }
       }
       .icon_close {
+        display: block;
         position: absolute;
         top: 20px;
         left: 20px;

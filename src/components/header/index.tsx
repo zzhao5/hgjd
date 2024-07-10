@@ -8,14 +8,14 @@ import IconRight from "../icon_right";
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 
-const NavSub = ({list, mini}: { list:TAPI.TMenuItem[]; mini:boolean; }) => {
+const NavSub = ({list}: { list:TAPI.TMenuItem[];}) => {
   return (
-    <div className={_s.sub}>
+    <div className={_s.subItem}>
       {
         list.map((subItem) =>
           <p key={subItem.id}>
             <NavLink to={ROUTER_PATH + subItem.urls}>{subItem.titles}</NavLink>
-            {mini ? null : <IconRight />}
+            <IconRight />
           </p>
         )
       }
@@ -64,17 +64,17 @@ const NavItem = ({ titles, mlist, urls, mini, id, setNav, hideNav, active }: { m
         >
             {titles} 
         </NavLink>
-        {mlist?.length > 0 ? <IconRight turn={active} size={mini ? 10 : 6} /> : null}
+        {mlist?.length > 0 ? <IconRight turn={active} size={mini ? 10 : 5} /> : null}
       </div>
       {
-        mini && mlist?.length > 0 && active ? <NavSub list={mlist} mini={mini} /> : null
+        mlist?.length > 0 && active ? <div className={_s.mSubNav}><NavSub list={mlist} /></div> : null
       }
     </>
   )
 }
 
 
-const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => {
+const Header = ({ menu }: { menu: TAPI.TMenuItem[];} ) => {
 
   const [showNav, setShowNav] = useState(false); // 移动端显示菜单 | PC 端显示二级菜单
   const [subNavData, setSubNav] = useState<TAPI.TMenuItem>(); // 二级菜单内容
@@ -82,6 +82,18 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
 
   const timeRef = useRef<NodeJS.Timeout>();
   const resetRef = useRef<NodeJS.Timeout>();
+
+  const [mini, setMini] = useState(false); // 是否为小屏幕
+  // const [phone, setPhone] = useState(false); // 是否为移动端
+  const bodyRef = useRef(document.getElementsByTagName('body')[0] as HTMLBodyElement);
+
+  const resetMini = () => {
+    if (bodyRef.current && bodyRef.current.clientWidth <= 820) {
+      setMini(true);
+    } else {
+      setMini(false);
+    }
+  };
 
   const stopHideSubNav = () => {
     clearTimeout(timeRef.current);
@@ -117,10 +129,39 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
     if (mini) document.getElementsByTagName('html')[0].style.overflow = showNav ? 'hidden' : 'auto';
   }, [showNav, mini]);
 
+  useEffect(() => {
+
+    const throttle = (fn = Function.prototype, delay = 20) => {
+      let lastTime = Date.now();
+      return (...args: any) => {
+        const nowTime = +new Date();
+        if (nowTime - lastTime > delay || !lastTime) {
+          fn.apply(this, args);
+          lastTime = nowTime;
+        }
+      };
+    };
+
+    const resizeFn = throttle(() => {
+      resetMini();
+    }, 100);
+
+    // const ua = navigator.userAgent || '';
+    // // TODO: 需要替换为手机判断
+    // const bePhone = /iPhone/.test(ua);
+    // setPhone(bePhone);
+
+    // 默认执行一次
+    resetMini();
+    window.addEventListener('resize', resizeFn);
+
+    return () => {
+      window.removeEventListener('resize', resizeFn);
+    };
+  }, []);
 
   return (
     <>
-      <div className={_s.bannerHold}></div>
       <header className={_s.wrap}>
         <div className={_s.nav}>
           <div className={_s.main}>
@@ -143,9 +184,7 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
                   />
                 )
               }
-              {
-                mini ? <i className={c(_s.icon, _s.icon_close)} onClick={() => setShowNav(false)}></i> : null
-              }
+              <i className={c(_s.icon, _s.icon_close)} onClick={() => setShowNav(false)}></i>
             </div>
             {
               mini ? <div className={_s.nav_button} onClick={() => setShowNav(true)}></div> : null
@@ -153,11 +192,11 @@ const Header = ({ menu, mini }: { menu: TAPI.TMenuItem[]; mini: boolean; } ) => 
           </div>
         </div>
         {
-          !mini && !!subNavData && subNavData.mlist?.length > 0 ? 
-          <div className={c(_s.subNav, !showNav ? _s.hideSubNav : null)} onMouseEnter={stopHideSubNav} onMouseLeave={hideSubNav}>
+          !!subNavData && subNavData.mlist?.length > 0 ? 
+          <div className={c(_s.pcSubNav, !showNav ? _s.hideSubNav : null)} onMouseEnter={stopHideSubNav} onMouseLeave={hideSubNav}>
             <div className={_s.main}>
               <div className={_s.title}>{subNavData.titles}</div>
-              <NavSub list={subNavData.mlist} mini={mini} />
+              <NavSub list={subNavData.mlist} />
             </div>
           </div>
           : null

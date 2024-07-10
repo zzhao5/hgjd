@@ -33,4 +33,27 @@ const Title = ({
   )
 }
 
+const TitleCenter = ({
+  name,
+  more,
+  state,
+  children,
+}: {
+  name?: string;
+  more?: string;
+  border?: boolean;
+  className?: string;
+  state?: object;
+  children?: ReactElement;
+}) => {
+  return (
+    <div className={_s.main}>
+      <div className={_s.titleCenter}>{name}</div>
+      {children}
+      {more ? <Link className={_s.moreCenter} state={state} to={more}>查看更多</Link> : null}
+    </div>
+  )
+}
+
+export { TitleCenter };
 export default Title;

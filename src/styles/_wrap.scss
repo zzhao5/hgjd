@@ -1,0 +1,27 @@
+@import '@/styles/media-queries';
+
+.wrap {
+  background-color: #fafafa;
+  padding: 60px 0 80px;
+  .main {
+    padding: 60px;
+    background-color: $whiteColor;
+    margin-bottom: 40px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@include xs {
+  .wrap {
+    padding: 0;
+    .main {
+      padding: po(100) 20px 0;
+      margin: 0;
+      &:last-child {
+        padding-bottom: po(100);
+      }
+    }
+  }
+}

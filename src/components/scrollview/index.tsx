@@ -20,9 +20,11 @@ const ScrollView = ({children}: {children: any; }) => {
   }, [searchParams, navType]);
 
   return (
-    <section className={_s.main} ref={mainRef}>
-      {children}
-    </section>
+    <div className={_s.wrap}>
+      <section className={_s.main} ref={mainRef}>
+        {children}
+      </section>
+    </div>
   )
 }
 

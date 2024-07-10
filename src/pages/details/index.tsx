@@ -56,58 +56,60 @@ const Details = ({ group }: { group?: boolean;}) => {
   }, [id, subTag]);
 
   return (
-    <section className={c(_s.details, _s.main)}>
+    <div className={_s.wrap}>
       {
-        group && data ? 
-        <div className={_s.manBox}>
+        group && data ? <section className={c(_s.manBox, _s.main)}>
           <Title name={ id === 'typical' || id === '35' ? '典型专家' : '专家团队'} border />
-          <Man className={_s.typical} img={data.imgs} name={data.titles} title={data.remarks} text={data.describes} />
-        </div>
-        : 
+          <div>
+            <Man className={_s.typical} img={data.imgs} name={data.titles} title={data.remarks} text={data.describes} />
+          </div>
+        </section> : null
+      }
+      <section className={c(_s.details, _s.main)}>
         <div className={_s.title}>
           { data?.tags ? <p className={_s.type}>{data.tags}</p> : null}
           <h5>{ data?.titles }</h5>
           <p>{ data?.createTime.split(' ')[0] }</p>
         </div>
-      }
-      <div className={_s.content}>
+        <div className={_s.content}>
+          {
+            // type === 'group' && data?.imgs ? null : <img src={data?.imgs} alt="" />
+          }
+          {
+            data?.contents ? <div dangerouslySetInnerHTML={{__html: data?.contents.replace(/<p>&nbsp;<\/p>/g, '') || ''}}></div> : null
+          }
+          
+        </div>
         {
-          // type === 'group' && data?.imgs ? null : <img src={data?.imgs} alt="" />
-        }
-        {
-          data?.contents ? <div dangerouslySetInnerHTML={{__html: data?.contents.replace(/<p>&nbsp;<\/p>/g, '') || ''}}></div> : null
+          id !== 'typical' && id !== '35'  ? 
+          <div className={c(_s.more, _s.flex_2)}>
+            { prev && prev.titles ? <div className={_s.prev}>上一篇</div> : <div></div> }
+            { next && next.titles ? <div className={_s.next}>下一篇</div> : <div></div> }
+            {
+              prev && prev.titles ? <Card
+                link={`${ROUTER_PATH}/${getMenuPath(prev.menuId)}/${prev.id}/`}
+                type={'NEWS'} 
+                time={prev.createTime.split(' ')[0]}
+                text={prev.titles}
+                tips={'上一篇：'}
+                mini
+              /> : <div></div>
+            }
+            {
+              next && next.titles ? <Card
+                link={`${ROUTER_PATH}/${getMenuPath(next.menuId)}/${next.id}/`}
+                type={'NEWS'} 
+                time={next.createTime.split(' ')[0]}
+                text={next.titles}
+                tips={'下一篇：'}
+                mini
+              /> : <div></div>
+            }
+          </div> : null
         }
         
-      </div>
-      {
-        id !== 'typical' && id !== '35'  ? 
-        <div className={c(_s.more, _s.flex_2)}>
-          { prev && prev.titles ? <div className={_s.prev}>上一篇</div> : <div></div> }
-          { next && next.titles ? <div className={_s.next}>下一篇</div> : <div></div> }
-          {
-            prev && prev.titles ? <Card
-              link={`${ROUTER_PATH}/${getMenuPath(prev.menuId)}/${prev.id}/`}
-              type={prev.tags} 
-              time={prev.createTime.split(' ')[0]}
-              text={prev.titles}
-              tips={'上一篇：'}
-              mini
-            /> : <div></div>
-          }
-          {
-            next && next.titles ? <Card
-              link={`${ROUTER_PATH}/${getMenuPath(next.menuId)}/${next.id}/`}
-              type={next.tags} 
-              time={next.createTime.split(' ')[0]}
-              text={next.titles}
-              tips={'下一篇：'}
-              mini
-            /> : <div></div>
-          }
-        </div> : null
-      }
-      
-    </section>
+      </section>
+    </div>
   )
 }
 

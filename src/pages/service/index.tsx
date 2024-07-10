@@ -24,7 +24,7 @@ const ServiceList = ({title, content}: {title:string; content?:string;}) => {
   </>
 }
 
-const Service = ({ menu, mini } : { menu: TAPI.TMenuItem[]; mini: boolean; }) => {
+const Service = ({ menu } : { menu: TAPI.TMenuItem[]; }) => {
   const { type } = useParams<{ type: string;}>();
   const [data, setData] = useState<TAPI.TServiceData>();
   const [showNav, setShowNav] = useState(false);
@@ -76,25 +76,29 @@ const Service = ({ menu, mini } : { menu: TAPI.TMenuItem[]; mini: boolean; }) =>
       <Banner name='服务内容' />
       <section className={c(_s.nav, _s.main)}>
         {
-          mini ? <div className={_s.nav_active} onClick={handleClick}>
+          <div className={c(_s.nav_control)} onClick={handleClick}>
             <span>{data ? `${data[currentType].titles}` : null}</span>
-            <IconRight double size={8} turn={true} />
-          </div> : null
+            <IconRight size={8} turn={showNav} />
+          </div>
         }
         {
-          data && ((mini && showNav) || !mini) ? Object.keys(data).map((item) => {
-            const {titles, id, urls} = data[item];
-            return (
-              <NavLink
-                key={id}
-                data-title={titles}
-                className={({isActive}) => c(_s.item, isActive ? _s.active : null)}
-                to={ROUTER_PATH + urls}
-              >
-                  { titles }
-              </NavLink>
-            )
-          }) : null
+          data ? <div className={c(_s.nav_content, showNav ? _s.nav_show : null)}>
+            {
+              Object.keys(data).map((item) => {
+                const {titles, id, urls} = data[item];
+                return (
+                  <NavLink
+                    key={id}
+                    data-title={titles}
+                    className={({isActive}) => c(_s.item, isActive ? _s.active : null)}
+                    to={ROUTER_PATH + urls}
+                  >
+                      { titles }
+                  </NavLink>
+                )
+              })
+            }
+          </div> : null
         }
       </section>
       <section className={c(_s.content, _s.main)}>

@@ -29,17 +29,6 @@ const App = () => {
   const [license, setLicense] = useState([] as TAPI.TNewsItem[]); // 资质证书
   const [news, setNews] = useState([] as TAPI.TNewsItem[]); // 最新消息
 
-  const [mini, setMini] = useState(false); // 是否为小屏幕
-  // const [phone, setPhone] = useState(false); // 是否为移动端
-  const bodyRef = useRef(document.getElementsByTagName('body')[0] as HTMLBodyElement);
-
-  const resetMini = () => {
-    if (bodyRef.current && bodyRef.current.clientWidth <= 820) {
-      setMini(true);
-    } else {
-      setMini(false);
-    }
-  };
   /**
    * 监听当前视口大小
    */
@@ -54,49 +43,20 @@ const App = () => {
         setNews(messageList);
       }
     });
-
-    const throttle = (fn = Function.prototype, delay = 20) => {
-      let lastTime = Date.now();
-      return (...args: any) => {
-        const nowTime = +new Date();
-        if (nowTime - lastTime > delay || !lastTime) {
-          fn.apply(this, args);
-          lastTime = nowTime;
-        }
-      };
-    };
-
-
-    const resizeFn = throttle(() => {
-      resetMini();
-    }, 100);
-
-    // const ua = navigator.userAgent || '';
-    // // TODO: 需要替换为手机判断
-    // const bePhone = /iPhone/.test(ua);
-    // setPhone(bePhone);
-
-    // 默认执行一次
-    resetMini();
-    window.addEventListener('resize', resizeFn);
-
-    return () => {
-      window.removeEventListener('resize', resizeFn);
-    };
   }, []);
   
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={`${ROUTER_PATH}/:name?/:type?/:subTag?/`}  element={<Header menu={menu} mini={mini} />} />
+        <Route path={`${ROUTER_PATH}/:name?/:type?/:subTag?/`}  element={<Header menu={menu} />} />
       </Routes>
       <Routes>
         <Route path={`${ROUTER_PATH}/`} index element={<Main license={license} news={news} menu={menu} />} />
         <Route path={`${ROUTER_PATH}/about/`} element={<About />} />
-        <Route path={`${ROUTER_PATH}/service/:type?/`} element={<Service menu={menu} mini={mini} />} />
+        <Route path={`${ROUTER_PATH}/service/:type?/`} element={<Service menu={menu} />} />
         <Route path={`${ROUTER_PATH}/viewpoint/`} element={<ViewPointWrap />}>
           <Route index element={<ViewPoint />} />
-          <Route path={`${ROUTER_PATH}/viewpoint/science/`} element={<ViewList mini={mini} />} />
+          <Route path={`${ROUTER_PATH}/viewpoint/science/`} element={<ViewList />} />
           <Route path={`${ROUTER_PATH}/viewpoint/case/`} element={<Case />} />
           <Route path={`${ROUTER_PATH}/viewpoint/:id/:subTag?/`} element={<Details />} />
         </Route>

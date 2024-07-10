@@ -6,6 +6,8 @@ import { Man } from '@/components/cards';
 import Title from '@/components/title';
 import Pages from '@/components/pagination';
 import ScrollView from '@/components/scrollview';
+import c from 'classnames';
+
 
 const ROUTER_PATH = process.env.REACT_APP_ROUTER;
 
@@ -28,7 +30,7 @@ const GroupTeam = () => {
   return (
     <ScrollView>
       <Title name='专家团队' border />
-      <div className={_s.flex_2}>
+      <div className={c(_s.flex_2, _s.border)}>
         {
           data?.records.map(({id, imgs, titles, remarks, describes}) => {
             return <Man key={id} img={imgs} name={titles} title={remarks} link={`${ROUTER_PATH}/group/${id}`} text={describes} />
@@ -36,7 +38,7 @@ const GroupTeam = () => {
         }
       </div>
       {
-        data && data.total > 6 ? <Pages current={curPage} total={data.total} pageSize={6} onChange={pageChange} /> : null
+        data && data.total > 16 ? <Pages current={curPage} total={data.total} pageSize={6} onChange={pageChange} /> : null
       }
     </ScrollView>
   )

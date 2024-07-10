@@ -1,39 +1,83 @@
 @import '@/styles/index';
 
-.banner {
-  position: relative;
-  height: 550px;
-  color: $whiteColor;
-  line-height: 1.5;
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-position: center 0;
-  background-repeat: repeat-x;
-  background-size: cover;
-  margin-bottom: 80px;
-  h1 {
-    font-size: 76px;
-    font-weight: 500;
+.wrap {
+  margin-bottom: 20px;
+  padding: 80px 0;
+  &.blueBg {
+    background-color: $lightBlueColor;
   }
-  h3 {
-    font-size: 40px;
-    font-weight: 400;
+  .flex_2, .flex_3, .flex_4 {
+    flex-wrap: nowrap;
   }
 }
 
-.serviceTitle {
-  margin-bottom: 20px;
-}
-.service {
-  background-color: $darkWhiteColor;
-  .flex_3 > * {
+.banner {
+  position: relative;
+  height: 570px;
+  color: $whiteColor;
+  line-height: 1.5;
+  text-align: right;
+  background-position: center 0;
+  background-repeat: repeat-x;
+  background-size: cover;
+  .main {
+    position: absolute;
     margin-bottom: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, 0, 0);
+  }
+  h1 {
+    font-size: 64px;
+    line-height: 1;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  h3 {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 50px;
+  }
+}
+
+.service {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 58%;
+    bottom: 0;
+    left: 0;
+    background-color: $lightBlueColor;
+  }
+}
+
+.text_list {
+  margin-bottom: 100px;
+  .flex_6 {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: space-between;
+    flex-wrap: wrap;
+    & > * {
+      box-sizing: border-box;
+      width: 33.33%;
+      padding: 40px 30px 35px;
+      border-right: 1px solid $whiteColor;
+      &:nth-child(3n) {
+        border-right: 0;
+      }
+      &:nth-child(n+4) {
+        border-top: 1px solid $whiteColor;
+      }
+    }
   }
 }
 
 .best {
+  padding-top: 100px;
   background-color: $darkWhiteColor;
   position: relative;
   .main {
@@ -41,123 +85,231 @@
     z-index: 2;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    &::after {
-      content: '';
-      position: absolute;
-      width: 45%;
-      height: 100%;
-      background-color: $lightBlueColor;
-      left: 50%;
-    }
+    align-items: stretch;
+    justify-content: space-between;
+    margin-bottom: 152px;
   }
   .img {
     position: relative;
-    z-index: 2;
-    padding: 75px 0 55px 0;
-    width: 52.7%;
+    z-index: 3;
+    width: 680px;
+    flex-grow: 0;
+    flex-shrink: 0;
     img {
       width: 100%;
       display: block;
+      object-fit: contain;
     }
   }
   .text {
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 35%;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
-    line-height: 1.7;
-    padding: 30px 20px 30px 0;
-    h6 {
+    line-height: 2;
+    padding: 0 65px 0 55px;
+    color: #666;
+    &::after {
+      content: '';
+      position: absolute;
+      padding: 52px 0;
+      height: 100%;
+      width: 120%;
+      right: 0;
+      top: -52px;
+      background-color: $lightBlueColor;
+    }
+    & > * {
       position: relative;
-      font-size: 36px;
+      z-index: 1;
+    }
+    h4 {
+      position: relative;
+      font-size: 30px;
       margin-bottom: 20px;
       font-weight: 500;
       line-height: 1;
-      padding: 40px 0 25px;
-      &::after {
-        content: '';
-        position: absolute;
-        display: block;
-        bottom: 0;
-        width: 50px;
-        height: 3px;
-        background-color: $darkBlueColor;
+      color: $darkGreyColor;
+    }
+    .list {
+      width: 100%;
+      height: 140px;
+      color: $darkGreyColor;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-content: space-between;
+      flex-wrap: wrap;
+      .border {
+        height: 30px;
+      }
+      li {
+        width: 25%;
+        margin-right: 12.5%;
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+      }
+      strong {
+        font-family: Akrobat;
+        font-weight: normal;
+        font-size: 40px;
+        line-height: 30px;
+        vertical-align:bottom;
+      }
+      sup {
+        vertical-align: text-top;
+        font-size: 14px;
+        margin-right: -5px;
+      }
+      span {
+        line-height: 1;
+        vertical-align: sub;
+      }
+      .content {
+        padding-left: 17px;
       }
     }
   }
-}
-.card {
-  .even {
-    background-color: $darkBlueColor;
-    color: $whiteColor;
-  }
-  .odd {
-    background-color: $lightBlueColor;
-    color: $blackColor;
+  .border {
+    position: relative;
+    padding-left: 17px;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: $blackBlueColor;
+      z-index: 1;
+    }
   }
 }
 
+
 @include xs {
+  .wrap {
+    margin-bottom: po(20);
+    padding: po(90) 0 po(80);
+    .flex_2, .flex_3, .flex_4 {
+      flex-wrap: wrap;
+    }
+  }
   .banner {
     height: 0;
     padding-top: po(300);
     text-align: center;
-    margin-bottom: po(60);
     .main {
       position: absolute;
       width: 100%;
-      top: 50%;
+      top: 60%;
+      left: 0;
       transform: translateY(-50%);
       margin-bottom: 0;
     }
     h1 {
       font-size: 25px;
+      margin-bottom: 10px;
     }
     h3 {
-      font-size: 14px;
+      font-size: 12px;
+      line-height: 2;
     }
   }
   .service {
-    .flex_3 > * {
-      margin-bottom: 15px;
+    &::after {
+      height: calc(80 / 750 * 100vw + 40px);
+    }
+    .flex_3 {
+      width: po(580 , 670);
+      margin-left: auto;
+      margin-right: auto;
+      & > * {
+        &:not(:last-child) {
+          margin-bottom: po(160 , 580);
+        }
+      }
     }
   }
   .best {
     background: none;
-    &::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 76%;
-      bottom: -20px;
-      background: $middleBlueColor;
-    }
+    padding-top: po(90);
     .main {
       flex-direction: column;
-      padding-bottom: 30px;
-      &::before {
-        width: 90%;
-      }
-      &::after {
-        display: none;
-      }
+      margin-bottom: po(100);
     }
     .img {
       width: 100%;
-      padding: po(70) 0 0;
     }
     .text {
       width: 100%;
-      font-size: 18px;
-      padding: 0 25px 30px;
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 0;
       box-sizing: border-box;
-      background-color: $lightBlueColor;
-      h6 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        padding-bottom: 20px;
+      &::after {
+        display: none;
+      }
+      .textContent {
+        position: relative;
+        padding: po(75) po(60) po(65);
+        & > * {
+          position: relative;
+          z-index: 2;
+        }
+        &::after {
+          content: '';
+          position: absolute;
+          width: calc(100% + 40px);
+          padding-top: po(175);
+          height: 100%;
+          left: -20px;
+          bottom: 0;
+          background-color: $lightBlueColor;
+        }
+      }
+      h4 {
+        font-size: 20px;
+        margin-left: -17px;
+        &.border {
+          &::before {
+            width: .5em;
+          }
+        }
+      }
+      .list {
+        box-sizing: border-box;
+        height: 47vw;
+        padding: po(65) po(60) po(80);
+        li {
+          position: relative;
+          z-index: 2;
+        }
+        &::after {
+          content: '';
+          position: absolute;
+          left: -20px;
+          top: 0;
+          width: calc(100% + 40px);
+          height: 100%;
+          background-color: $darkWhiteColor;
+        }
+      }
+    }
+  }
+  .text_list {
+    margin-bottom: po(80);
+    .flex_6 {
+      & > * {
+        width: 100%;
+        padding: po(80) po(50);
+        border: none;
+        border-bottom: 1px solid $whiteColor;
       }
     }
   }

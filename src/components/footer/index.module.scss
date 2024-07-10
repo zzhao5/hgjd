@@ -2,8 +2,8 @@
 
 .wrap {
   position: relative;
-  padding: 90px 0 70px;
-  background-color: $darkGreyColor;
+  padding: 90px 0 40px;
+  background-color: #363636;
   color: $whiteColor;
   font-size: 14px;
   line-height: 32px;
@@ -20,9 +20,8 @@
     font-size: 20px;
   }
   .copy {
-    width: 100%;
     border-top: 1px solid $greyColor;
-    padding-top: 20px;
+    padding-top: 40px;
     margin-top: 40px;
     justify-content: left;
   }

@@ -1,4 +1,6 @@
 @charset "utf-8";
+@import '@/styles/variables';
+
 
 @mixin mq($args...) {
   $media-type: 'only screen';
@@ -45,26 +47,26 @@
 .flex_1, .flex_2, .flex_3, .flex_4 {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: stretch;
   align-content: space-between;
-  margin-bottom: -15px;
+  margin-bottom: -40px;
   & > * {
-    margin-bottom: 15px;
+    margin-bottom: 40px;
     box-sizing: border-box;
   }
 }
 .flex_1 {
-  margin-bottom: -30px;
+  margin-bottom: -20px;
   & > * {
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 }
 .flex_2 {
   & > * {
-    width: 49%;
-    margin-right: 2%;
+    width: calc((100% - 40px) / 2);
+    margin-right: 40px;
     &:nth-child(2n) {
       margin-right: 0;
     }
@@ -72,8 +74,8 @@
 }
 .flex_3 {
   & > * {
-    width: 32%;
-    margin-right: 2%;
+    width: calc((100% - 120px) / 3);
+    margin-right: 60px;
     &:nth-child(3n) {
       margin-right: 0;
     }
@@ -81,8 +83,8 @@
 }
 .flex_4 {
   & > * {
-    width: 23.5%;
-    margin-right: 2%;
+    width: calc((100% - 99px) / 4);
+    margin-right: 33px;
     &:nth-child(4n) {
       margin-right: 0;
     }
@@ -91,25 +93,23 @@
 
 .main {
   position: relative;
-  max-width: 1400px;
-  width: 100%;
-  margin: 0 auto 80px;
-  padding: 0 60px;
+  width: 1200px;
+  margin: 0 auto;
   box-sizing: border-box;
   scroll-margin-top: 120px;
 }
 
 @include xs {
-  .flex_1 > * {
-    margin-bottom: 20px;
-  }
-  .flex_2, .flex_3, .flex_4 {
+  .flex_1, .flex_2, .flex_3, .flex_4 {
+    margin-bottom: po(-60, 670);
     & > * {
       width: 100%!important;
+      margin-right: 0;
+      margin-bottom: po(60, 670);
     }
   }
   .main {
-    margin-bottom: 40px;
+    width: 100%;
     padding: 0 20px;
     scroll-margin-top: calc(16vw + 20px);
   }

@@ -27,7 +27,7 @@ const Licenses = () => {
   return (
     <ScrollView>
       <Title name='资质证明' />
-      <div className={_s.flex_2}>
+      <div className={_s.flex_4}>
         {
           data?.records.map(({id, titles, describes, imgs}) => {
             return (
@@ -37,7 +37,7 @@ const Licenses = () => {
                 img={imgs}
                 title={titles}
                 text={describes}
-                proportion={50}
+                className={'grayBg'}
                 />
             )
           })
