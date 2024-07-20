@@ -26,14 +26,14 @@
     font-weight: 700;
     font-size: 20px;
     line-height: 1;
-    vertical-align: middle;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
     &::before {
       content: '';
       display: inline-block;
       width: 10px;
       height: 16px;
-      vertical-align: baseline;
       margin-right: 10px;
       background-color: $darkBlueColor;
     }

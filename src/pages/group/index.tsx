@@ -65,7 +65,7 @@ const Group = () => {
           <div className={_s.flex_4}>
             {
               institution.map(({id, imgs, titles}) => {
-                return <Image key={id} className={'imgBorder'} proportion={40} img={imgs} text={titles} />
+                return <Image key={id} className={'borderMode'} proportion={40} img={imgs} text={titles} />
               })
             }
           </div>

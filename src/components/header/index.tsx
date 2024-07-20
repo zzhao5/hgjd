@@ -23,9 +23,9 @@ const NavSub = ({list}: { list:TAPI.TMenuItem[];}) => {
   )
 }
 
-const NavItem = ({ titles, mlist, urls, mini, id, setNav, hideNav, active }: { mini: boolean; active: boolean; setNav: Function; hideNav: Function; } & TAPI.TMenuItem) => {
-  const [hasClick, setHasClick] = useState(false);
-  const current = useMatch(ROUTER_PATH + urls);
+const NavItem = ({ titles, mlist, urls, id, setNav, hideNav, current, handleClick }: { setNav: Function; hideNav: Function; current: number; handleClick: Function; } & TAPI.TMenuItem) => {
+  // const [hasClick, setHasClick] = useState(false);
+  const inMatch = useMatch(ROUTER_PATH + urls);
   const handleEnter = useCallback(() => {
     if (mlist && mlist.length > 0) {
       setNav({titles, id, mlist});
@@ -38,27 +38,24 @@ const NavItem = ({ titles, mlist, urls, mini, id, setNav, hideNav, active }: { m
     }
   }, [mlist, hideNav]);
 
-  const handleClick = useCallback(() => {
-    console.log('click', mlist.length, hasClick);
-    if (mini && mlist && mlist.length > 0) {
-      console.log('mini');
-      if (!hasClick) {
-        setHasClick(true);
-        setNav({titles, id, mlist});
-      } else {
-        setHasClick(false);
-        setNav(undefined);
-      }
-    }
-  }, [mini, mlist, hasClick, setNav, titles, id]);
+  // const handleClick = useCallback(() => {
+  //   console.log('click', mlist.length, hasClick);
+  //   if (mlist && mlist.length > 0) {
+  //     if (!hasClick) {
+  //       setHasClick(true);
+  //     } else {
+  //       setHasClick(false);
+  //     }
+  //   }
+  // }, [mlist, hasClick, setNav, titles, id]);
 
   return (
     <>
       <div
-        className={c(_s.item, active || current ? _s.active : null)}
+        className={c(_s.item, current === id || (current === 0 && inMatch) ? _s.active : null)}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
-        onTouchEnd={handleClick}
+        onTouchEnd={() => handleClick(id)}
       >
         <NavLink
           className={({ isActive }) => c(isActive ? _s.active : null)}
@@ -67,7 +64,7 @@ const NavItem = ({ titles, mlist, urls, mini, id, setNav, hideNav, active }: { m
         >
             {titles} 
         </NavLink>
-        {mlist?.length > 0 ? <IconRight turn={active} /> : null}
+        {mlist?.length > 0 ? <IconRight turn={current === id} /> : null}
       </div>
       {
         mlist?.length > 0 ? <div className={_s.mSubNav}><NavSub list={mlist} /></div> : null
@@ -81,6 +78,7 @@ const Header = ({ menu }: { menu: TAPI.TMenuItem[];} ) => {
 
   const [showNav, setShowNav] = useState(false); // 移动端显示菜单 | PC 端显示二级菜单
   const [subNavData, setSubNav] = useState<TAPI.TMenuItem>(); // 二级菜单内容
+  const [current, setCurrent] = useState(0); // 当前选中的一级菜单
   const params = useParams<{ name:string; type: string }>();
 
   const timeRef = useRef<NodeJS.Timeout>();
@@ -132,7 +130,6 @@ const Header = ({ menu }: { menu: TAPI.TMenuItem[];} ) => {
   }, [showNav, mini]);
 
   useEffect(() => {
-
     const throttle = (fn = Function.prototype, delay = 20) => {
       let lastTime = Date.now();
       return (...args: any) => {
@@ -165,32 +162,35 @@ const Header = ({ menu }: { menu: TAPI.TMenuItem[];} ) => {
             <div className={_s.logo}>
               <Link to={ROUTER_PATH + '/'}><img src={logo} alt="" /></Link>
             </div>
-            <div className={c(_s.list, mini && showNav ? _s.showNav : null)}>
+            <div className={c(_s.list, showNav ? _s.showNav : null)}>
               {
                 menu.map(({ titles, mlist, urls, id }) => 
                   <NavItem
                     key={id}
                     titles={titles}
-                    active={ !!subNavData && subNavData.mlist?.length > 0 && id === subNavData.id }
+                    // active={ !!subNavData && subNavData.mlist?.length > 0 && id === subNavData.id }
                     mlist={mlist}
                     urls={urls}
-                    id={id}
-                    mini={mini}
+                    id={Number(id)}
                     setNav={showSubNav}
                     hideNav={hideSubNav}
+                    current={current}
+                    handleClick={setCurrent}
                   />
                 )
               }
               <i className={c(_s.icon, _s.icon_close)} onClick={() => setShowNav(false)}></i>
             </div>
-            {
-              mini ? <div className={_s.nav_button} onClick={() => setShowNav(true)}></div> : null
-            }
+            <div className={_s.nav_button} onClick={() => setShowNav(true)}></div>
           </div>
         </div>
         {
           !!subNavData && subNavData.mlist?.length > 0 ? 
-          <div className={c(_s.pcSubNav, !showNav ? _s.hideSubNav : null)} onMouseEnter={stopHideSubNav} onMouseLeave={hideSubNav}>
+          <div
+            className={c(_s.pcSubNav, !showNav ? _s.hideSubNav : null)} 
+            onMouseEnter={stopHideSubNav} 
+            // onMouseLeave={hideSubNav}
+          >
             <div className={_s.main}>
               <div className={_s.title}>{subNavData.titles}</div>
               <NavSub list={subNavData.mlist} />

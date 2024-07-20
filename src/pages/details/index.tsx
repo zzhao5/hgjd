@@ -48,6 +48,11 @@ const Details = ({ group }: { group?: boolean;}) => {
         const next = res.result.nextId;
         const prev = res.result.upId;
         setData(res.result.info);
+        if (group || id === '31') {
+          setNext(undefined);
+          setPrev(undefined);
+          return;
+        }
         if (next) {
           API.getDataInfo({ id: next, }).then((res) => {
             setNext(res.result.info);
@@ -90,7 +95,7 @@ const Details = ({ group }: { group?: boolean;}) => {
           }
         </div>
         {
-          !group  ? 
+          prev || next ?
           <div className={c(_s.more, _s.flex_2)}>
             { prev && prev.titles ? <div className={_s.prev}>上一篇</div> : <div></div> }
             { next && next.titles ? <div className={_s.next}>下一篇</div> : <div></div> }

@@ -71,7 +71,7 @@ const Service = ({ menu } : { menu: TAPI.TMenuItem[]; }) => {
   }, []);
 
   return (
-    type === undefined ? <Navigate to={ROUTER_PATH + '/service/appraisal/'} /> :
+    type === undefined ? <Navigate to={ROUTER_PATH + '/service/appraisal/'} replace={true} /> :
     <>
       <Banner name='服务内容' />
       <section className={c(_s.nav, _s.main)}>

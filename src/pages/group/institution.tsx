@@ -15,10 +15,10 @@ const GroupInstitution = () => {
   return (
     <ScrollView>
       <Title name='合作机构' border/>
-      <div className={_s.flex_4} style={{justifyContent: 'left'}}>
+      <div className={_s.flex_4}>
         {
           data?.records.map(({id, imgs, titles}) => {
-            return <Image key={id} className={'imgBorder'} proportion={40} img={imgs} text={titles} />
+            return <Image key={id} className={'borderMode'} proportion={40} img={imgs} text={titles} />
           })
         }
       </div>

@@ -20,6 +20,10 @@
   margin-bottom: 30px;
 }
 
+.flex_4 {
+  justify-content: left;
+}
+
 @include xs {
   .text {
     font-size: 16px;
@@ -32,6 +36,7 @@
     padding-top: 0;
   }
   .flex_4 {
+    justify-content: space-between;
     & > * {
       width: calc(50% - 8px)!important;
       &:nth-child(2n) {

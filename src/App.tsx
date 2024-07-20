@@ -56,9 +56,9 @@ const App = () => {
         <Route path={`${ROUTER_PATH}/service/:type?/`} element={<Service menu={menu} />} />
         <Route path={`${ROUTER_PATH}/viewpoint/`} element={<ViewPointWrap />}>
           <Route index element={<ViewPoint />} />
-          <Route path={`${ROUTER_PATH}/viewpoint/science/`} element={<ViewList />} />
-          <Route path={`${ROUTER_PATH}/viewpoint/case/`} element={<Case />} />
-          <Route path={`${ROUTER_PATH}/viewpoint/:id/:subTag?/`} element={<Details />} />
+          <Route path={'science/'} element={<ViewList />} />
+          <Route path={'case/'} element={<Case />} />
+          <Route path={':id/:subTag?/'} element={<Details />} />
         </Route>
 
         <Route path={`${ROUTER_PATH}/group/`} element={<GroupWrap />}>

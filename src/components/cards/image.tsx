@@ -32,7 +32,7 @@ const Image = ({
   title?: string;
   text?: string;
   video?: string;
-  className?: 'grayBg' | 'videoMode' | 'imgBorder';
+  className?: 'shadowMode' | 'videoMode' | 'borderMode';
   border?: boolean;
   proportion?: number; // 宽高比，默认 75%
 }) => {

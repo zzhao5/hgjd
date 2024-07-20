@@ -80,7 +80,6 @@
   .flex_4 > * {
     box-shadow: 0px 0px 15px 0px rgba(192, 211, 227, 0.5);
     &:hover {
-
       box-shadow: 0px 0px 15px 0px rgba(192, 211, 227, 1);
     }
   }
@@ -213,6 +212,7 @@
     height: 0;
     padding-top: po(300);
     text-align: center;
+    min-width: 100%;
     .main {
       position: absolute;
       width: 100%;
@@ -317,8 +317,8 @@
       & > * {
         width: 100%;
         padding: po(80) po(50);
-        border: none;
-        border-bottom: 1px solid $whiteColor;
+        border: none!important;
+        border-bottom: 1px solid $whiteColor!important;
       }
     }
   }
