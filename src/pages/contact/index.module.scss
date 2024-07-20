@@ -56,7 +56,7 @@
     position: relative;
     width: 100%;
     height: 0;
-    padding: po(450) 0 0;
+    padding: po(450, 670) 0 0;
   }
   .contact {
     margin-bottom: po(50, 670);
@@ -71,10 +71,10 @@
         width: po(50);
         height: 0;
         padding-top: po(50);
-        margin: 0 0 po(30) 30px;
+        margin: 0 0 po(40, 670)  po(40, 670);
       }
       p {
-        padding:0 30px;
+        padding:0 po(40, 670);
       }
       &::before {
         width: 100%;

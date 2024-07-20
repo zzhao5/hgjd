@@ -8,7 +8,6 @@ $blueColor: #afc4d4;
 
 
 $greyColor: #5F5F5F;
-$darkGreyColor: #333;
 $middleGreyColor: #979797;
 $lightGreyColor: #b3b3b3;
 
@@ -17,7 +16,7 @@ $bgGreyColor: #f8f8f8;
 
 $whiteColor: #ffffff;
 $darkWhiteColor: #FAFAFA;
-$blackColor: #000;
+$blackColor: #333;
 $lightBlackColor: #2a2a2a;
 
 @function po($width, $base: 750) {

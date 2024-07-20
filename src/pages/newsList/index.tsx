@@ -17,7 +17,7 @@ const NewsList = () => {
   useEffect(() => {
     const page = Number(searchParams.get('page')) || 1;
     setCurPage(page);
-    API.getList({ newsId: 30, pageNo: page, pageSize: 6, }, setData);
+    API.getList({ newsId: 30, pageNo: page, pageSize: 10, }, setData);
 
   }, [searchParams]);
 
@@ -33,7 +33,6 @@ const NewsList = () => {
           data?.records.map(({id, tags, titles, createTime}) => {
             return (
               <Card
-                className={_s.item}
                 key={id}
                 link={`${ROUTER_PATH}/news/${id}/`}
                 type={'NEWS'}
@@ -45,7 +44,7 @@ const NewsList = () => {
         }
       </div>
       {
-        data && data.total > 6 ? <Pages total={data?.total} current={curPage} pageSize={6} onChange={pageChange} /> : null
+        data && data.total > 10 ? <Pages total={data?.total} current={curPage} pageSize={6} onChange={pageChange} /> : null
       }
     </ScrollView>
   )

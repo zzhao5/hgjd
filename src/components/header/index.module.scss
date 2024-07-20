@@ -14,6 +14,8 @@
   box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.05);
   .main {
     display: flex;
+    width: 100%;
+    max-width: 1200px;
     justify-content: space-between;
     align-items: flex-end;
     height: 80px;
@@ -43,8 +45,8 @@
       padding: 10px 20px 30px;
       font-weight: 500;
       white-space: nowrap;
-      span {
-        margin-right: 7px;
+      i {
+        font-size: 5px;
       }
     }
     .icon_close {
@@ -59,9 +61,10 @@
   background-color: #fafafa;
   bottom: 0;
   left: 0;
+  box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.05);
   animation: fadeDown ease-out 300ms forwards;
   .main {
-    padding: 10px 60px 20px;
+    padding: 10px 0 20px;
     max-width: 1200px;
     display: flex;
     margin-bottom: 0;
@@ -103,7 +106,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid $lightGreyColor;
+    border-bottom: 2px solid $borderGreyColor;
     transition: all 0.3s ease-in-out;
     a {
       flex-grow: 1;
@@ -154,6 +157,9 @@
     display: none;
   }
   .mSubNav {
+    display: none;
+  }
+  .active + .mSubNav {
     display: block;
   }
   .nav {
@@ -215,7 +221,7 @@
       right: 0;
       bottom: 0;
       color: $whiteColor;
-      font-size: 24px;
+      font-size: 20px;
       transition: all 0.3s ease-in-out;
       transform: translateX(100%);
       &.showNav {
@@ -224,9 +230,15 @@
       .item {
         display: flex;
         justify-content: space-between;
-        padding: 25px 0;
+        padding: 25px;
         margin: 0 20px;
         border-bottom: 1px solid $whiteColor;
+        &.active {
+          background-color: #5E85A3;
+        }
+        i {
+          font-size: 8px;
+        }
         .active, &:active, &:hover {
           color: $blueColor;
         }

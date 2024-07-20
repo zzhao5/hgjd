@@ -121,7 +121,7 @@
   font-size: 12px;
   text-align: center;
   background-color: #fff;
-  border: 1px solid $lightGreyColor;
+  border: none;
   border-radius: 10px;
   outline: none;
   transition: all 0.3s;
@@ -131,16 +131,26 @@
   color: $darkBlueColor;
   border-color: $darkBlueColor;
 }
-.rc-pagination-prev button:after, .rc-pagination-next button:after  {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  border-left: 1px solid $greyColor;
-  border-bottom: 1px solid $greyColor;
-  transform-origin: center center;
+.rc-pagination-prev, .rc-pagination-next {
+  &.rc-pagination-disabled {
+    button::after {
+      border-color: $borderGreyColor!important;
+    }
+  }
+  &:hover button::after {
+    border-color: $darkBlueColor;
+  }
+  button::after  {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-left: 3px solid $blueColor;
+    border-bottom: 3px solid $blueColor;
+    transform-origin: center center;
+  }
 }
 .rc-pagination-prev button:after {
   transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, 45deg);
@@ -151,7 +161,6 @@
 .rc-pagination-disabled,
 .rc-pagination-disabled:hover{
   cursor: not-allowed;
-  visibility: hidden;
 }
 .rc-pagination-disabled .rc-pagination-item-link,
 .rc-pagination-disabled:hover .rc-pagination-item-link,

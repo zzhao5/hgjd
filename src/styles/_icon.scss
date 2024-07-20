@@ -1,3 +1,5 @@
+@import '@/styles/media-queries';
+
 i.icon {
   display: inline-block;
   vertical-align: middle;
@@ -46,6 +48,7 @@ i.icon {
     margin-right: 0;
     transform-origin: center center;
     transition: transform .3s ease-in-out;
+    font-size: 5px;
     &::before {
       content: '';
       position: absolute;
@@ -64,6 +67,7 @@ i.icon {
   &.icon_right_double {
     position: relative;
     margin-right: 0;
+    font-size: 5px;
     &::before, &::after {
       content: '';
       position: absolute;
@@ -88,5 +92,13 @@ i.icon {
     background-image: url(./images/icon_trangle.png);
     background-repeat: no-repeat;
     background-size:auto 100%;
+  }
+}
+
+@include xs {
+  i.icon {
+    &.icon_right, &.icon_right_double {
+      font-size: 8px;
+    }
   }
 }

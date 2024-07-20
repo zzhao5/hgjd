@@ -39,7 +39,7 @@ const ViewPoint = () => {
                 link={`${ROUTER_PATH}/viewpoint/${id}/`}
                 title={titles}
                 text={describes}
-                className={'doublePd'}
+                className={'videoMode'}
               />
             })
           }
@@ -47,7 +47,7 @@ const ViewPoint = () => {
       </section>
       <section className={_s.main}>
           <Title name={'学术研讨'} more={`${ROUTER_PATH}/viewpoint/science/`} border />
-          <div className={_s.flex_1}>
+          <div className={c(_s.flex_1, _s.textList)}>
             {
               list?.map(({id, titles, tags, createTime}) => {
                 return <Text

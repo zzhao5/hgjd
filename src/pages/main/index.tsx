@@ -170,6 +170,7 @@ const Main = ({
                     img={imgs}
                     title={titles}
                     text={describes}
+                    className={'grayBg'}
                   />
                 )
               })

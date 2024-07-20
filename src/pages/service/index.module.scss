@@ -19,7 +19,7 @@
     font-weight: 500;
     line-height: 60px;
     border-radius: 10px;
-    color: $darkGreyColor;
+    color: $blackColor;
     background-color: $lightBlueColor;
     &.active {
       color: $whiteColor;
@@ -44,7 +44,7 @@
       margin-bottom: 30px;
     }
     span {
-      color: $darkGreyColor;
+      color: $blackColor;
     }
     & + .text {
       font-size: 16px;
@@ -118,10 +118,10 @@
     }
   }
   .content {
-    font-size: 16px;
     padding-bottom: po(100);
     .title {
       height: 55px;
+      font-size: 16px;
       padding: 0 15px 0 25px;
       margin-bottom: po(20, 670);
       &:last-child {

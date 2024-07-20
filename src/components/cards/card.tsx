@@ -26,7 +26,7 @@ const Card = ({
   }
 
   return (
-    <Link className={c(_s.card, className, (mini ? _s.mini : null))} onClick={handleClick} to={link}>
+    <Link className={c(_s.card, (className ? _s[className] : null), (mini ? _s.mini : null))} onClick={handleClick} to={link}>
       <div className={_s.content} data-tips={tips}>
         { type ? <p className={_s.type} data-type={type}></p> : null}
         <div className={_s.detailed}>

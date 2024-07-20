@@ -26,7 +26,7 @@ const Title = ({
     <>
       <div className={c(_s.title, className, border ? _s.border : null)}>
         <span className={_s.name}>{name}</span>
-        {more ? <Link className={_s.more} state={state} to={more}><IconRight double size={8} /></Link> : null}
+        {more ? <Link className={_s.more} state={state} to={more}><IconRight /></Link> : null}
       </div>
       {tags ? tags : null}
     </> : null

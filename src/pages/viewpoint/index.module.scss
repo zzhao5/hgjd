@@ -44,9 +44,12 @@
 }
 
 @include xs {
+  .textList {
+    padding-top: po(20, 670);
+  }
   .tags {
+    padding-top: 0;
     font-weight: 400;
-    border-width: 1px;
     dt {
       font-size: 14px;
     }

@@ -38,7 +38,7 @@ const ViewCase = () => {
               link={`${ROUTER_PATH}/viewpoint/${id}/`}
               title={titles}
               text={describes}
-              className={'doublePd'}
+              className={'videoMode'}
             />
           }) : null
         }

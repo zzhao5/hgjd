@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Link, NavLink, useMatch, useParams } from "react-router-dom";
 import _s from './index.module.scss';
 import c from 'classnames';
 import logo from './images/logo.png'
@@ -25,20 +25,23 @@ const NavSub = ({list}: { list:TAPI.TMenuItem[];}) => {
 
 const NavItem = ({ titles, mlist, urls, mini, id, setNav, hideNav, active }: { mini: boolean; active: boolean; setNav: Function; hideNav: Function; } & TAPI.TMenuItem) => {
   const [hasClick, setHasClick] = useState(false);
+  const current = useMatch(ROUTER_PATH + urls);
   const handleEnter = useCallback(() => {
-    if (!mini && mlist && mlist.length > 0) {
+    if (mlist && mlist.length > 0) {
       setNav({titles, id, mlist});
     }
-  }, [titles, id, mlist, mini, setNav]);
+  }, [titles, id, mlist, setNav]);
 
   const handleLeave = useCallback(() => {
-    if (!mini && mlist && mlist.length > 0) {
+    if (mlist && mlist.length > 0) {
       hideNav();
     }
-  }, [mini, mlist, hideNav]);
+  }, [mlist, hideNav]);
 
   const handleClick = useCallback(() => {
+    console.log('click', mlist.length, hasClick);
     if (mini && mlist && mlist.length > 0) {
+      console.log('mini');
       if (!hasClick) {
         setHasClick(true);
         setNav({titles, id, mlist});
@@ -52,10 +55,10 @@ const NavItem = ({ titles, mlist, urls, mini, id, setNav, hideNav, active }: { m
   return (
     <>
       <div
-        className={c(_s.item, active ? _s.border : null)}
+        className={c(_s.item, active || current ? _s.active : null)}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
-        onClick={handleClick}
+        onTouchEnd={handleClick}
       >
         <NavLink
           className={({ isActive }) => c(isActive ? _s.active : null)}
@@ -64,10 +67,10 @@ const NavItem = ({ titles, mlist, urls, mini, id, setNav, hideNav, active }: { m
         >
             {titles} 
         </NavLink>
-        {mlist?.length > 0 ? <IconRight turn={active} size={mini ? 10 : 5} /> : null}
+        {mlist?.length > 0 ? <IconRight turn={active} /> : null}
       </div>
       {
-        mlist?.length > 0 && active ? <div className={_s.mSubNav}><NavSub list={mlist} /></div> : null
+        mlist?.length > 0 ? <div className={_s.mSubNav}><NavSub list={mlist} /></div> : null
       }
     </>
   )
@@ -84,7 +87,6 @@ const Header = ({ menu }: { menu: TAPI.TMenuItem[];} ) => {
   const resetRef = useRef<NodeJS.Timeout>();
 
   const [mini, setMini] = useState(false); // 是否为小屏幕
-  // const [phone, setPhone] = useState(false); // 是否为移动端
   const bodyRef = useRef(document.getElementsByTagName('body')[0] as HTMLBodyElement);
 
   const resetMini = () => {
@@ -146,11 +148,6 @@ const Header = ({ menu }: { menu: TAPI.TMenuItem[];} ) => {
       resetMini();
     }, 100);
 
-    // const ua = navigator.userAgent || '';
-    // // TODO: 需要替换为手机判断
-    // const bePhone = /iPhone/.test(ua);
-    // setPhone(bePhone);
-
     // 默认执行一次
     resetMini();
     window.addEventListener('resize', resizeFn);
@@ -179,7 +176,7 @@ const Header = ({ menu }: { menu: TAPI.TMenuItem[];} ) => {
                     urls={urls}
                     id={id}
                     mini={mini}
-                    setNav={mini ? setSubNav : showSubNav}
+                    setNav={showSubNav}
                     hideNav={hideSubNav}
                   />
                 )

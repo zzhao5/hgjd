@@ -13,10 +13,6 @@
   a.more {
     color: $blueColor;
     font-size: 16px;
-    &::before {
-      content: '了解更多';
-      vertical-align: middle;
-    }
     &:hover {
       color: $darkBlueColor;
     }
@@ -39,31 +35,30 @@
 a.moreCenter {
   width: 180px;
   height: 55px;
-  text-align: center;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 50px auto 0;
   background-color: $darkBlueColor;
   border: 1px solid $darkBlueColor;
   color: $whiteColor;
   font-size: 16px;
-  line-height: 55px;
   border-radius: 10px;
   &:hover {
     background: none;
     color: $darkBlueColor;
-    border-color: $middleGreyColor;
+    border-color: $darkBlueColor;
   }
 }
 
 @include xs {
   .title {
-    margin-bottom: po(20 , 670);
+    margin-bottom: po(60 , 670);
     .name {
       font-size: 24px;
     }
     &.border {
-      padding-bottom: po(18, 670);
-      border-width: 1px;
+      padding-bottom: po(40, 670);
     }
     &.hasTags {
       margin-bottom: 100px;
