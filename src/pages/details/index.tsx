@@ -47,8 +47,9 @@ const Details = ({ group }: { group?: boolean;}) => {
       API.getDataInfo(opt).then((res) => {
         const next = res.result.nextId;
         const prev = res.result.upId;
+        const muenuId = res.result.info.menuId;
         setData(res.result.info);
-        if (group || id === '31') {
+        if (group || muenuId === 31) {
           setNext(undefined);
           setPrev(undefined);
           return;
@@ -69,7 +70,7 @@ const Details = ({ group }: { group?: boolean;}) => {
         }
       })
     }
-  }, [id, subTag]);
+  }, [id, subTag, group]);
 
   return (
     <div className={_s.wrap}>

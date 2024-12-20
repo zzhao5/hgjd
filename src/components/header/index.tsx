@@ -23,8 +23,7 @@ const NavSub = ({list}: { list:TAPI.TMenuItem[];}) => {
   )
 }
 
-const NavItem = ({ titles, mlist, urls, id, setNav, hideNav, current, handleClick }: { setNav: Function; hideNav: Function; current: number; handleClick: Function; } & TAPI.TMenuItem) => {
-  // const [hasClick, setHasClick] = useState(false);
+const NavItem = ({ titles, mlist, urls, id, setNav, hideNav, current, handleClick, mini }: { setNav: Function; hideNav: Function; current: number; handleClick: Function; mini: boolean; } & TAPI.TMenuItem) => {
   const inMatch = useMatch(ROUTER_PATH + urls);
   const handleEnter = useCallback(() => {
     if (mlist && mlist.length > 0) {
@@ -33,21 +32,10 @@ const NavItem = ({ titles, mlist, urls, id, setNav, hideNav, current, handleClic
   }, [titles, id, mlist, setNav]);
 
   const handleLeave = useCallback(() => {
-    if (mlist && mlist.length > 0) {
+    if (!mini && mlist && mlist.length > 0) {
       hideNav();
     }
-  }, [mlist, hideNav]);
-
-  // const handleClick = useCallback(() => {
-  //   console.log('click', mlist.length, hasClick);
-  //   if (mlist && mlist.length > 0) {
-  //     if (!hasClick) {
-  //       setHasClick(true);
-  //     } else {
-  //       setHasClick(false);
-  //     }
-  //   }
-  // }, [mlist, hasClick, setNav, titles, id]);
+  }, [mlist, hideNav, mini]);
 
   return (
     <>
@@ -168,7 +156,6 @@ const Header = ({ menu }: { menu: TAPI.TMenuItem[];} ) => {
                   <NavItem
                     key={id}
                     titles={titles}
-                    // active={ !!subNavData && subNavData.mlist?.length > 0 && id === subNavData.id }
                     mlist={mlist}
                     urls={urls}
                     id={Number(id)}
@@ -176,6 +163,7 @@ const Header = ({ menu }: { menu: TAPI.TMenuItem[];} ) => {
                     hideNav={hideSubNav}
                     current={current}
                     handleClick={setCurrent}
+                    mini={mini}
                   />
                 )
               }
@@ -189,7 +177,7 @@ const Header = ({ menu }: { menu: TAPI.TMenuItem[];} ) => {
           <div
             className={c(_s.pcSubNav, !showNav ? _s.hideSubNav : null)} 
             onMouseEnter={stopHideSubNav} 
-            // onMouseLeave={hideSubNav}
+            onMouseLeave={hideSubNav}
           >
             <div className={_s.main}>
               <div className={_s.title}>{subNavData.titles}</div>

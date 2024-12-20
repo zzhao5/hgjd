@@ -247,12 +247,14 @@
       }
       .subItem {
         width: 100%;
-        padding: po(25, 670) 0 po(25, 670) po(100, 670);
+        padding: po(25, 670) 0 po(25, 670);
+        margin: 0;
         font-size: 16px;
         line-height: 40px;
         border-bottom: 1px solid $whiteColor;
         p a {
           display: block;
+          padding-left: po(100, 670);
         }
         p {
           border: none;

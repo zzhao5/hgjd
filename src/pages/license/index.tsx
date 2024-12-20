@@ -38,6 +38,7 @@ const Licenses = () => {
                 title={titles}
                 text={describes}
                 className={'shadowMode'}
+                proportion={67}
                 />
             )
           })

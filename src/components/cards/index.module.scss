@@ -66,7 +66,7 @@
 .image {
   padding: 25px 20px 25px;
   display: block;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   font-weight: 400;
   text-align: center;
@@ -74,7 +74,6 @@
   border-radius: 10px;
   background: $whiteColor;
   &.shadowMode {
-    background: $darkWhiteColor;
     .placeholder, .imgLink {
       box-shadow: 0px 0px 3px 0px #C4C4C4;
     }
@@ -272,10 +271,10 @@
     border-radius: 20px;
     background: $whiteColor;
     box-shadow: 0px 0px 15px 0px rgba(192, 211, 227, 0.5);
-    padding: 80px 0 40px;
+    padding: 80px 20px 40px;
   }
   .list {
-    text-align: center;
+    text-align: left;
     color: $greyColor;
     height: 145px;
   }
@@ -321,7 +320,7 @@
       margin-right: po(40, 670);
       &::after {
         position: absolute;
-        width: 100%;
+        width: calc(100% - 55px);
         top: 50%;
         transform: translateY(-50%);
       }
@@ -390,7 +389,7 @@
     }
     .content {
       position: relative;
-      padding: po(90 , 580) 0 po(80 , 580);
+      padding: po(90 , 580) 15px po(80 , 580);
       z-index: 2;
     }
     &::after {
@@ -406,7 +405,7 @@
     }
   }
   .image {
-    font-size: 14px;
+    font-size: 16px;
     padding: po(60) po(50) po(50);
     &.videoMode {
       padding: po(60) po(50) po(50);
@@ -420,6 +419,9 @@
     padding: po(20, 670) po(50, 670) po(80, 670);
     .time {
       font-size: 12px;
+    }
+    .content {
+      font-size: 16px;
     }
     &.item {
       .content {

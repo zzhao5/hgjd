@@ -111,7 +111,7 @@ const Main = ({
               <ListItem count={100} text="位" content="专业专家" />
               <ListItem count={10} text="年" content="专业服务" />
               <ListItem count={100} text="项" content="项目案例" />
-              <ListItem count={2} text="万" content="客户" />
+              <ListItem count={200} text="" content="客户" />
             </ul>
           </div>
         </div>
@@ -171,6 +171,7 @@ const Main = ({
                     title={titles}
                     text={describes}
                     className={'shadowMode'}
+                    proportion={67}
                   />
                 )
               })

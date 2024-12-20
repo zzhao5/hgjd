@@ -328,3 +328,23 @@
     }
   }
 }
+
+@include mq($min-width: 0, $max-width: 400px) {
+  .best .text .list {
+    li {
+      width: 33%;
+      margin: 0;
+    }
+    .border {
+      height: 20px;
+      padding-left: 10px;
+    }
+    strong {
+      font-size: 30px;
+      line-height: 20px;
+    }
+    .content {
+      padding-left: 10px;
+    }
+  }
+}

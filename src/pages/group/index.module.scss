@@ -10,10 +10,6 @@
 .flex_2 {
   &.border > * {
     border-bottom: 1px solid $borderGreyColor;
-    &:last-child {
-      border: none;
-      padding-bottom: 0;
-    }
   }
 }
 .info {
@@ -34,6 +30,13 @@
   .box {
     border-top: none;
     padding-top: 0;
+  }
+  .flex_2 {
+    &.border > * {
+      &:last-child {
+        border: none;
+      }
+    }
   }
   .flex_4 {
     justify-content: space-between;
