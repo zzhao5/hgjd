@@ -254,21 +254,15 @@ const getSiteInfo = async () => {
 
 const getDataList = async (params: TAPI.TGetNewsList) => {
   const res = await axios.get(`${baseURL}hanguang-community/site/index/newsList`, { params });
-  sessionStorage.setItem(JSON.stringify(params), JSON.stringify(res.data));
   return res.data;
 }
 
 // 加入缓存的 getDataList，如果有缓存则直接使用缓存，否则请求数据
 const getList = (opt: TAPI.TGetNewsList, setData: Function) => {
-    const sessionData = sessionStorage.getItem(JSON.stringify(opt));
-    if (sessionData) {
-      setData(JSON.parse(sessionData).result);
-    } else {
-      getDataList(opt).then((res) => {
-        setData(res.result);
-      });
-    }
-  }
+  getDataList(opt).then((res) => {
+    setData(res.result);
+  });
+}
 
 const getDataInfo = async (params: TAPI.TGetNewsInfo) => {
   const res = await axios.get(`${baseURL}hanguang-community/site/index/queryNewsById`, { params });
